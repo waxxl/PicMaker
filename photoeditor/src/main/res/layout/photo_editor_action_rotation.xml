@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="56.67dp"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:background="#094873">
+
+    <ImageView
+        android:id="@+id/leftRotate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_gravity="center_horizontal"
+        android:contentDescription="@string/photo_editor_app_name"
+        android:scaleType="fitCenter"
+        android:src="@drawable/left_rotate"/>
+    <ImageView
+        android:id="@+id/rightRotate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_gravity="center_horizontal"
+        android:contentDescription="@string/photo_editor_app_name"
+        android:scaleType="fitCenter"
+        android:src="@drawable/right_rotate"/>
+    <ImageView
+        android:id="@+id/flipHor"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_gravity="center_horizontal"
+        android:contentDescription="@string/photo_editor_app_name"
+        android:scaleType="fitCenter"
+        android:src="@drawable/right"/>
+    <ImageView
+        android:id="@+id/flipVer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_gravity="center_horizontal"
+        android:contentDescription="@string/photo_editor_app_name"
+        android:scaleType="fitCenter"
+        android:src="@drawable/vertical"/>
+</LinearLayout>

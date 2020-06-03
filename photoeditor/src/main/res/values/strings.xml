@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Photo Collage Editor</string>
+    <string name="abc_toolbar_collapse_description">Collapse</string>
+    <string name="app_not_found">App not found</string>
+    <string name="cancel">Cancel</string>
+    <string name="change">Change</string>
+    <string name="character_counter_content_description">Characters entered %1$d of %2$d</string>
+    <string name="character_counter_overflowed_content_description">Character limit exceeded %1$d of %2$d</string>
+    <string name="character_counter_pattern">%1$d / %2$d</string>
+    <string name="chip_text">Chip text</string>
+    <string name="clear_text_end_icon_content_description">Clear text</string>
+    <string name="collage">Collage</string>
+    <string name="create_frame">Create frame</string>
+    <string name="creating">Creating...</string>
+    <string name="delete">Delete</string>
+    <string name="done">Done</string>
+    <string name="edit">Edit</string>
+    <string name="error_icon_content_description">Error</string>
+    <string name="exit">Exit</string>
+    <string name="gallery_albums">Gallery Albums</string>
+    <string name="icon_content_description">Dialog Icon</string>
+    <string name="password_toggle_content_description">Show password</string>
+    <string name="permission_denied_and_guide_to_setting">Permission denied! Please enable all permission</string>
+    <string name="permission_guide">You need to allow Photo Collage Grid Frame app to access the following dangerous permissions to use this app:</string>
+    <string name="permission_write_ex_storage">WRITE_EXTERNAL_STORAGE</string>
+    <string name="photo_editor">Photo Editor</string>
+    <string name="photo_editor_app_name">Photo Editor</string>
+    <string name="photo_editor_apply">Apply</string>
+    <string name="photo_editor_confirm_uninstall">Are you sure you want to uninstall this package?</string>
+    <string name="photo_editor_crop">Crop</string>
+    <string name="photo_editor_custom">Custom</string>
+    <string name="photo_editor_done">Done</string>
+    <string name="photo_editor_draw">Draw</string>
+    <string name="photo_editor_edit">Edit</string>
+    <string name="photo_editor_effect">Effect</string>
+    <string name="photo_editor_erase">Erase</string>
+    <string name="photo_editor_guide_drag_image">Using your finger to drag image</string>
+    <string name="photo_editor_guide_zoom_image">Using two fingers to zoom in/zoom out image</string>
+    <string name="photo_editor_rotate">Rotate</string>
+    <string name="photo_editor_share_image">Share Image</string>
+    <string name="photo_editor_square">Square</string>
+    <string name="search_menu_title">Search</string>
+    <string name="select_frame">Select frame</string>
+    <string name="status_bar_notification_info_overflow">999+</string>
+    <string name="opacity">Opacity</string>
+
+
+    <string name="effect">Effect</string>
+    <string name="crop">Crop</string>
+</resources>

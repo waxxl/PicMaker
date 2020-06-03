@@ -1,0 +1,88 @@
+<resources>
+     
+   <string name="abc_toolbar_collapse_description">ยุบ</string>
+        
+   <string name="app_not_found">​​ไม่พบแอป</string>
+        
+   <string name="cancel">ยกเลิก</string>
+        
+   <string name="change">เปลี่ยน</string>
+        
+   <string name="character_counter_content_description">อักขระที่ป้อน% 1 $ d จาก% 2 $ d</string>
+        
+   <string name="character_counter_overflowed_content_description">เกินจำนวนอักขระสูงสุด% 1 $ d จาก% 2 $ d</string>
+        
+   <string name="character_counter_pattern">% 1 $ d /% 2 $ d</string>
+        
+   <string name="chip_text">ข้อความชิป</string>
+        
+   <string name="clear_text_end_icon_content_description">ข้อความที่ชัดเจน</string>
+        
+   <string name="collage">Collage</string>
+        
+   <string name="create_frame">สร้างเฟรม</string>
+        
+   <string name="creating">กำลังสร้าง ...</string>
+        
+   <string name="delete">ลบ</string>
+        
+   <string name="done">Done</string>
+        
+   <string name="edit">แก้ไข</string>
+        
+   <string name="error_icon_content_description">ข้อผิดพลาด</string>
+        
+   <string name="exit">ออก</string>
+        
+   <string name="gallery_albums">อัลบั้มแกลลอรี่</string>
+        
+   <string name="icon_content_description">ไอคอนไดอะล็อก</string>
+        
+   <string name="password_toggle_content_description">แสดงรหัสผ่าน</string>
+        
+   <string name="permission_denied_and_guide_to_setting">ปฏิเสธการอนุญาต! โปรดเปิดใช้งานการอนุญาตทั้งหมด</string>
+        
+   <string name="permission_guide">คุณต้องอนุญาตให้แอป Photo Collage Grid Frame เข้าถึงสิทธิ์ที่เป็นอันตรายต่อไปนี้เพื่อใช้แอปนี้:</string>
+        
+   <string name="permission_write_ex_storage">WRITE_EXTERNAL_STORAGE</string>
+        
+   <string name="photo_editor">ตัวแก้ไขรูปถ่าย</string>
+        
+   <string name="photo_editor_app_name">ตัวแก้ไขรูปถ่าย</string>
+        
+   <string name="photo_editor_apply">ใช้</string>
+        
+   <string name="photo_editor_confirm_uninstall">คุณแน่ใจหรือไม่ว่าต้องการถอนการติดตั้งแพ็คเกจนี้</string>
+        
+   <string name="photo_editor_crop">ครอบตัด</string>
+        
+   <string name="photo_editor_custom">กำหนดเอง</string>
+        
+   <string name="photo_editor_done">Done</string>
+        
+   <string name="photo_editor_draw">วาด</string>
+        
+   <string name="photo_editor_edit">แก้ไข</string>
+        
+   <string name="photo_editor_effect">Effect</string>
+        
+   <string name="photo_editor_erase">ลบ</string>
+        
+   <string name="photo_editor_guide_drag_image">ใช้นิ้วของคุณลากรูปภาพ</string>
+        
+   <string name="photo_editor_guide_zoom_image">ใช้สองนิ้วเพื่อซูมเข้า / ซูมออกภาพ</string>
+        
+   <string name="photo_editor_rotate">หมุน</string>
+        
+   <string name="photo_editor_share_image">แบ่งปันรูปภาพ</string>
+        
+   <string name="photo_editor_square">Square</string>
+        
+   <string name="search_menu_title">ค้นหา</string>
+        
+   <string name="select_frame">เลือกเฟรม</string>
+        
+   <string name="status_bar_notification_info_overflow">999+</string>
+        
+   <string name="opacity">Opacity</string>
+</resources>

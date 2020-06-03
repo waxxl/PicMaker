@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+     
+   <string name="app_name">PhotoCollage</string>
+
+        
+   <string name="tab_freely">Livremente</string>
+        
+   <string name="tab_template">Templat</string>
+        
+   <string name="tab_frame">Frame</string>
+        
+   <string name="tab_save">Simpan</string>
+
+        
+   <string name="button_ok">Ok</string>
+        
+   <string name="button_cancel">Batalkan</string>
+
+        
+   <string name="tab_background">​​Latar Belakang</string>
+        
+   <string name="tab_filters">Filter</string>
+        
+   <string name="tab_pictures">Pictures</string>
+        
+   <string name="tab_text">Teks</string>
+        
+   <string name="tab_stickers">Stiker</string>
+
+        
+   <string name="write_text_hint">Tulis Teks Di Sini ...</string>
+        
+   <string name="collage">Pembuat Kolase</string>
+        
+   <string name="select_frame">Pilih bingkai</string>
+        
+   <string name="create_frame">Buat Bingkai</string>
+        
+   <string name="app_not_found">​​Pilih Aplikasi Tidak Ditemukan</string>
+        
+   <string name="gallery_albums">Album Galeri</string>
+
+        
+   <string name="permission_write_ex_storage">izin menulis penyimpanan</string>
+        
+   <string name="permission_guide">panduan izin</string>
+        
+   <string name="permission_denied_and_guide_to_setting">izin ditolak dan panduan untuk mengatur</string>
+        
+   <string name="photo_editor_share_image">Bagikan Gambar</string>
+        
+   <string name="edit">Edit</string>
+        
+   <string name="change">Ubah</string>
+        
+   <string name="delete">Hapus</string>
+        
+   <string name="cancel">Batalkan</string>
+        
+   <string name="exit">Keluar</string>
+        
+   <string name="select_photo_hint">Silakan Pilih %d Foto</string>
+        
+   <string name="max_select_count">Anda hanya perlu %d Foto</string>
+        
+   <string name="exit_tint">Apakah Anda yakin ingin keluar?</string>
+        
+   <string name="edit_tint">harap edit terlebih dahulu</string>
+</resources>

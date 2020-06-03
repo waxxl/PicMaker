@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">PhotoCollage</string>
+
+    <string name="tab_freely">Freely</string>
+    <string name="tab_template">Template</string>
+    <string name="tab_frame">Frame</string>
+    <string name="tab_save">Save</string>
+
+    <string name="button_ok">Ok</string>
+    <string name="button_cancel">Cancel</string>
+
+    <string name="tab_background">Background</string>
+    <string name="tab_filters">Filters</string>
+    <string name="tab_pictures">Pictures</string>
+    <string name="tab_text">Text</string>
+    <string name="tab_stickers">Stickers</string>
+
+    <string name="write_text_hint">Write Text Here...</string>
+    <string name="collage">Collage Maker</string>
+    <string name="select_frame">Select frame</string>
+    <string name="create_frame">Create Frame</string>
+    <string name="app_not_found">Pick App Not Found</string>
+    <string name="gallery_albums">Gallery Albums</string>
+
+    <string name="permission_write_ex_storage">permission write storage</string>
+    <string name="permission_guide">You need to allow Photo Collage Grid Frame app to access the following dangerous permissions to use this app:</string>
+    <string name="permission_denied_and_guide_to_setting">permission denied and guide to setting</string>
+    <string name="photo_editor_share_image">Share Image</string>
+    <string name="edit">Edit</string>
+    <string name="change">Change</string>
+    <string name="delete">Delete</string>
+    <string name="cancel">Cancel</string>
+    <string name="exit">Exit</string>
+    <string name="select_photo_hint">Please Select %d Photo(s)</string>
+    <string name="max_select_count">You only need %d Photo(s)</string>
+    <string name="exit_tint">Are you sure want to exit?</string>
+    <string name="edit_tint">please edit first</string>
+</resources>

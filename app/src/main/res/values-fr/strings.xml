@@ -1,0 +1,70 @@
+<resources>
+     
+     
+   <string name="app_name">PhotoCollage</string>
+
+        
+   <string name="tab_freely">Livremente</string>
+        
+   <string name="tab_template">Modèle</string>
+        
+   <string name="tab_frame">Cadre</string>
+        
+   <string name="tab_save">Enregistrer</string>
+
+        
+   <string name="button_ok">Ok</string>
+        
+   <string name="button_cancel">Annuler</string>
+
+        
+   <string name="tab_background">​​Arrière-plan</string>
+        
+   <string name="tab_filters">Filtres</string>
+        
+   <string name="tab_pictures">Images</string>
+        
+   <string name="tab_text">Texte</string>
+        
+   <string name="tab_stickers">Autocollants</string>
+
+        
+   <string name="write_text_hint">Écrire du texte ici ...</string>
+        
+   <string name="collage">Collage Maker</string>
+        
+   <string name="select_frame">Sélectionner un cadre</string>
+        
+   <string name="create_frame">Créer un cadre</string>
+        
+   <string name="app_not_found">​​Choisir une application introuvable</string>
+        
+   <string name="gallery_albums">Albums de galerie</string>
+
+        
+   <string name="permission_write_ex_storage">autorisation d\'écriture de stockage</string>
+        
+   <string name="permission_guide">guide des autorisations</string>
+        
+   <string name="permission_denied_and_guide_to_setting">autorisation refusée et guide de configuration</string>
+        
+   <string name="photo_editor_share_image">Partager l\'image</string>
+        
+   <string name="edit">Modifier</string>
+        
+   <string name="change">Modifier</string>
+        
+   <string name="delete">Supprimer</string>
+        
+   <string name="cancel">Annuler</string>
+        
+   <string name="exit">Quitter</string>
+        
+   <string name="select_photo_hint">Veuillez sélectionner %d photo(s)</string>
+        
+   <string name="max_select_count">Vous n\'avez besoin que de %d photo(s)</string>
+        
+   <string name="exit_tint">Voulez-vous vraiment quitter?</string>
+        
+   <string name="edit_tint">veuillez d\'abord modifier</string>
+</resources>

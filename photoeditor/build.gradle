@@ -1,0 +1,57 @@
+plugins {
+    id 'com.android.library'
+}
+
+android {
+    signingConfigs {
+        release {
+            storeFile file('C:\\Users\\xxl\\phoneeditor.keystore.jks')
+            storePassword '132456'
+            keyAlias 'keyx'
+            keyPassword '132456'
+        }
+    }
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
+
+    defaultConfig {
+        minSdkVersion 23
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+            sourceSets {
+                main {
+                    assets.srcDirs = ['src/main/assets']
+                }
+            }
+        }
+
+        debug {
+            minifyEnabled true
+            sourceSets {
+                main {
+                    assets.srcDirs = ['src/main/assets']
+                }
+            }
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'com.google.android.material:material:1.1.0'
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+}

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
+    <include
+        android:id="@+id/toolbarLayout"
+        layout="@layout/toolbar" />
+
+    <RelativeLayout
+        android:id="@+id/containerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/templateLayout"
+        android:layout_below="@+id/toolbarLayout" />
+
+    <LinearLayout
+        android:id="@+id/items_panel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/templateLayout"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/cross_btn"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_gravity="right"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="2dp"
+            android:background="#2196f3"
+            android:padding="3dp"
+            android:src="@drawable/close" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycleViewStick"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_margin="2dp" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/templateLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#666666">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/templateView"
+            android:layout_width="match_parent"
+            android:layout_height="90dp" />
+    </FrameLayout>
+</RelativeLayout>

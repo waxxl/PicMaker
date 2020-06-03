@@ -1,0 +1,66 @@
+<resources>
+     
+   <string name="app_name">PhotoCollage</string>  
+   <string name="tab_freely">Livremente</string>   
+   <string name="tab_template">แม่แบบ</string>
+        
+   <string name="tab_frame">Frame</string>
+        
+   <string name="tab_save">บันทึก</string>
+
+        
+   <string name="button_ok">ตกลง</string>
+        
+   <string name="button_cancel">ยกเลิก</string>
+
+        
+   <string name="tab_background">​​พื้นหลัง</string>
+        
+   <string name="tab_filters">ตัวกรอง</string>
+        
+   <string name="tab_pictures">รูปภาพ</string>
+        
+   <string name="tab_text">ข้อความ</string>
+        
+   <string name="tab_stickers">สติ๊กเกอร์</string>
+
+        
+   <string name="write_text_hint">เขียนข้อความที่นี่ ...</string>
+        
+   <string name="collage">Collage Maker</string>
+        
+   <string name="select_frame">เลือกเฟรม</string>
+        
+   <string name="create_frame">สร้างเฟรม</string>
+        
+   <string name="app_not_found">​​เลือกแอปที่ไม่พบ</string>
+        
+   <string name="gallery_albums">อัลบั้มแกลลอรี่</string>
+
+        
+   <string name="permission_write_ex_storage">พื้นที่เก็บข้อมูลการเขียนสิทธิ์</string>
+        
+   <string name="permission_guide">คู่มือการอนุญาต</string>
+        
+   <string name="permission_denied_and_guide_to_setting">สิทธิ์ถูกปฏิเสธและแนะนำการตั้งค่า</string>
+        
+   <string name="photo_editor_share_image">แบ่งปันรูปภาพ</string>
+        
+   <string name="edit">แก้ไข</string>
+        
+   <string name="change">เปลี่ยน</string>
+        
+   <string name="delete">ลบ</string>
+        
+   <string name="cancel">ยกเลิก</string>
+        
+   <string name="exit">ออก</string>
+        
+   <string name="select_photo_hint">โปรดเลือก% d รูปภาพ</string>
+        
+   <string name="max_select_count">คุณต้องการเพียง% d รูปภาพ</string>
+        
+   <string name="exit_tint">คุณต้องการออกหรือไม่</string>
+        
+   <string name="edit_tint">โปรดแก้ไขก่อนอื่น</string>
+</resources>

@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp">
+            <include
+                android:id="@+id/toolbar"
+                layout="@layout/toolbar" />
+        </FrameLayout>
+
+        <com.yd.picmaker.sticker.StickerLayout
+            android:id="@+id/photo_free_edit_frame"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="11dp"
+            android:layout_marginEnd="11dp"
+            android:layout_marginBottom="125dp"
+            android:layout_marginTop="47dp"
+            android:layout_weight="1"
+            app:showBorder="true"
+            app:showIcons="true">
+            <ImageView
+                android:id="@+id/filter_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitCenter"/>
+
+        </com.yd.picmaker.sticker.StickerLayout>
+
+        <LinearLayout
+            android:id="@+id/tab_mode"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/selection_height"
+            android:orientation="horizontal"
+            android:background="@color/color_primary"
+            android:weightSum="5"
+            android:layout_gravity="bottom" >
+            <TextView
+                android:id="@+id/tab_background"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/background"
+                android:textSize="9sp"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:padding="6dp"
+                android:paddingTop="9dp"
+                android:text="@string/tab_background"/>
+            <TextView
+                android:id="@+id/tab_filters"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/fliters"
+                android:textSize="9sp"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:padding="6dp"
+                android:paddingTop="9dp"
+                android:text="@string/tab_filters"/>
+            <TextView
+                android:id="@+id/tab_pic"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/pictures"
+                android:textSize="9sp"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:padding="6dp"
+                android:paddingTop="9dp"
+                android:text="@string/tab_pictures"/>
+            <TextView
+                android:id="@+id/tab_texts"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/text"
+                android:textSize="9sp"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:padding="6dp"
+                android:paddingTop="9dp"
+                android:text="@string/tab_text"/>
+            <TextView
+                android:id="@+id/tab_stickers"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/stickers"
+                android:textSize="9sp"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:padding="6dp"
+                android:paddingTop="9dp"
+                android:text="@string/tab_stickers"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/select_recycler_frame"
+        android:layout_width="match_parent"
+        android:layout_height="116dp"
+        android:layout_gravity="bottom"
+        android:background="@color/color_primary"
+        android:layout_marginBottom="@dimen/selection_height">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/background_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="23dp"
+            android:layout_marginBottom="23dp"
+            android:orientation="horizontal"
+            android:visibility="visible" />
+
+        <RelativeLayout
+            android:id="@+id/filter_rl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="vertical"
+            android:visibility="gone">
+            <TextView
+                android:id="@+id/opacity_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/opacity"
+                android:gravity="center"
+                android:textColor="@color/primary_text_color"
+                android:textSize="12sp"/>
+
+            <SeekBar
+                android:id="@+id/filter_seek_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/opacity_text"
+                android:secondaryProgress="@color/primary_seek_bar_color"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/filter_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_below="@+id/filter_seek_bar"
+                android:orientation="horizontal"/>
+        </RelativeLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/sticker_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="23dp"
+            android:orientation="horizontal"
+            android:visibility="gone" />
+    </FrameLayout>
+</FrameLayout>

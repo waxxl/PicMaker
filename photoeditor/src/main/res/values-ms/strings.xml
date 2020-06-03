@@ -1,0 +1,89 @@
+<resources>
+     
+     
+   <string name="abc_toolbar_collapse_description">Runtuhkan</string>
+        
+   <string name="app_not_found">​​Aplikasi tidak dijumpai</string>
+        
+   <string name="cancel">Batal</string>
+        
+   <string name="change">Ubah</string>
+        
+   <string name="character_counter_content_description">Karakter dimasukkan% 1 $ d dari% 2 $ d</string>
+        
+   <string name="character_counter_overflowed_content_description">Had watak melebihi% 1 $ d dari% 2 $ d</string>
+        
+   <string name="character_counter_pattern">% 1 $ d /% 2 $ d</string>
+        
+   <string name="chip_text">Teks cip</string>
+        
+   <string name="clear_text_end_icon_content_description">Kosongkan teks</string>
+        
+   <string name="collage">Kolaj</string>
+        
+   <string name="create_frame">Buat bingkai</string>
+        
+   <string name="creating">Membuat ...</string>
+        
+   <string name="delete">Padam</string>
+        
+   <string name="done">Selesai</string>
+        
+   <string name="edit">Edit</string>
+        
+   <string name="error_icon_content_description">Ralat</string>
+        
+   <string name="exit">Keluar</string>
+        
+   <string name="gallery_albums">Album Galeri</string>
+        
+   <string name="icon_content_description">Ikon Dialog</string>
+        
+   <string name="password_toggle_content_description">Tunjukkan kata laluan</string>
+        
+   <string name="permission_denied_and_guide_to_setting">Kebenaran ditolak! Sila aktifkan semua kebenaran</string>
+        
+   <string name="permission_guide">Anda perlu membenarkan aplikasi Photo Collage Grid Frame untuk mengakses kebenaran berbahaya berikut untuk menggunakan aplikasi ini:</string>
+        
+   <string name="permission_write_ex_storage">WRITE_EXTERNAL_STORAGE</string>
+        
+   <string name="photo_editor">Penyunting Foto</string>
+        
+   <string name="photo_editor_app_name">Penyunting Foto</string>
+        
+   <string name="photo_editor_apply">Terapkan</string>
+        
+   <string name="photo_editor_confirm_uninstall">Adakah anda pasti mahu menyahpasang pakej ini?</string>
+        
+   <string name="photo_editor_crop">Pangkas</string>
+        
+   <string name="photo_editor_custom">Custom</string>
+        
+   <string name="photo_editor_done">Selesai</string>
+        
+   <string name="photo_editor_draw">Lukis</string>
+        
+   <string name="photo_editor_edit">Edit</string>
+        
+   <string name="photo_editor_effect">Kesan</string>
+        
+   <string name="photo_editor_erase">Padam</string>
+        
+   <string name="photo_editor_guide_drag_image">Menggunakan jari anda untuk menyeret gambar</string>
+        
+   <string name="photo_editor_guide_zoom_image">Menggunakan dua jari untuk memperbesar / memperkecil gambar</string>
+        
+   <string name="photo_editor_rotate">Putar</string>
+        
+   <string name="photo_editor_share_image">Kongsi Gambar</string>
+        
+   <string name="photo_editor_square">Kotak</string>
+        
+   <string name="search_menu_title">Cari</string>
+        
+   <string name="select_frame">Pilih bingkai</string>
+        
+   <string name="status_bar_notification_info_overflow">999+</string>
+        
+   <string name="opacity">Kelegapan</string>
+</resources>

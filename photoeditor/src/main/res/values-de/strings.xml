@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="abc_toolbar_collapse_description">Reduzieren</string>
+        
+    <string name="app_not_found">​​App nicht gefunden</string>
+        
+    <string name="cancel">Abbrechen</string>
+        
+    <string name="change">Ändern Sie</string>
+        
+    <string name="character_counter_content_description">Zeichen, die %1$d von %2$d eingegeben haben</string>
+        
+    <string name="chip_text">Chiptext</string>
+        
+    <string name="clear_text_end_icon_content_description">Klartext</string>
+        
+    <string name="collage">Collage</string>
+        
+    <string name="create_frame">Frame erstellen</string>
+        
+    <string name="creating">Erstellen ...</string>
+        
+    <string name="delete">Löschen</string>
+        
+    <string name="done">Fertig</string>
+        
+    <string name="edit">Bearbeiten</string>
+        
+    <string name="error_icon_content_description">Fehler</string>
+        
+    <string name="exit">Beenden</string>
+        
+    <string name="gallery_albums">Galerie-Alben</string>
+        
+    <string name="icon_content_description">Dialogsymbol</string>
+        
+    <string name="password_toggle_content_description">Passwort anzeigen</string>
+        
+    <string name="permission_denied_and_guide_to_setting">Erlaubnis verweigert! Bitte aktivieren Sie alle Berechtigungen</string>
+        
+    <string name="permission_guide">Sie müssen der Photo Collage Grid Frame-App erlauben, auf die folgenden gefährlichen Berechtigungen zuzugreifen, um diese App zu verwenden:</string>
+        
+    <string name="photo_editor">Fotoeditor</string>
+        
+    <string name="photo_editor_app_name">Photo Editor</string>
+        
+    <string name="photo_editor_apply">Übernehmen</string>
+        
+    <string name="photo_editor_confirm_uninstall">Möchten Sie dieses Paket wirklich deinstallieren?</string>
+        
+    <string name="photo_editor_crop">Zuschneiden</string>
+        
+    <string name="photo_editor_custom">Benutzerdefiniert</string>
+        
+    <string name="photo_editor_done">Fertig</string>
+        
+    <string name="photo_editor_draw">Zeichnen</string>
+        
+    <string name="photo_editor_edit">Bearbeiten</string>
+        
+    <string name="photo_editor_effect">Effekt</string>
+        
+    <string name="photo_editor_erase">löschen</string>
+        
+    <string name="photo_editor_guide_drag_image">Ziehen Sie das Bild mit dem Finger</string>
+        
+    <string name="photo_editor_guide_zoom_image">Verwenden Sie zwei Finger, um das Bild zu vergrößern / zu verkleinern</string>
+        
+    <string name="photo_editor_rotate">Drehen</string>
+        
+    <string name="photo_editor_share_image">Bild freigeben</string>
+        
+    <string name="photo_editor_square">Quadrat</string>
+        
+    <string name="search_menu_title">Suche</string>
+        
+    <string name="select_frame">Wählen Sie frame aus</string>
+        
+    <string name="status_bar_notification_info_overflow">999+</string>
+        
+    <string name="opacity">Deckkraft</string>
+</resources>

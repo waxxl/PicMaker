@@ -1,0 +1,33 @@
+<resources>
+   <string name="app_name">PhotoCollage</string>    
+   <string name="tab_freely">Livremente</string>
+   <string name="tab_template">Modelo</string>
+   <string name="tab_frame">Quadro</string>
+   <string name="tab_save">Salvar</string>
+   <string name="button_ok">Ok</string> 
+   <string name="button_cancel">Cancelar</string>    
+   <string name="tab_background">Plano de fundo</string>  
+   <string name="tab_filters">Filtros</string>
+   <string name="tab_pictures">Imagens</string>
+   <string name="tab_text">Texto</string>
+   <string name="tab_stickers">Adesivos</string>
+   <string name="write_text_hint">Escreva texto aqui ...</string>
+   <string name="collage">Criador de colagens</string>
+   <string name="select_frame">Selecionar quadro</string>
+   <string name="create_frame">Criar quadro</string>
+   <string name="app_not_found">​​Escolha o aplicativo não encontrado</string> 
+   <string name="gallery_albums">Álbuns da galeria</string>
+   <string name="permission_write_ex_storage">permissão para gravar armazenamento</string>
+   <string name="permission_guide">guia de permissões</string>  
+   <string name="permission_denied_and_guide_to_setting">permissão negada e guia para a configuração</string> 
+   <string name="photo_editor_share_image">Compartilhar imagem</string>  
+   <string name="edit">Editar</string>
+   <string name="change">Alterar</string>
+   <string name="delete">Excluir</string>
+   <string name="cancel">Cancelar</string>
+   <string name="exit">Sair</string> 
+   <string name="select_photo_hint">Selecione %d foto(s)</string>
+   <string name="max_select_count">Você só precisa de %d foto(s)</string>
+   <string name="exit_tint">Tem certeza de que deseja sair?</string>
+   <string name="edit_tint">edite primeiro</string>
+</resources>

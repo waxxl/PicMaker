@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/gallery_item"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/gallery_item_height"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <ImageView
+        android:id="@+id/gallery_item_icon"
+        android:layout_width="@dimen/gallery_item_icon_width"
+        android:layout_height="@dimen/gallery_item_icon_height"
+        android:layout_marginStart="@dimen/gallery_item_icon_margin_start"
+        android:layout_marginTop="@dimen/gallery_item_icon_margin_top"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+    <TextView
+        android:id="@+id/gallery_item_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/gallery_album_text_title"
+        android:layout_marginStart="@dimen/gallery_item_icon_margin_start"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gallery_item_icon"/>
+    <TextView
+        android:id="@+id/gallery_item_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/gallery_album_text_count"
+        android:layout_marginStart="@dimen/gallery_item_icon_margin_start"
+        android:layout_marginTop="@dimen/gallery_item_icon_margin_top"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gallery_item_title"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

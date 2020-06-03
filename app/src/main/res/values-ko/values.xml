@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">PhotoCollage</string>
+    <string name="tab_freely">리버먼트</string>
+    <string name="tab_template">템플릿</string>
+    <string name="tab_frame">프레임</string>
+    <string name="tab_save">저장</string>
+    <string name="button_ok">확인</string>
+    <string name="button_cancel">취소</string>
+    <string name="tab_background">​​배경</string>
+        
+    <string name="tab_filters">필터</string>
+        
+    <string name="tab_pictures">사진</string>
+        
+    <string name="tab_text">텍스트</string>
+        
+    <string name="tab_stickers">스티커</string>    
+    <string name="write_text_hint">여기에 텍스트 쓰기 ...</string>
+        
+    <string name="collage">콜라주 제작자</string>
+        
+    <string name="select_frame">프레임 선택</string>
+        
+    <string name="create_frame">프레임 만들기</string>
+        
+    <string name="app_not_found">​​픽 앱을 찾을 수 없음</string>
+        
+    <string name="gallery_albums">갤러리 앨범</string>
+
+        
+    <string name="permission_write_ex_storage">권한 쓰기 저장 용량</string>
+        
+    <string name="permission_guide">권한 안내서</string>
+        
+    <string name="permission_denied_and_guide_to_setting">권한 거부 및 설정 안내</string>
+        
+    <string name="photo_editor_share_image">공유 이미지</string>
+        
+    <string name="edit">편집</string>
+        
+    <string name="change">변경</string>
+        
+    <string name="delete">삭제</string>
+        
+    <string name="cancel">취소</string>
+        
+    <string name="exit">종료</string>
+        
+    <string name="select_photo_hint">%d 사진을 선택하십시오</string>
+        
+    <string name="max_select_count">%d 사진 만 필요</string>
+        
+    <string name="exit_tint">종료 하시겠습니까?</string>
+        
+    <string name="edit_tint">먼저 수정하세요</string>
+</resources>

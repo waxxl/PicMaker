@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include
+        layout="@layout/toolbar" />
+    <FrameLayout
+        android:id="@+id/frame_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/toolbar_height"
+        android:layout_marginBottom="106dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="106dp"
+        android:layout_gravity="bottom"
+        android:background="@color/color_primary"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/select_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            style="@style/custom_text_style"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/selected_pics"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="8dp"/>
+    </LinearLayout>
+</FrameLayout>

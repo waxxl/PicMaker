@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<string name = "app_name">PhotoCollage</string>
+
+     <string name = "tab_freely">Livremente</string>
+     <string name = "tab_template">Plantilla</string>
+     <string name = "tab_frame">Marco</string>
+     <string name = "tab_save">Guardar</string>
+
+     <string name = "button_ok">Ok</string>
+     <string name = "button_cancel">Cancelar</string>
+
+     <string name = "tab_background">​​Fondo</string>
+     <string name = "tab_filters">Filtros</string>
+     <string name = "tab_pictures">Imágenes</string>
+     <string name = "tab_text">Texto</string>
+     <string name = "tab_stickers">Pegatinas</string>
+
+     <string name = "write_text_hint">Escribir texto aquí ...</string>
+     <string name = "collage">Collage Maker</string>
+     <string name = "select_frame">Seleccionar marco</string>
+     <string name = "create_frame">Crear marco</string>
+     <string name = "app_not_found">​​Elegir aplicación no encontrada</string>
+     <string name = "gallery_albums">Álbumes de la galería</string>
+
+     <string name = "permission_write_ex_storage">almacenamiento de escritura de permisos</string>
+     <string name = "permission_guide">guía de permisos</string>
+     <string name = "permission_denied_and_guide_to_setting">permiso denegado y guía para la configuración</string>
+     <string name = "photo_editor_share_image">Compartir imagen</string>
+     <string name = "edit">Editar</string>
+     <string name = "change">Cambiar</string>
+     <string name = "delete">Eliminar</string>
+     <string name = "cancel">Cancelar</string>
+     <string name = "exit">Salir</string>
+     <string name = "select_photo_hint">Seleccione %d Photo(s)</string>
+     <string name = "max_select_count">Solo necesita %d Photo(s)</string>
+     <string name = "exit_tint">¿Seguro que quieres salir?</string>
+     <string name = "edit_tint">edite primero</string>
+</resources>
