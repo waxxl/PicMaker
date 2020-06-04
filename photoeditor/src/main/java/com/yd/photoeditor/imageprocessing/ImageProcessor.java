@@ -169,7 +169,8 @@ public class ImageProcessor {
     }
 
     public Bitmap getBitmapWithFilterApplied() {
-        return getBitmapWithFilterApplied(this.mCurrentBitmap);
+        //return getBitmapWithFilterApplied(mCurrentBitmap);
+        return getFiltratedBitmap(mCurrentBitmap, mFilter);
     }
 
     public Bitmap getBitmapWithFilterApplied(Bitmap bitmap) {
@@ -189,7 +190,7 @@ public class ImageProcessor {
                 e.printStackTrace();
             }
         }
-        ImageRenderer imageRenderer = new ImageRenderer(this.mFilter);
+        ImageRenderer imageRenderer = new ImageRenderer(mFilter);
         imageRenderer.setRotation(Rotation.NORMAL, this.mRenderer.isFlippedHorizontally(), this.mRenderer.isFlippedVertically());
         imageRenderer.setScaleType(this.mScaleType);
         PixelBuffer pixelBuffer = new PixelBuffer(bitmap.getWidth(), bitmap.getHeight());
@@ -201,9 +202,8 @@ public class ImageProcessor {
         pixelBuffer.destroy();
         this.mFilter = new ImageFilter();
         this.mRenderer.setFilter(this.mFilter);
-        Bitmap bitmap3 = this.mCurrentBitmap;
-        if (bitmap3 != null) {
-            this.mRenderer.setImageBitmap(bitmap3, false);
+        if (mCurrentBitmap != null) {
+            this.mRenderer.setImageBitmap(mCurrentBitmap, false);
         }
         requestRender();
         return bitmap2;

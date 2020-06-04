@@ -105,28 +105,54 @@ public class PixelBuffer {
     }
 
     private void convertToBitmap() {
-        IntBuffer allocate = IntBuffer.allocate(this.mWidth * this.mHeight);
-        IntBuffer allocate2 = IntBuffer.allocate(this.mWidth * this.mHeight);
-        this.mGL.glReadPixels(0, 0, this.mWidth, this.mHeight, 6408, 5121, allocate);
+        IntBuffer allocate = IntBuffer.allocate(mWidth * mHeight);
+        IntBuffer allocate2 = IntBuffer.allocate(mWidth * mHeight);
+        mGL.glReadPixels(0, 0, mWidth, mHeight, GL10.GL_RGBA, GL10.GL_UNSIGNED_BYTE, allocate);
         int i = 0;
         while (true) {
-            int i2 = this.mHeight;
-            if (i < i2) {
+            if (i < mHeight) {
                 int i3 = 0;
                 while (true) {
-                    int i4 = this.mWidth;
-                    if (i3 >= i4) {
+                    if (i3 >= mWidth) {
                         break;
                     }
-                    allocate2.put((((this.mHeight - i) - 1) * i4) + i3, allocate.get((i4 * i) + i3));
+                    allocate2.put((((mHeight - i) - 1) * mWidth) + i3, allocate.get((mWidth * i) + i3));
                     i3++;
                 }
                 i++;
             } else {
-                this.mBitmap = Bitmap.createBitmap(this.mWidth, i2, Bitmap.Config.ARGB_8888);
-                this.mBitmap.copyPixelsFromBuffer(allocate2);
+                mBitmap = Bitmap.createBitmap(mWidth, mHeight, Bitmap.Config.ARGB_8888);
+                mBitmap.copyPixelsFromBuffer(allocate2);
                 return;
             }
         }
+    }
+
+    private Bitmap createBitmapFromGLSurface()
+            throws OutOfMemoryError {
+        int bitmapBuffer[] = new int[mWidth * mHeight];
+        int bitmapSource[] = new int[mWidth * mHeight];
+        IntBuffer intBuffer = IntBuffer.wrap(bitmapBuffer);
+        intBuffer.position(0);
+
+        try {
+            mGL.glReadPixels(0, 0, mWidth, mHeight, GL10.GL_RGBA, GL10.GL_UNSIGNED_BYTE, intBuffer);
+            int offset1, offset2;
+            for (int i = 0; i < mHeight; i++) {
+                offset1 = i * mWidth;
+                offset2 = (mHeight - i - 1) * mWidth;
+                for (int j = 0; j < mWidth; j++) {
+                    int texturePixel = bitmapBuffer[offset1 + j];
+                    int blue = (texturePixel >> 16) & 0xff;
+                    int red = (texturePixel << 16) & 0x00ff0000;
+                    int pixel = (texturePixel & 0xff00ff00) | red | blue;
+                    bitmapSource[offset2 + j] = pixel;
+                }
+            }
+        } catch (Exception e) {
+            return null;
+        }
+        mBitmap = Bitmap.createBitmap(bitmapSource, mWidth, mHeight, Bitmap.Config.ARGB_8888);
+        return mBitmap;
     }
 }

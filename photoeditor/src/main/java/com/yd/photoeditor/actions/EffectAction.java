@@ -9,7 +9,6 @@ import com.yd.photoeditor.R;
 import com.yd.photoeditor.config.ALog;
 import com.yd.photoeditor.config.Constants;
 import com.yd.photoeditor.database.table.ItemPackageTable;
-import com.yd.photoeditor.imageprocessing.ImageProcessor;
 import com.yd.photoeditor.imageprocessing.filter.ImageFilter;
 import com.yd.photoeditor.listener.ApplyFilterListener;
 import com.yd.photoeditor.model.FilterInfo;
@@ -60,21 +59,27 @@ public class EffectAction extends PackageAction {
         if (isAttached()) {
             new ApplyFilterTask(mActivity, new ApplyFilterListener() {
                 public void onFinishFiltering() {
-                    ((ItemInfo) mMenuItems.get(mCurrentPosition)).setSelected(false);
-                    mCurrentPosition = 0;
-                    mCurrentPackageId = 0;
+                   // ((ItemInfo) mMenuItems.get(mCurrentPosition)).setSelected(false);
+//                    mCurrentPosition = 0;
+//                    mCurrentPackageId = 0;
                     mCurrentPackageFolder = null;
-                    mActivity.applyFilter(new ImageFilter());
-                    ((ItemInfo) mMenuItems.get(0)).setSelected(true);
-                    mMenuAdapter.notifyDataSetChanged();
-                    if (false) {
+                    //mActivity.applyFilter(new ImageFilter());
+                    //((ItemInfo) mMenuItems.get(0)).setSelected(true);
+                    //mMenuAdapter.notifyDataSetChanged();
+                    if (done) {
                         done();
                     }
                 }
 
                 public Bitmap applyFilter() {
                     try {
-                        return ImageProcessor.getFiltratedBitmap(mActivity.getImage(), (((FilterInfo) mMenuItems.get(mCurrentPosition))).getImageFilter());
+//                        mActivity.getImageProcessingView().setDrawingCacheEnabled(true);
+//                        mActivity.getImageProcessingView().buildDrawingCache();
+//                        Bitmap bitmap = mActivity.getImageProcessingView().getDrawingCache();
+
+                        return mActivity.getImageProcessingView().getImageProcessor().getBitmapWithFilterApplied();
+
+                        //return ImageProcessor.getFiltratedBitmap(mActivity.getImage(), (((FilterInfo) mMenuItems.get(mCurrentPosition))).getImageFilter());
                     } catch (Exception e) {
                         e.printStackTrace();
                         return null;

@@ -26,7 +26,6 @@ public class ApplyFilterTask extends AsyncTask<Void, Void, Bitmap> {
         return mListener.applyFilter();
     }
 
-    /* access modifiers changed from: protected */
     public void onPostExecute(Bitmap bitmap) {
         super.onPostExecute(bitmap);
         if (bitmap != null) {
