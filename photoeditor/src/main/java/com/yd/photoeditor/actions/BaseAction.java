@@ -56,7 +56,6 @@ public abstract class BaseAction implements OnDoneActionsClickListener {
                 currentAction.onDetach();
                 currentAction.mAttached = false;
             }
-            this.mActivity.attachBottomMenu(this.mRootActionView);
             mActivity.setCurrentAction(this);
             mAttached = true;
         }
@@ -70,7 +69,7 @@ public abstract class BaseAction implements OnDoneActionsClickListener {
         new AsyncTask<Void, Void, File>() {
             public void onPreExecute() {
                 super.onPreExecute();
-                mActivity.hideAllMenus();
+                mActivity.hideActions();
                 mActivity.showProgress(true);
             }
 

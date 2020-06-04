@@ -49,8 +49,8 @@ public class StickerLayout extends StickerView {
         setConstrained(true);
     }
 
-    public void addImageSticker(int i) {
-        addSticker(new DrawableSticker(ContextCompat.getDrawable(getContext(), i)));
+    public void addImageSticker(int res) {
+        addSticker(new DrawableSticker(ContextCompat.getDrawable(getContext(), res)));
     }
 
     public Sticker addMaskColorSticker(Bitmap bitmap, int i) {

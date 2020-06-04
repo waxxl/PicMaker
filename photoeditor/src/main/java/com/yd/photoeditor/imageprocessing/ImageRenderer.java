@@ -132,14 +132,14 @@ public class ImageRenderer implements GLSurfaceView.Renderer, Camera.PreviewCall
     public void setFilter(final ImageFilter imageFilter) {
         runOnDraw(new Runnable() {
             public void run() {
-                ImageFilter access$600 = ImageRenderer.this.mFilter;
-                ImageFilter unused = ImageRenderer.this.mFilter = imageFilter;
-                if (access$600 != null) {
-                    access$600.destroy();
+                ImageFilter temp = mFilter;
+                mFilter = imageFilter;
+                if (temp != null) {
+                    temp.destroy();
                 }
-                ImageRenderer.this.mFilter.init();
-                GLES20.glUseProgram(ImageRenderer.this.mFilter.getProgram());
-                ImageRenderer.this.mFilter.onOutputSizeChanged(ImageRenderer.this.mOutputWidth, ImageRenderer.this.mOutputHeight);
+                mFilter.init();
+                GLES20.glUseProgram(mFilter.getProgram());
+                mFilter.onOutputSizeChanged(mOutputWidth, mOutputHeight);
             }
         });
     }

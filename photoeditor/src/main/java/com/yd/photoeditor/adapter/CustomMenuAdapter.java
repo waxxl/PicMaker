@@ -53,7 +53,8 @@ public class CustomMenuAdapter extends RecyclerView.Adapter<CustomMenuAdapter.RV
 
     @Override
     public void onBindViewHolder(@NonNull RViewHolder holder, int position) {
-        PhotoUtils.loadImageWithGlide(activity, holder.imageView, datas.get(position).getThumbnail());
+        //PhotoUtils.loadImageWithGlide(activity, holder.imageView, datas.get(position).getThumbnail());
+        holder.imageView.setImageResource(Integer.parseInt(datas.get(position).getThumbnail().substring(11)));
         holder.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -35,6 +35,7 @@ import com.yd.picmaker.adapter.FreeTabEditAdapter;
 import com.yd.picmaker.adapter.SelectStickerAdapter;
 import com.yd.picmaker.dialog.AddTextDialog;
 import com.yd.picmaker.model.StickerSaveData;
+import com.yd.picmaker.sticker.DrawableSticker;
 import com.yd.picmaker.sticker.Sticker;
 import com.yd.picmaker.sticker.StickerLayout;
 import com.yd.picmaker.sticker.StickerView;
@@ -52,6 +53,7 @@ import java.util.ArrayList;
 public class FreePhotoUiManager implements StickerView.OnStickerOperationListener, View.OnClickListener, EditEventListener {
     private static final String TAG = "PhotoUiManager";
     private static final int PICK_MULTIPLE_IMAGE_REQUEST_CODE = 0x01;
+    private static final int EDIT_STICKER_CODE = 0x02;
     private static final int BACKGROUND_TAB = 0;
     private static final int FILTERS_TAB = 1;
     private static final int PICTURES_TAB = 2;
@@ -253,6 +255,8 @@ public class FreePhotoUiManager implements StickerView.OnStickerOperationListene
                     }
                     getMultipleImagesAsync(uris, mFreeEditPhotoActivity);
                 }
+            } else if(requestCode == EDIT_STICKER_CODE) {
+                getMultipleImagesAsync(new Uri[]{data.getData()}, mFreeEditPhotoActivity);
             }
         }
     }
@@ -382,13 +386,13 @@ public class FreePhotoUiManager implements StickerView.OnStickerOperationListene
         }.execute(new Void[0]);
     }
 
-    private void saveTempImage(final Bitmap bitmap, final Context context) throws IOException {
+    private void saveTempImage(final Bitmap bitmap, final Activity activity) throws IOException {
         new AsyncTask<Void, Void, File>() {
             private ProgressDialog dialog;
 
             /* access modifiers changed from: protected */
             public void onPreExecute() {
-                this.dialog = new ProgressDialog(context);
+                this.dialog = new ProgressDialog(activity);
                 this.dialog.requestWindowFeature(1);
                 this.dialog.setMessage("Getting Editor Ready...");
                 this.dialog.show();
@@ -416,9 +420,9 @@ public class FreePhotoUiManager implements StickerView.OnStickerOperationListene
             public void onPostExecute(File file) {
                 this.dialog.dismiss();
                 Uri uri = Uri.fromFile(file);
-                Intent intent = new Intent(context, ImageProcessingActivity.class);
+                Intent intent = new Intent(activity, ImageProcessingActivity.class);
                 intent.putExtra(ImageProcessingActivity.IMAGE_URI_KEY, uri);
-                context.startActivity(intent);
+                activity.startActivityForResult(intent, EDIT_STICKER_CODE);
             }
         }.execute(new Void[0]);
     }

@@ -127,7 +127,6 @@ public class RotationAction extends BaseAction {
 
     public void attach() {
         super.attach();
-        mActivity.attachBottomRecycler(2);
         this.mActivity.attachMaskView(this.mOrientationLayout);
         if (this.mRestoreOldState || this.mFirstAttached) {
             this.mOrientationImageView.setImage(this.mActivity.getImage());

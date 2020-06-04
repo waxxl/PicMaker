@@ -1,9 +1,11 @@
 package com.yd.photoeditor.actions;
 
 import android.content.Intent;
+import android.graphics.ColorMatrix;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.util.Log;
 import android.view.View;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -35,13 +37,10 @@ public abstract class PackageAction extends BaseAction implements OnBottomMenuIt
     protected long mCurrentPackageId = 0;
     protected int mCurrentPosition = 0;
     protected RecyclerView mRecycler;
-    protected Map<Long, Point> mListViewPositions;
     protected CustomMenuAdapter mMenuAdapter;
     protected List<ItemInfo> mMenuItems;
     private String mPackageType;
     protected Map<Long, Integer> mSelectedItemIndexes;
-
-    public abstract List<? extends ItemInfo> loadNormalItems(long j, String str);
 
     public void onStartDownloading(ItemPackageInfo itemPackageInfo) {
     }
@@ -124,7 +123,8 @@ public abstract class PackageAction extends BaseAction implements OnBottomMenuIt
     }
 
     public void onEditorItemClick(int i, ItemInfo itemInfo) {
-        if (mCurrentPosition != i) {
+        Log.d("xxl", "mCurrentPosition " + mCurrentPosition + " i: " + i);
+        if (mCurrentPosition != i && mMenuItems != null &&mMenuItems.size() > i) {
             mMenuItems.get(mCurrentPosition).setSelected(false);
             mMenuItems.get(i).setSelected(true);
             mMenuAdapter.notifyDataSetChanged();
@@ -150,35 +150,29 @@ public abstract class PackageAction extends BaseAction implements OnBottomMenuIt
         this.mMenuAdapter.setShaking(true);
     }
 
-    /* access modifiers changed from: protected */
     public void onInit() {
         super.onInit();
-        this.mSelectedItemIndexes = new HashMap();
-        this.mListViewPositions = new HashMap();
     }
 
     public void attach() {
         super.attach();
 
         TempDataContainer.getInstance().getOnInstallStoreItemListeners().add(this);
-        if (this.mRecycler != null) {
-            if (mMenuItems == null || mMenuItems.isEmpty()) {
-
-            }
-            if (mMenuItems != null && mMenuItems.get(mCurrentPosition).getShowingType() != 2) {
-                selectItem(mCurrentPosition);
-            }
+        if (mMenuItems != null && mMenuItems.get(mCurrentPosition).getShowingType() != 2) {
+            selectItem(mCurrentPosition);
         }
+
+        mActivity.getAdapter().setListener(this);
     }
 
     public void onDetach() {
         super.onDetach();
         TempDataContainer.getInstance().getOnInstallStoreItemListeners().remove(this);
+        mActivity.getAdapter().setListener(null);
     }
 
     public void onActivityResume() {
         super.onActivityResume();
-        String str = this.mPackageType;
     }
 
     public void saveInstanceState(Bundle bundle) {
@@ -217,36 +211,5 @@ public abstract class PackageAction extends BaseAction implements OnBottomMenuIt
     private void selectItem(int i) {
         selectNormalItem(i);
         mCurrentPosition = i;
-
-    }
-
-    private void loadData(long j, String str) {
-        String str2 = this.mPackageType;
-        if (str2 != null && str2.length() >= 1) {
-            if (mMenuItems == null) {
-                this.mMenuItems = new ArrayList();
-            } else {
-                mMenuItems.clear();
-            }
-            List<? extends ItemInfo> loadNormalItems = loadNormalItems(j, str);
-            if (loadNormalItems != null && loadNormalItems.size() > 0) {
-                mMenuItems.addAll(loadNormalItems);
-            }
-            if (j < 1) {
-                ItemInfo itemInfo = new ItemInfo();
-                itemInfo.setShowingType(2);
-                mMenuItems.add(itemInfo);
-                mMenuItems.get(mCurrentPosition).setSelected(false);
-                if (mMenuItems.get(mCurrentPosition).getShowingType() == 0) {
-                    selectItem(mCurrentPosition);
-                } else {
-                    selectItem(0);
-                }
-                mMenuItems.get(mCurrentPosition).setSelected(true);
-                if (mMenuAdapter != null) {
-                    mMenuAdapter.notifyDataSetChanged();
-                }
-            }
-        }
     }
 }

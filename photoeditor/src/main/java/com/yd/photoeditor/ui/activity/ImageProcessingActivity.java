@@ -10,11 +10,13 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.yd.photoeditor.R;
 import com.yd.photoeditor.actions.BaseAction;
 import com.yd.photoeditor.actions.CropAction;
@@ -29,7 +31,6 @@ import com.yd.photoeditor.listener.OnDoneActionsClickListener;
 import com.yd.photoeditor.model.ItemInfo;
 import com.yd.photoeditor.utils.ImageDecoder;
 import com.yd.photoeditor.utils.PhotoUtils;
-
 import java.util.ArrayList;
 
 public class ImageProcessingActivity extends AppCompatActivity implements View.OnClickListener {
@@ -41,9 +42,8 @@ public class ImageProcessingActivity extends AppCompatActivity implements View.O
     public static final String IMAGE_URI_KEY = "imageUri";
     public static final String IS_EDITING_IMAGE_KEY = "isEditingImage";
     public static final String ROTATION_KEY = "rotation";
-    private ImageView mCancelButton;
+    private ImageView mBackButton,mDoneButton;
     public OnDoneActionsClickListener mDoneActionsClickListener;
-    private ImageView mDoneButton;
     private String mEditingImagePath = null;
     public ImageProcessingView mImageProcessingView;
     public Uri mImageUri;
@@ -51,10 +51,13 @@ public class ImageProcessingActivity extends AppCompatActivity implements View.O
     private ImageView mNormalImageView;
     public RelativeLayout mPhotoViewLayout;
     private FrameLayout mImageLayout;
-    private FrameLayout mBottomLayout;
+    private FrameLayout mBottomLayout, mBottomItemLayout;
     private RecyclerView mItemRecycler;
+    private LinearLayout mRotateLinear;
+    private ImageView mRotateHor,mRotateVer,mRotateLeft,mRotateRight;
     private TextView mEffectTV, mCropTV, mRotateTV;
     private BaseAction mEffectAction, mCropAction, mRotateAction;
+    public ArrayList<ItemInfo> mEffectInfos,mCropInfos,mRotateInfos;
     private BaseAction[] mActions = new BaseAction[3];
     private CustomMenuAdapter mAdapter;
 
@@ -71,17 +74,22 @@ public class ImageProcessingActivity extends AppCompatActivity implements View.O
         requestWindowFeature(1);
         setContentView(R.layout.photo_editor_activity_main);
         initView();
-        initAction();
-        mActions[1].attach();
         initInfo();
+        initAction();
+        mPhotoViewLayout.post(new Runnable() {
+            @Override
+            public void run() {
+                mActions[1].attach();
+            }
+        });
     }
 
     private void initInfo() {
         if (mPhotoViewLayout != null) {
             mPhotoViewLayout.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
                 public void onGlobalLayout() {
-                    mPhotoViewWidth = mPhotoViewLayout.getWidth();
-                    mPhotoViewHeight = mPhotoViewLayout.getHeight();
+                    mPhotoViewWidth = mPhotoViewLayout.getMeasuredWidth();
+                    mPhotoViewHeight = mPhotoViewLayout.getMeasuredHeight();
                     DisplayMetrics displayMetrics = new DisplayMetrics();
                     getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
                     if (displayMetrics.heightPixels >= displayMetrics.widthPixels) {
@@ -98,7 +106,8 @@ public class ImageProcessingActivity extends AppCompatActivity implements View.O
                             } else {
                                 mImage = decodeUriToBitmap;
                             }
-                            mImageProcessingView.setImage(mImage);
+                            if (!mImage.isRecycled())
+                                mImageProcessingView.setImage(mImage);
                         }
                         selectAction(1);
                     }
@@ -121,17 +130,27 @@ public class ImageProcessingActivity extends AppCompatActivity implements View.O
         setImageProcessingViewBackgroundColor();
         mNormalImageView = (ImageView) findViewById(R.id.sourceImage);
         mImageLayout = (FrameLayout) findViewById(R.id.imageViewLayout);
-        mPhotoViewLayout = (RelativeLayout) findViewById(R.id.photoViewLayout);
+        mPhotoViewLayout = findViewById(R.id.photoViewLayout);
         mBottomLayout = (FrameLayout) findViewById(R.id.bottomLayout);
+        mBottomItemLayout = findViewById(R.id.bottom_item_selector);
         mBottomLayout.addView(View.inflate(this, R.layout.bottom_layout, null));
         mItemRecycler = mBottomLayout.findViewById(R.id.recycler);
         mEffectTV = mBottomLayout.findViewById(R.id.effect);
         mCropTV = mBottomLayout.findViewById(R.id.crop);
         mRotateTV = mBottomLayout.findViewById(R.id.rotate);
+        mRotateLinear =findViewById(R.id.rotate_layout);
+        mRotateHor = findViewById(R.id.rotate_hor);
+        mRotateVer = findViewById(R.id.rotate_ver);
+        mRotateLeft = findViewById(R.id.rotate_left);
+        mRotateRight = findViewById(R.id.rotate_right);
 
         mEffectTV.setOnClickListener(this);
-        mCropTV.setOnClickListener(this::onClick);
-        mRotateTV.setOnClickListener(this::onClick);
+        mCropTV.setOnClickListener(this);
+        mRotateTV.setOnClickListener(this);
+        mRotateHor.setOnClickListener(this);
+        mRotateVer.setOnClickListener(this);
+        mRotateRight.setOnClickListener(this);
+        mRotateLeft.setOnClickListener(this);
         mItemRecycler.setHasFixedSize(false);
         mItemRecycler.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
         if (mAdapter == null) {
@@ -141,23 +160,17 @@ public class ImageProcessingActivity extends AppCompatActivity implements View.O
         mDoneButton = findViewById(R.id.doneButton);
         mDoneButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                if(mDoneActionsClickListener != null)
-                mDoneActionsClickListener.onDoneButtonClick();
+                if (mDoneActionsClickListener != null)
+                    mDoneActionsClickListener.onDoneButtonClick();
             }
         });
-        mCancelButton = findViewById(R.id.backButton);
-        mCancelButton.setOnClickListener(new View.OnClickListener() {
+        mBackButton = findViewById(R.id.backButton);
+        mBackButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 onBackPressed();
             }
         });
     }
-
-    public void attachBottomMenu(View view) {
-//        this.mBottomLayout.removeAllViews();
-//        this.mBottomLayout.addView(view);
-    }
-
 
     private void setImageProcessingViewBackgroundColor() {
         int color = getResources().getColor(R.color.white);
@@ -172,7 +185,6 @@ public class ImageProcessingActivity extends AppCompatActivity implements View.O
             return;
         }
         mImageLayout.setVisibility(View.GONE);
-
     }
 
     public boolean applyFilter(ImageFilter imageFilter) {
@@ -189,21 +201,34 @@ public class ImageProcessingActivity extends AppCompatActivity implements View.O
         return mFilter;
     }
 
-    public ArrayList<ItemInfo> mEffectInfos;
-    public ArrayList<ItemInfo> mCropInfos;
-    public ArrayList<ItemInfo> mRotateInfos;
-
     public void attachBottomRecycler(int actionIndex) {
+        attachBottomView(actionIndex);
         switch (actionIndex) {
             case 0:
-                mEffectInfos = setAdapterData(Constants.CROPS);
+                mEffectInfos = ((EffectAction) mEffectAction).loadNormalItems(Constants.EFFECTS_DRAWABLE);
+                mAdapter.setData(mEffectInfos);
                 break;
             case 1:
-                mCropInfos = ((CropAction)mCropAction).loadNormalItems(0);
+                //mCropInfos = setAdapterData(Constants.CROPS);
+                mCropInfos = ((CropAction) mCropAction).loadNormalItems(0);
+                mAdapter.setData(mCropInfos);
                 break;
             case 2:
-                mRotateInfos = setAdapterData(Constants.ROTATES);
                 break;
+        }
+    }
+
+    public void attachBottomView(int index) {
+        if(index == 0 || index == 1) {
+            if (mItemRecycler != null && mRotateLinear != null) {
+                mItemRecycler.setVisibility(View.VISIBLE);
+                mRotateLinear.setVisibility(View.GONE);
+            }
+        } else if(index == 2) {
+            if (mItemRecycler != null && mRotateLinear != null) {
+                mItemRecycler.setVisibility(View.GONE);
+                mRotateLinear.setVisibility(View.VISIBLE);
+            }
         }
     }
 
@@ -241,16 +266,23 @@ public class ImageProcessingActivity extends AppCompatActivity implements View.O
     }
 
     public int getPhotoViewWidth() {
+        if(mPhotoViewWidth == 0) {
+            mPhotoViewWidth = mPhotoViewLayout.getWidth();
+        }
         return mPhotoViewWidth;
     }
 
     public int getPhotoViewHeight() {
+        if(mPhotoViewWidth == 0) {
+            mPhotoViewWidth = mPhotoViewLayout.getHeight();
+        }
         return mPhotoViewHeight;
     }
 
     public void setImage(Bitmap bitmap, boolean z) {
         Bitmap bitmap2;
         if (bitmap != null && !bitmap.isRecycled()) {
+            mImageProcessingView.setImage(bitmap);
             if (z && (bitmap2 = mImage) != null && bitmap2 != bitmap && !bitmap2.isRecycled()) {
                 mImage.recycle();
                 mImage = null;
@@ -258,15 +290,12 @@ public class ImageProcessingActivity extends AppCompatActivity implements View.O
             }
             mImageProcessingView.getImageProcessor().deleteImage();
             mImage = bitmap;
-            mImageProcessingView.setImage(mImage);
         }
     }
 
     public Bitmap getImage() {
-        Uri uri;
-        Bitmap bitmap = mImage;
-        if ((bitmap == null || bitmap.isRecycled()) && (uri = mImageUri) != null) {
-            mImage = ImageDecoder.decodeUriToBitmap(this, uri);
+        if ((mImage == null || mImage.isRecycled()) && mImageUri != null) {
+            mImage = ImageDecoder.decodeUriToBitmap(this, mImageUri);
         }
         return mImage;
     }
@@ -274,7 +303,7 @@ public class ImageProcessingActivity extends AppCompatActivity implements View.O
     public int getImageWidth() {
         Bitmap bitmap = mImage;
         if (bitmap == null || bitmap.isRecycled()) {
-            return 0;
+            return 1;
         }
         return mImage.getWidth();
     }
@@ -282,7 +311,7 @@ public class ImageProcessingActivity extends AppCompatActivity implements View.O
     public int getImageHeight() {
         Bitmap bitmap = mImage;
         if (bitmap == null || bitmap.isRecycled()) {
-            return 0;
+            return 1;
         }
         return mImage.getHeight();
     }
@@ -295,8 +324,8 @@ public class ImageProcessingActivity extends AppCompatActivity implements View.O
         return calculateThumbnailSize(getImageWidth(), getImageHeight());
     }
 
-    public float calculateScaleRatio(int i, int i2) {
-        return Math.max(((float) i) / ((float) getPhotoViewWidth()), ((float) i2) / ((float) getPhotoViewHeight()));
+    public float calculateScaleRatio(int w, int h) {
+        return Math.max(((float)w) / ((float) getPhotoViewWidth()), ((float) h) / ((float) getPhotoViewHeight()));
     }
 
     public int[] calculateThumbnailSize(int i, int i2) {
@@ -320,10 +349,12 @@ public class ImageProcessingActivity extends AppCompatActivity implements View.O
         int id = v.getId();
         if (id == R.id.effect) {
             if (mEffectAction == null) {
-                mEffectAction = new EffectAction(this);
-            }
+            mEffectAction = new EffectAction(this);
+        }
             mCurrentAction = mEffectAction;
             mCurrentTopMenuPosition = 0;
+            mEffectAction.attach();
+
         } else if (id == R.id.crop) {
             if (mCropAction == null) {
                 mCropAction = new CropAction(this);
@@ -331,14 +362,21 @@ public class ImageProcessingActivity extends AppCompatActivity implements View.O
             mCurrentAction = mCropAction;
             mCurrentTopMenuPosition = 1;
             mCropAction.attach();
-
         } else if (id == R.id.rotate) {
             if (mRotateAction == null) {
                 mRotateAction = new RotationAction(this);
             }
             mCurrentAction = mRotateAction;
             mCurrentTopMenuPosition = 2;
-            mCropAction.attach();
+            mRotateAction.attach();
+        } else if (id == R.id.rotate_ver) {
+            ((RotationAction)mRotateAction).flipVer();
+        } else if (id == R.id.rotate_hor) {
+            ((RotationAction)mRotateAction).flipHor();
+        } else if (id == R.id.rotate_left) {
+            ((RotationAction)mRotateAction).rotateLeft();
+        } else if (id == R.id.rotate_right) {
+            ((RotationAction)mRotateAction).rotateRight();
         }
     }
 
@@ -365,7 +403,7 @@ public class ImageProcessingActivity extends AppCompatActivity implements View.O
 
     }
 
-    public void hideAllMenus() {
+    public void hideActions() {
 
     }
 
@@ -413,5 +451,9 @@ public class ImageProcessingActivity extends AppCompatActivity implements View.O
         mActions[0] = mEffectAction;
         mActions[1] = mCropAction;
         mActions[2] = mRotateAction;
+    }
+
+    public CustomMenuAdapter getAdapter() {
+        return mAdapter;
     }
 }

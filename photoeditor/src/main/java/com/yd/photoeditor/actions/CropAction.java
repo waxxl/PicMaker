@@ -61,7 +61,6 @@ public class CropAction extends MaskAction implements View.OnTouchListener, Draw
     public void onInit() {
         super.onInit();
         mSelectedItemIndexes = new HashMap();
-        mListViewPositions = new HashMap();
     }
 
     public View inflateMenuView() {
@@ -84,7 +83,7 @@ public class CropAction extends MaskAction implements View.OnTouchListener, Draw
 
         ALog.d(TAG, "attach");
         mActivity.getNormalImageView().setVisibility(View.VISIBLE);
-        //mMaskLayout.setVisibility(View.VISIBLE);
+        mMaskLayout.setVisibility(View.VISIBLE);
         mActivity.applyFilter(new ImageFilter());
         if (mTouchHandler != null) {
             pinchImage();
@@ -165,6 +164,9 @@ public class CropAction extends MaskAction implements View.OnTouchListener, Draw
         float calculateScaleRatio = mActivity.calculateScaleRatio();
         int[] calculateThumbnailSize = mActivity.calculateThumbnailSize();
         float f = 1.0f / calculateScaleRatio;
+        if(f == 0 || Float.isInfinite(f)) {
+            return;
+        }
         matrix.postScale(f, f, ((float) mActivity.getImageWidth()) / 2.0f, ((float) mActivity.getImageHeight()) / 2.0f);
         matrix.postTranslate(-(((float) (mActivity.getImageWidth() - calculateThumbnailSize[0])) / 2.0f), -(((float) (mActivity.getImageHeight() - calculateThumbnailSize[1])) / 2.0f));
         matrix.postTranslate(((float) (mActivity.getPhotoViewWidth() - calculateThumbnailSize[0])) / 2.0f, ((float) (mActivity.getPhotoViewHeight() - calculateThumbnailSize[1])) / 2.0f);
@@ -180,7 +182,7 @@ public class CropAction extends MaskAction implements View.OnTouchListener, Draw
         mSavedInstanceSquareData = null;
     }
 
-    public void apply(final boolean z) {
+    public void apply(final boolean done) {
         if (isAttached()) {
             new ApplyFilterTask(mActivity, new ApplyFilterListener() {
                 String errMsg = null;
@@ -196,9 +198,8 @@ public class CropAction extends MaskAction implements View.OnTouchListener, Draw
                     cropAction.mCurrentPosition = 3;
                     cropAction.mCurrentPackageId = 0;
                     cropAction.mSelectedItemIndexes.clear();
-                    mListViewPositions.clear();
                     mCurrentPackageFolder = null;
-                    if (z) {
+                    if (done) {
                         done();
                     }
                     if (mActivity.getRotationAction() != null) {
@@ -303,11 +304,6 @@ public class CropAction extends MaskAction implements View.OnTouchListener, Draw
 
     public int getMaskLayoutRes() {
         return R.layout.photo_editor_mask_layout;
-    }
-
-    @Override
-    public List<? extends ItemInfo> loadNormalItems(long j, String str) {
-        return null;
     }
 
     public void selectNormalItem(int i) {

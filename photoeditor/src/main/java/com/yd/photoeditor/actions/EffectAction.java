@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.yd.photoeditor.R;
 import com.yd.photoeditor.config.ALog;
-import com.yd.photoeditor.database.table.FilterTable;
+import com.yd.photoeditor.config.Constants;
 import com.yd.photoeditor.database.table.ItemPackageTable;
 import com.yd.photoeditor.imageprocessing.ImageProcessor;
 import com.yd.photoeditor.imageprocessing.filter.ImageFilter;
@@ -16,8 +16,9 @@ import com.yd.photoeditor.model.FilterInfo;
 import com.yd.photoeditor.model.ItemInfo;
 import com.yd.photoeditor.task.ApplyFilterTask;
 import com.yd.photoeditor.ui.activity.ImageProcessingActivity;
-import com.yd.photoeditor.utils.Utils;
-import java.util.List;
+import com.yd.photoeditor.utils.PhotoUtils;
+
+import java.util.ArrayList;
 
 public class EffectAction extends PackageAction {
     private static final String TAG = EffectAction.class.getSimpleName();
@@ -36,9 +37,11 @@ public class EffectAction extends PackageAction {
     }
 
     public void attach() {
-        super.attach();
         mActivity.attachBottomRecycler(0);
-        mMenuItems = mActivity.mCropInfos;
+        mMenuItems = mActivity.mEffectInfos;
+        super.attach();
+        mActivity.getNormalImageView().setVisibility(View.GONE);
+        mActivity.getImageProcessingView().setVisibility(View.VISIBLE);
         mActivity.attachMaskView((View) null);
     }
 
@@ -53,26 +56,25 @@ public class EffectAction extends PackageAction {
         mActivity.attachMaskView((View) null);
     }
 
-    public void apply(final boolean z) {
+    public void apply(final boolean done) {
         if (isAttached()) {
-            new ApplyFilterTask(this.mActivity, new ApplyFilterListener() {
+            new ApplyFilterTask(mActivity, new ApplyFilterListener() {
                 public void onFinishFiltering() {
-                    ((ItemInfo) EffectAction.this.mMenuItems.get(EffectAction.this.mCurrentPosition)).setSelected(false);
-                    EffectAction effectAction = EffectAction.this;
-                    effectAction.mCurrentPosition = 0;
-                    effectAction.mCurrentPackageId = 0;
-                    effectAction.mCurrentPackageFolder = null;
-                    effectAction.mActivity.applyFilter(new ImageFilter());
-                    ((ItemInfo) EffectAction.this.mMenuItems.get(0)).setSelected(true);
-                    EffectAction.this.mMenuAdapter.notifyDataSetChanged();
-                    if (z) {
-                        EffectAction.this.done();
+                    ((ItemInfo) mMenuItems.get(mCurrentPosition)).setSelected(false);
+                    mCurrentPosition = 0;
+                    mCurrentPackageId = 0;
+                    mCurrentPackageFolder = null;
+                    mActivity.applyFilter(new ImageFilter());
+                    ((ItemInfo) mMenuItems.get(0)).setSelected(true);
+                    mMenuAdapter.notifyDataSetChanged();
+                    if (false) {
+                        done();
                     }
                 }
 
                 public Bitmap applyFilter() {
                     try {
-                        return ImageProcessor.getFiltratedBitmap(EffectAction.this.mActivity.getImage(), ((FilterInfo) ((ItemInfo) EffectAction.this.mMenuItems.get(EffectAction.this.mCurrentPosition))).getImageFilter());
+                        return ImageProcessor.getFiltratedBitmap(mActivity.getImage(), (((FilterInfo) mMenuItems.get(mCurrentPosition))).getImageFilter());
                     } catch (Exception e) {
                         e.printStackTrace();
                         return null;
@@ -82,20 +84,25 @@ public class EffectAction extends PackageAction {
         }
     }
 
-    /* access modifiers changed from: protected */
+
     public void selectNormalItem(int i) {
         this.mActivity.applyFilter(((FilterInfo) ((ItemInfo) this.mMenuItems.get(i))).getImageFilter());
     }
 
     /* access modifiers changed from: protected */
-    public List<? extends ItemInfo> loadNormalItems(long j, String str) {
-        List<FilterInfo> allRows = new FilterTable(this.mActivity).getAllRows(j);
-        if (str != null && str.length() > 0) {
-            for (FilterInfo next : allRows) {
-                next.setThumbnail(Utils.FILTER_FOLDER.concat("/").concat(str).concat("/").concat(next.getThumbnail()));
-                next.setPackageFolder(str);
-            }
+    public ArrayList<ItemInfo> loadNormalItems(int[] datas) {
+        ArrayList<ItemInfo> arrayList = new ArrayList<>();
+        ArrayList<FilterInfo> itemInfos = new ArrayList<>();
+        for (int i = 0; i < datas.length; i++) {
+            int id = datas[i];
+            FilterInfo info = new FilterInfo();
+            info.setThumbnail(PhotoUtils.DRAWABLE_PREFIX + id);
+            info.setSelected(false);
+            info.setShowingType(0);
+            itemInfos.add(info);
+            info.setCmd(Constants.EFFECTS_CMDS[i]);
         }
-        return allRows;
+        arrayList.addAll(itemInfos);
+        return arrayList;
     }
 }

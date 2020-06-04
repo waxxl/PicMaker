@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <FrameLayout
         android:id="@+id/topLayout"
         android:layout_width="match_parent"
@@ -19,10 +20,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/photo_editor_btn_done_margin"
                 android:padding="10dp"
+                android:src="@drawable/back"
                 android:text="@string/photo_editor_done"
                 android:textColor="@android:color/white"
-                android:textSize="18sp"
-                android:src="@drawable/back"/>
+                android:textSize="18sp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -41,10 +42,10 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginTop="@dimen/photo_editor_btn_done_margin"
                 android:padding="10dp"
+                android:src="@drawable/sure"
                 android:text="@string/photo_editor_apply"
                 android:textColor="@android:color/white"
-                android:textSize="18sp"
-                android:src="@drawable/sure"/>
+                android:textSize="18sp" />
 
             <ProgressBar
                 android:id="@+id/progressBar"
@@ -68,7 +69,7 @@
             android:id="@+id/imageProcessingView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_centerInParent="true" />
+            android:layout_centerInParent="true"/>
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -80,13 +81,13 @@
                 android:layout_height="match_parent"
                 android:contentDescription="@string/photo_editor"
                 android:scaleType="matrix"
-                android:visibility="visible" />
+                android:visibility="gone"/>
         </FrameLayout>
 
         <FrameLayout
             android:id="@+id/imageViewLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"/>
     </RelativeLayout>
 
     <FrameLayout
