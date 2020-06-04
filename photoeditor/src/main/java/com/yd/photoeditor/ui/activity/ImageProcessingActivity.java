@@ -301,16 +301,14 @@ public class ImageProcessingActivity extends AppCompatActivity implements View.O
     }
 
     public int getImageWidth() {
-        Bitmap bitmap = mImage;
-        if (bitmap == null || bitmap.isRecycled()) {
+        if (mImage == null || mImage.isRecycled()) {
             return 1;
         }
         return mImage.getWidth();
     }
 
     public int getImageHeight() {
-        Bitmap bitmap = mImage;
-        if (bitmap == null || bitmap.isRecycled()) {
+        if (mImage == null || mImage.isRecycled()) {
             return 1;
         }
         return mImage.getHeight();
@@ -426,7 +424,9 @@ public class ImageProcessingActivity extends AppCompatActivity implements View.O
     public void selectAction(int action) {
         switch (action) {
             case 0:
-
+                mEffectTV.setSelected(true);
+                mCropTV.setSelected(false);
+                mRotateTV.setSelected(false);
                 break;
             case 1:
                 mCropTV.setSelected(true);
@@ -434,6 +434,9 @@ public class ImageProcessingActivity extends AppCompatActivity implements View.O
                 mRotateTV.setSelected(false);
                 break;
             case 2:
+                mEffectTV.setSelected(false);
+                mCropTV.setSelected(false);
+                mRotateTV.setSelected(true);
                 break;
         }
     }
