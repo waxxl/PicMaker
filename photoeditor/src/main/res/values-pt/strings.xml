@@ -7,11 +7,11 @@
         
    <string name="change">Alterar</string>
         
-   <string name="character_counter_content_description">Caracteres inseridos% 1 $ d de% 2 $ d</string>
+   <string name="character_counter_content_description">Caracteres inseridos %1$d de %2$d</string>
         
-   <string name="character_counter_overflowed_content_description">O limite de caracteres excedeu% 1 $ d de% 2 $ d</string>
+   <string name="character_counter_overflowed_content_description">O limite de caracteres excedeu %1$d de %2$d</string>
         
-   <string name="character_counter_pattern">% 1 $ d /% 2 $ d</string>
+   <string name="character_counter_pattern"> %1$d / %2$d</string>
         
    <string name="chip_text">Texto do chip</string>
         

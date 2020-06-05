@@ -22,7 +22,7 @@ public class ImageFilterGroup extends ImageFilter {
     protected List<ImageFilter> mMergedFilters;
 
     public ImageFilterGroup() {
-        this((List<ImageFilter>) null);
+        this(null);
     }
 
     public ImageFilterGroup(List<ImageFilter> list) {
@@ -98,7 +98,7 @@ public class ImageFilterGroup extends ImageFilter {
                 GLES20.glGenFramebuffers(i6, this.mFrameBuffers, i7);
                 GLES20.glGenTextures(i6, this.mFrameBufferTextures, i7);
                 GLES20.glBindTexture(3553, this.mFrameBufferTextures[i7]);
-                GLES20.glTexImage2D(3553, 0, 6408, i, i2, 0, 6408, 5121, (Buffer) null);
+                GLES20.glTexImage2D(3553, 0, 6408, i, i2, 0, 6408, 5121, null);
                 GLES20.glTexParameterf(3553, 10240, 9729.0f);
                 GLES20.glTexParameterf(3553, 10241, 9729.0f);
                 GLES20.glTexParameterf(3553, 10242, 33071.0f);

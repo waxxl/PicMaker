@@ -40,3 +40,8 @@ public static java.lang.String TABLENAME;
 # If you do NOT use RxJava:
 -dontwarn rx.**
 
+-keep public class com.yd.photoeditor.model.ItemInfo
+-keep public class * extends com.yd.photoeditor.model.ItemInfo
+-keepclassmembers class com.yd.photoeditor.model.ItemInfo
+-keep public class com.yd.picmaker.model.PicStickerSaveData
+-keepclassmembers class com.yd.picmaker.model.PicStickerSaveData

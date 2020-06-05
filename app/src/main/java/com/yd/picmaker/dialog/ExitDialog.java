@@ -1,5 +1,6 @@
 package com.yd.picmaker.dialog;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
@@ -31,7 +32,7 @@ public class ExitDialog extends Dialog {
     }
 
     public static class Builder implements View.OnClickListener {
-        private Activity activity;
+        private final Activity activity;
         private View contentView;
         private AddTextListener listener;
         private ExitDialog dialog;
@@ -40,6 +41,7 @@ public class ExitDialog extends Dialog {
             this.activity = activity;
         }
 
+        @SuppressLint("WrongViewCast")
         public ExitDialog create() {
             LayoutInflater inflater = (LayoutInflater) activity
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);

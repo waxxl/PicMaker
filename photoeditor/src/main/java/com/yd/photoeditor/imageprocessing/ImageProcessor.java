@@ -1,6 +1,7 @@
 package com.yd.photoeditor.imageprocessing;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.database.Cursor;
@@ -11,25 +12,39 @@ import android.graphics.Rect;
 import android.hardware.Camera;
 import android.media.ExifInterface;
 import android.net.Uri;
+import android.opengl.GLES20;
+import android.opengl.GLException;
 import android.opengl.GLSurfaceView;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.provider.MediaStore;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.Display;
 import android.view.WindowManager;
+
 import com.yd.photoeditor.imageprocessing.filter.ImageFilter;
 import com.yd.photoeditor.imageprocessing.filter.ImageFilterGroup;
 import com.yd.photoeditor.imageprocessing.filter.TwoInputFilter;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.nio.IntBuffer;
 import java.util.List;
 import java.util.concurrent.Semaphore;
+import java.util.concurrent.locks.ReentrantLock;
+
+import javax.microedition.khronos.egl.EGL10;
+import javax.microedition.khronos.egl.EGLContext;
+import javax.microedition.khronos.opengles.GL10;
 
 public class ImageProcessor {
+    private static final String TAG = "ImageProcessor";
     /* access modifiers changed from: private */
     public final Context mContext;
     private Bitmap mCurrentBitmap;
@@ -89,10 +104,80 @@ public class ImageProcessor {
     }
 
     public void requestRender() {
-        GLSurfaceView gLSurfaceView = this.mGlSurfaceView;
-        if (gLSurfaceView != null) {
-            gLSurfaceView.requestRender();
+        if (mGlSurfaceView != null) {
+            mGlSurfaceView.requestRender();
         }
+    }
+
+    private ReentrantLock lock = new ReentrantLock(false);
+
+    public synchronized Bitmap getBitmap() {
+//          Bitmap bitmap;
+//
+//        mGlSurfaceView.queueEvent(
+//                new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        EGL10 egl = (EGL10) EGLContext.getEGL();
+//                        GL10 gl = (GL10)egl.eglGetCurrentContext().getGL();
+//
+////                        mCurrentBitmap = createBitmapFromGLSurface(0, 0, mGlSurfaceView.getWidth(), mGlSurfaceView.getHeight(), gl);
+//                        bitmap = readBufferPixelToBitmap(mGlSurfaceView.getWidth(), mGlSurfaceView.getWidth());
+//                        try {
+//                            lock.unlock();
+//                        }catch (Exception e){
+//                            Log.e(TAG, "lock.unlock(); failed " + e.getMessage());
+//                        }
+//                    }
+//                }
+//        );
+//        lock.tryLock();
+        EGL10 egl = (EGL10) EGLContext.getEGL();
+        GL10 gl = (GL10) egl.eglGetCurrentContext().getGL();
+
+        mCurrentBitmap = createBitmapFromGLSurface(0, 0, mGlSurfaceView.getWidth(), mGlSurfaceView.getHeight(), gl);
+        return readBufferPixelToBitmap(mGlSurfaceView.getWidth(), mGlSurfaceView.getWidth());
+        //return readBufferPixelToBitmap(mGlSurfaceView.getWidth(), mGlSurfaceView.getHeight());
+    }
+
+    private Bitmap readBufferPixelToBitmap(int width, int height) {
+        ByteBuffer buf = ByteBuffer.allocateDirect(width * height * 4);
+        buf.order(ByteOrder.LITTLE_ENDIAN);
+        GLES20.glReadPixels(0, 0, width, height, GLES20.GL_RGBA, GLES20.GL_UNSIGNED_BYTE, buf);
+        buf.rewind();
+
+        Bitmap bmp = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        bmp.copyPixelsFromBuffer(buf);
+        return bmp;
+    }
+
+    private Bitmap createBitmapFromGLSurface(int x, int y, int w, int h, GL10 gl) {
+
+        int bitmapBuffer[] = new int[w * h];
+        int bitmapSource[] = new int[w * h];
+        IntBuffer intBuffer = IntBuffer.wrap(bitmapBuffer);
+        intBuffer.position(0);
+
+        try {
+            gl.glReadPixels(x, y, w, h, GL10.GL_RGBA, GL10.GL_UNSIGNED_BYTE, intBuffer);
+            int offset1, offset2;
+            for (int i = 0; i < h; i++) {
+                offset1 = i * w;
+                offset2 = (h - i - 1) * w;
+                for (int j = 0; j < w; j++) {
+                    int texturePixel = bitmapBuffer[offset1 + j];
+                    int blue = (texturePixel >> 16) & 0xff;
+                    int red = (texturePixel << 16) & 0x00ff0000;
+                    int pixel = (texturePixel & 0xff00ff00) | red | blue;
+                    bitmapSource[offset2 + j] = pixel;
+                }
+            }
+        } catch (GLException e) {
+            Log.e(TAG, "createBitmapFromGLSurface: " + e.getMessage(), e);
+            return null;
+        }
+
+        return Bitmap.createBitmap(bitmapSource, w, h, Bitmap.Config.ARGB_8888);
     }
 
     public void setUpCamera(Camera camera) {
@@ -153,16 +238,16 @@ public class ImageProcessor {
     }
 
     public void setImage(Uri uri) {
-        new LoadImageUriTask(this, uri).execute(new Void[0]);
+        new LoadImageUriTask(this, uri).execute();
     }
 
     public void setImage(File file) {
-        new LoadImageFileTask(this, file).execute(new Void[0]);
+        new LoadImageFileTask(this, file).execute();
     }
 
     /* access modifiers changed from: protected */
     public String getPath(Uri uri) {
-        Cursor query = this.mContext.getContentResolver().query(uri, new String[]{"_data"}, (String) null, (String[]) null, (String) null);
+        Cursor query = this.mContext.getContentResolver().query(uri, new String[]{"_data"}, null, null, null);
         String string = query.moveToFirst() ? query.getString(query.getColumnIndexOrThrow("_data")) : null;
         query.close();
         return string;
@@ -170,7 +255,7 @@ public class ImageProcessor {
 
     public Bitmap getBitmapWithFilterApplied() {
         //return getBitmapWithFilterApplied(mCurrentBitmap);
-        return getFiltratedBitmap(mCurrentBitmap, mFilter);
+        return getBitmapWithFilterApplied(mCurrentBitmap);
     }
 
     public Bitmap getBitmapWithFilterApplied(Bitmap bitmap) {
@@ -237,6 +322,8 @@ public class ImageProcessor {
         }
         imageRenderer.setFilter(imageFilter);
         Bitmap bitmap2 = pixelBuffer.getBitmap();
+        imageRenderer.setFilter(imageFilter);
+        Bitmap bitmap3 = pixelBuffer.getBitmap();
         if (z2) {
             ((TwoInputFilter) imageFilter).setRecycleBitmap(z);
         } else if (imageFilter instanceof ImageFilterGroup) {
@@ -250,8 +337,20 @@ public class ImageProcessor {
         imageFilter.destroy();
         imageRenderer.deleteImage();
         pixelBuffer.destroy();
-        return bitmap2;
+        return bitmap3;
+
     }
+
+    public Bitmap getCurrentBitmap() {
+        requestRender();
+        PixelBuffer pixelBuffer = new PixelBuffer(mCurrentBitmap.getWidth(), mCurrentBitmap.getHeight());
+        pixelBuffer.setRenderer(mRenderer);
+        for (int i = 0 ;i<1000; i++) {
+            requestRender();
+        }
+
+        return pixelBuffer.getBitmap();
+     }
 
     public static void getBitmapForMultipleFilters(Bitmap bitmap, List<ImageFilter> list, ResponseListener<Bitmap> responseListener) {
         if (!list.isEmpty()) {
@@ -279,7 +378,7 @@ public class ImageProcessor {
         if (bitmap != null) {
             return bitmap.getWidth();
         }
-        Display defaultDisplay = ((WindowManager) this.mContext.getSystemService(WindowManager.class)).getDefaultDisplay();
+        Display defaultDisplay = this.mContext.getSystemService(WindowManager.class).getDefaultDisplay();
         DisplayMetrics displayMetrics = new DisplayMetrics();
         defaultDisplay.getMetrics(displayMetrics);
         return displayMetrics.widthPixels;
@@ -295,7 +394,7 @@ public class ImageProcessor {
         if (bitmap != null) {
             return bitmap.getHeight();
         }
-        Display defaultDisplay = ((WindowManager) this.mContext.getSystemService(WindowManager.class)).getDefaultDisplay();
+        Display defaultDisplay = this.mContext.getSystemService(WindowManager.class).getDefaultDisplay();
         DisplayMetrics displayMetrics = new DisplayMetrics();
         defaultDisplay.getMetrics(displayMetrics);
         return displayMetrics.heightPixels;
@@ -315,11 +414,11 @@ public class ImageProcessor {
                 if (!this.mUri.getScheme().startsWith("http")) {
                     if (!this.mUri.getScheme().startsWith("https")) {
                         inputStream = ImageProcessor.this.mContext.getContentResolver().openInputStream(this.mUri);
-                        return BitmapFactory.decodeStream(inputStream, (Rect) null, options);
+                        return BitmapFactory.decodeStream(inputStream, null, options);
                     }
                 }
                 inputStream = new URL(this.mUri.toString()).openStream();
-                return BitmapFactory.decodeStream(inputStream, (Rect) null, options);
+                return BitmapFactory.decodeStream(inputStream, null, options);
             } catch (Exception e) {
                 e.printStackTrace();
                 return null;
@@ -327,7 +426,7 @@ public class ImageProcessor {
         }
 
         public int getImageOrientation() throws IOException {
-            Cursor query = ImageProcessor.this.mContext.getContentResolver().query(this.mUri, new String[]{MediaStore.Images.ImageColumns.ORIENTATION}, (String) null, (String[]) null, (String) null);
+            Cursor query = ImageProcessor.this.mContext.getContentResolver().query(this.mUri, new String[]{MediaStore.Images.ImageColumns.ORIENTATION}, null, null, null);
             if (query == null || query.getCount() != 1) {
                 return 0;
             }

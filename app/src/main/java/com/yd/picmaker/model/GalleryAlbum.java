@@ -6,7 +6,7 @@ import java.util.List;
 public class GalleryAlbum {
     private long mAlbumId;
     private String mAlbumName;
-    private List<String> mImageList = new ArrayList();
+    private final List<String> mImageList = new ArrayList();
     private String mTakenDate;
 
     public GalleryAlbum(long j, String str) {

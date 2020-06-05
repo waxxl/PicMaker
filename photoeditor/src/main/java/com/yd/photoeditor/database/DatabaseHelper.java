@@ -10,10 +10,10 @@ import com.yd.photoeditor.config.ALog;
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
     private static final String TAG = DatabaseHelper.class.getSimpleName();
-    private Context mContext;
+    private final Context mContext;
 
     public DatabaseHelper(Context context) {
-        super(context, DatabaseManager.DB_NAME, (SQLiteDatabase.CursorFactory) null, DATABASE_VERSION);
+        super(context, DatabaseManager.DB_NAME, null, DATABASE_VERSION);
         this.mContext = context;
     }
 

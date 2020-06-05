@@ -30,7 +30,7 @@ public class AddTextDialog extends Dialog {
     }
 
     public static class Builder implements View.OnClickListener {
-        private Context context;
+        private final Context context;
         private View contentView;
         private EditText editText;
         private AddTextListener listener;

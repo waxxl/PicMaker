@@ -14,7 +14,7 @@ import static com.yd.picmaker.util.Constants.FILTERS;
 
 public class FilterEditAdapter extends RecyclerView.Adapter<FilterEditAdapter.ViewHolder> {
     private OnItemClickListener mItemListener;
-    private int mType = 0;
+    private final int mType = 0;
 
     public void setOnItemClickListener(OnItemClickListener listener) {
         mItemListener = listener;

@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/startpage_bg"
+    android:gravity="center"
+    android:background="@color/color_primary"
     android:orientation="vertical">
 
     <LinearLayout
@@ -12,8 +13,7 @@
         android:layout_gravity="bottom"
         android:paddingTop="28dp"
         android:paddingBottom="19dp"
-        android:layout_alignParentBottom="true"
-        android:background="@drawable/background_item_all">
+        android:layout_alignParentBottom="true">
 
         <TextView
             android:id="@+id/freely"

@@ -33,7 +33,7 @@ public class PhotoView extends View implements MultiTouchController.MultiTouchOb
     private static final float SCREEN_MARGIN = 100.0f;
     private static final int UI_MODE_ANISOTROPIC_SCALE = 2;
     private static final int UI_MODE_ROTATE = 1;
-    private MultiTouchController.PointInfo currTouchPoint;
+    private final MultiTouchController.PointInfo currTouchPoint;
     private int displayHeight;
     private int displayWidth;
     private int height;
@@ -42,17 +42,17 @@ public class PhotoView extends View implements MultiTouchController.MultiTouchOb
     private DoubleClickDetector mDoubleClickDetector;
     private OnFrameTouchListener mFrameTouchListener;
     private ArrayList<MultiTouchEntity> mImages;
-    private Paint mLinePaintTouchPointCircle;
+    private final Paint mLinePaintTouchPointCircle;
     private float mOldX;
     private float mOldY;
     private Uri mPhotoBackgroundUri;
     private int mSelectedCount;
     private long mSelectedTime;
-    private boolean mShowDebugInfo;
+    private final boolean mShowDebugInfo;
     private float mTouchAreaInterval;
     private MultiTouchEntity mTouchedObject;
     private int mUIMode;
-    private MultiTouchController<MultiTouchEntity> multiTouchController;
+    private final MultiTouchController<MultiTouchEntity> multiTouchController;
     private int width;
 
     public boolean pointInObjectGrabArea(MultiTouchController.PointInfo pointInfo, MultiTouchEntity multiTouchEntity) {
@@ -60,7 +60,7 @@ public class PhotoView extends View implements MultiTouchController.MultiTouchOb
     }
 
     public PhotoView(Context context) {
-        this(context, (AttributeSet) null);
+        this(context, null);
         init(context);
     }
 
@@ -252,9 +252,9 @@ public class PhotoView extends View implements MultiTouchController.MultiTouchOb
                 setBackgroundDrawable(decodeUriToDrawable);
             }
         } else if (Build.VERSION.SDK_INT >= 16) {
-            setBackground((Drawable) null);
+            setBackground(null);
         } else {
-            setBackgroundDrawable((Drawable) null);
+            setBackgroundDrawable(null);
         }
     }
 
@@ -269,9 +269,9 @@ public class PhotoView extends View implements MultiTouchController.MultiTouchOb
             bitmap.recycle();
         }
         if (Build.VERSION.SDK_INT >= 16) {
-            setBackground((Drawable) null);
+            setBackground(null);
         } else {
-            setBackgroundDrawable((Drawable) null);
+            setBackgroundDrawable(null);
         }
         this.mPhotoBackgroundUri = null;
     }
@@ -437,7 +437,7 @@ public class PhotoView extends View implements MultiTouchController.MultiTouchOb
 
     public boolean setPositionAndScale(MultiTouchEntity multiTouchEntity, MultiTouchController.PositionAndScale positionAndScale, MultiTouchController.PointInfo pointInfo) {
         this.currTouchPoint.set(pointInfo);
-        boolean pos = ((ImageEntity) multiTouchEntity).setPos(positionAndScale);
+        boolean pos = multiTouchEntity.setPos(positionAndScale);
         if (pos) {
             invalidate();
         }

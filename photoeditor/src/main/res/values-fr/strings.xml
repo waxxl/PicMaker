@@ -7,11 +7,10 @@
         
    <string name="change">Ubah</string>
         
-   <string name="character_counter_content_description">Karakter dimasukkan% 1 $ d dari% 2 $ d</string>
+   <string name="character_counter_content_description">Karakter dimasukkan %1$d dari %2$d</string>
         
-   <string name="character_counter_overflowed_content_description">Batas karakter melebihi% 1 $ d dari% 2 $ d</string>
-        
-   <string name="character_counter_pattern">% 1 $ d /% 2 $ d</string>
+   <string name="character_counter_overflowed_content_description">Batas karakter melebihi %1$d dari %2$d</string>
+      
         
    <string name="chip_text">Teks chip</string>
         

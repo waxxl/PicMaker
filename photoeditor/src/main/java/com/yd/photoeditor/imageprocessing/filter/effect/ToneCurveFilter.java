@@ -133,9 +133,9 @@ public class ToneCurveFilter extends ImageFilter {
                     for (int i = 0; i < 256; i++) {
                         int i2 = i * 4;
                         float f = (float) i;
-                        bArr[i2] = (byte) (((int) Math.min(Math.max(((Float) ToneCurveFilter.this.mBlueCurve.get(i)).floatValue() + f + ((Float) ToneCurveFilter.this.mRgbCompositeCurve.get(i)).floatValue(), 0.0f), 255.0f)) & 255);
-                        bArr[i2 + 1] = (byte) (((int) Math.min(Math.max(((Float) ToneCurveFilter.this.mGreenCurve.get(i)).floatValue() + f + ((Float) ToneCurveFilter.this.mRgbCompositeCurve.get(i)).floatValue(), 0.0f), 255.0f)) & 255);
-                        bArr[i2 + 2] = (byte) (((int) Math.min(Math.max(f + ((Float) ToneCurveFilter.this.mRedCurve.get(i)).floatValue() + ((Float) ToneCurveFilter.this.mRgbCompositeCurve.get(i)).floatValue(), 0.0f), 255.0f)) & 255);
+                        bArr[i2] = (byte) (((int) Math.min(Math.max(ToneCurveFilter.this.mBlueCurve.get(i).floatValue() + f + ToneCurveFilter.this.mRgbCompositeCurve.get(i).floatValue(), 0.0f), 255.0f)) & 255);
+                        bArr[i2 + 1] = (byte) (((int) Math.min(Math.max(ToneCurveFilter.this.mGreenCurve.get(i).floatValue() + f + ToneCurveFilter.this.mRgbCompositeCurve.get(i).floatValue(), 0.0f), 255.0f)) & 255);
+                        bArr[i2 + 2] = (byte) (((int) Math.min(Math.max(f + ToneCurveFilter.this.mRedCurve.get(i).floatValue() + ToneCurveFilter.this.mRgbCompositeCurve.get(i).floatValue(), 0.0f), 255.0f)) & 255);
                         bArr[i2 + 3] = -1;
                     }
                     GLES20.glTexImage2D(3553, 0, 6408, 256, 1, 0, 6408, 5121, ByteBuffer.wrap(bArr));
@@ -148,7 +148,7 @@ public class ToneCurveFilter extends ImageFilter {
         if (pointFArr == null || pointFArr.length <= 0) {
             return null;
         }
-        PointF[] pointFArr2 = (PointF[]) pointFArr.clone();
+        PointF[] pointFArr2 = pointFArr.clone();
         Arrays.sort(pointFArr2, new Comparator<PointF>() {
             public int compare(PointF pointF, PointF pointF2) {
                 if (pointF.x < pointF2.x) {
@@ -185,7 +185,7 @@ public class ToneCurveFilter extends ImageFilter {
         while (it.hasNext()) {
             Point next = it.next();
             Point point3 = new Point(next.x, next.x);
-            float sqrt = (float) Math.sqrt(Math.pow((double) (point3.x - next.x), 2.0d) + Math.pow((double) (point3.y - next.y), 2.0d));
+            float sqrt = (float) Math.sqrt(Math.pow(point3.x - next.x, 2.0d) + Math.pow(point3.y - next.y, 2.0d));
             if (point3.y > next.y) {
                 sqrt = -sqrt;
             }
@@ -213,19 +213,19 @@ public class ToneCurveFilter extends ImageFilter {
             Point point2 = pointArr2[i3];
             int i4 = point.x;
             while (i4 < point2.x) {
-                double d = (double) (i4 - point.x);
-                double d2 = (double) (point2.x - point.x);
+                double d = i4 - point.x;
+                double d2 = point2.x - point.x;
                 Double.isNaN(d);
                 Double.isNaN(d2);
                 double d3 = d / d2;
                 double d4 = 1.0d - d3;
-                double d5 = (double) (point2.x - point.x);
+                double d5 = point2.x - point.x;
                 int i5 = size;
-                double d6 = (double) point.y;
+                double d6 = point.y;
                 Double.isNaN(d6);
                 Point point3 = point;
                 ArrayList<Point> arrayList2 = arrayList;
-                double d7 = (double) point2.y;
+                double d7 = point2.y;
                 Double.isNaN(d7);
                 Double.isNaN(d5);
                 Double.isNaN(d5);
@@ -280,24 +280,24 @@ public class ToneCurveFilter extends ImageFilter {
             int i3 = i2 + 1;
             Point point3 = pointArr2[i3];
             double[] dArr3 = dArr[i2];
-            double d2 = (double) (point2.x - point.x);
+            double d2 = point2.x - point.x;
             Double.isNaN(d2);
             dArr3[c] = d2 / 6.0d;
             double[] dArr4 = dArr[i2];
-            double d3 = (double) (point3.x - point.x);
+            double d3 = point3.x - point.x;
             Double.isNaN(d3);
             dArr4[1] = d3 / 3.0d;
             double[] dArr5 = dArr[i2];
-            double d4 = (double) (point3.x - point2.x);
+            double d4 = point3.x - point2.x;
             Double.isNaN(d4);
             dArr5[2] = d4 / 6.0d;
-            double d5 = (double) (point3.y - point2.y);
-            double d6 = (double) (point3.x - point2.x);
+            double d5 = point3.y - point2.y;
+            double d6 = point3.x - point2.x;
             Double.isNaN(d5);
             Double.isNaN(d6);
             double d7 = d5 / d6;
-            double d8 = (double) (point2.y - point.y);
-            double d9 = (double) (point2.x - point.x);
+            double d8 = point2.y - point.y;
+            double d9 = point2.x - point.x;
             Double.isNaN(d8);
             Double.isNaN(d9);
             dArr2[i2] = d7 - (d8 / d9);

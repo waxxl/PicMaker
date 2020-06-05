@@ -36,25 +36,25 @@ import java.util.List;
 public class FrameImageView extends androidx.appcompat.widget.AppCompatImageView {
     private static final String TAG = FrameImageView.class.getSimpleName();
     private int mBackgroundColor = -1;
-    private Path mBackgroundPath = new Path();
-    private Path mClearPath = new Path();
-    private List<PointF> mConvertedClearPoints = new ArrayList();
-    private List<PointF> mConvertedPoints = new ArrayList();
+    private final Path mBackgroundPath = new Path();
+    private final Path mClearPath = new Path();
+    private final List<PointF> mConvertedClearPoints = new ArrayList();
+    private final List<PointF> mConvertedPoints = new ArrayList();
     private float mCorner = 0.0f;
     private boolean mEnableTouch = true;
     private final GestureDetector mGestureDetector;
     private Bitmap mImage;
-    private Matrix mImageMatrix;
+    private final Matrix mImageMatrix;
     /* access modifiers changed from: private */
     public OnImageClickListener mOnImageClickListener;
     private RelativeLayout.LayoutParams mOriginalLayoutParams;
     private float mOutputScale = 1.0f;
-    private Paint mPaint;
-    private Path mPath = new Path();
-    private Rect mPathRect = new Rect(0, 0, 0, 0);
-    private PhotoItem mPhotoItem;
-    private List<PointF> mPolygon = new ArrayList();
-    private Matrix mScaleMatrix;
+    private final Paint mPaint;
+    private final Path mPath = new Path();
+    private final Rect mPathRect = new Rect(0, 0, 0, 0);
+    private final PhotoItem mPhotoItem;
+    private final List<PointF> mPolygon = new ArrayList();
+    private final Matrix mScaleMatrix;
     private boolean mSelected = true;
     private float mSpace = 0.0f;
     private MultiTouchHandler mTouchHandler;
@@ -603,7 +603,7 @@ public class FrameImageView extends androidx.appcompat.widget.AppCompatImageView
         float f4 = f;
         canvas.drawRect((float) rect2.right, 0.0f, f4, f3, paint3);
         canvas.drawRect(0.0f, (float) rect2.bottom, f4, f3, paint3);
-        paint2.setXfermode((Xfermode) null);
+        paint2.setXfermode(null);
         canvas.restore();
         canvas.save();
         paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
@@ -613,7 +613,7 @@ public class FrameImageView extends androidx.appcompat.widget.AppCompatImageView
         Path.FillType fillType = path.getFillType();
         path4.setFillType(Path.FillType.INVERSE_WINDING);
         canvas.drawPath(path, paint);
-        paint2.setXfermode((Xfermode) null);
+        paint2.setXfermode(null);
         canvas.restore();
         path4.setFillType(fillType);
         if (path6 != null) {
@@ -623,7 +623,7 @@ public class FrameImageView extends androidx.appcompat.widget.AppCompatImageView
             paint2.setColor(-16777216);
             paint2.setStyle(Paint.Style.FILL);
             canvas.drawPath(path6, paint2);
-            paint2.setXfermode((Xfermode) null);
+            paint2.setXfermode(null);
             canvas.restore();
         }
         if (path5 != null) {
@@ -633,7 +633,7 @@ public class FrameImageView extends androidx.appcompat.widget.AppCompatImageView
             paint2.setColor(i);
             paint2.setStyle(Paint.Style.FILL);
             canvas.drawPath(path5, paint2);
-            paint2.setXfermode((Xfermode) null);
+            paint2.setXfermode(null);
             canvas.restore();
         }
         if (list2 != null && list.isEmpty()) {
@@ -650,11 +650,7 @@ public class FrameImageView extends androidx.appcompat.widget.AppCompatImageView
             return super.onTouchEvent(motionEvent);
         }
         if (motionEvent.getAction() == 0) {
-            if (GeometryUtils.contains(this.mPolygon, new PointF(motionEvent.getX(), motionEvent.getY()))) {
-                this.mSelected = true;
-            } else {
-                this.mSelected = false;
-            }
+            this.mSelected = GeometryUtils.contains(this.mPolygon, new PointF(motionEvent.getX(), motionEvent.getY()));
         }
         if (!this.mSelected) {
             return super.onTouchEvent(motionEvent);

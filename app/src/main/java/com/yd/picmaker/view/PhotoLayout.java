@@ -142,7 +142,7 @@ public class PhotoLayout extends RelativeLayout implements ItemImageView.OnImage
         this.mImageWidth = this.mTemplateImage.getWidth();
         this.mImageHeight = this.mTemplateImage.getHeight();
         this.mItemImageViews = new ArrayList();
-        setLayerType(2, (Paint) null);
+        setLayerType(2, null);
         createQuickAction();
     }
 
@@ -253,7 +253,7 @@ public class PhotoLayout extends RelativeLayout implements ItemImageView.OnImage
                     PhotoLayout.this.mBackgroundImageView.init(bitmap, PhotoLayout.this.mViewWidth, PhotoLayout.this.mViewHeight, PhotoLayout.this.mOutputScaleRatio);
                 }
             }
-        }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, new Void[0]);
+        }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
 
     public void build(int i, int i2, float f) {
@@ -290,9 +290,9 @@ public class PhotoLayout extends RelativeLayout implements ItemImageView.OnImage
                         return;
                     }
                     QuickAction access$200 = PhotoLayout.this.mBackgroundQuickAction;
-                    double width = (double) transitionImageView.getWidth();
+                    double width = transitionImageView.getWidth();
                     Double.isNaN(width);
-                    double height = (double) transitionImageView.getHeight();
+                    double height = transitionImageView.getHeight();
                     Double.isNaN(height);
                     access$200.show(transitionImageView, (int) (width / 2.0d), (int) (height / 2.0d));
                     PhotoLayout.this.mBackgroundQuickAction.setAnimStyle(4);
@@ -362,7 +362,7 @@ public class PhotoLayout extends RelativeLayout implements ItemImageView.OnImage
                 canvas.translate(f2, f4);
                 paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
                 canvas.drawBitmap(next.getMaskImage(), next.getScaleMaskMatrix(), paint);
-                paint.setXfermode((Xfermode) null);
+                paint.setXfermode(null);
                 canvas.restore();
                 canvas.restore();
             }

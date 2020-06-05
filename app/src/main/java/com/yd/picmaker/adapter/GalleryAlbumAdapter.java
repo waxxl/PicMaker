@@ -21,9 +21,9 @@ import java.util.ArrayList;
 
 public class GalleryAlbumAdapter extends RecyclerView.Adapter<GalleryAlbumAdapter.ViewHolder> {
     private OnItemClickListener mItemListener;
-    private Context mContext;
-    private ArrayList<GalleryAlbum> mAlbums;
-    private int mType = 0;
+    private final Context mContext;
+    private final ArrayList<GalleryAlbum> mAlbums;
+    private final int mType = 0;
 
     public GalleryAlbumAdapter(Activity activity, ArrayList<GalleryAlbum> mAlbums) {
         mContext = activity;
@@ -57,7 +57,7 @@ public class GalleryAlbumAdapter extends RecyclerView.Adapter<GalleryAlbumAdapte
         if (galleryAlbum.getImageList().size() > 0) {
             PhotoUtils.loadImageWithGlide(holder.imageView.getContext(), holder.imageView, galleryAlbum.getImageList().get(0));
         } else {
-            holder.imageView.setImageBitmap((Bitmap) null);
+            holder.imageView.setImageBitmap(null);
         }
 
         holder.title.setText(mAlbums.get(position).getAlbumName());
@@ -83,7 +83,8 @@ public class GalleryAlbumAdapter extends RecyclerView.Adapter<GalleryAlbumAdapte
     public class ViewHolder extends RecyclerView.ViewHolder {
         public ConstraintLayout allLayout;
         public ImageView imageView;
-        private TextView title,count;
+        private final TextView title;
+        private final TextView count;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

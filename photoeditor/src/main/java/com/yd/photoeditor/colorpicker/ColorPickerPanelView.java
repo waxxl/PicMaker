@@ -19,7 +19,7 @@ public class ColorPickerPanelView extends View {
     private RectF mDrawingRect;
 
     public ColorPickerPanelView(Context context) {
-        this(context, (AttributeSet) null);
+        this(context, null);
     }
 
     public ColorPickerPanelView(Context context, AttributeSet attributeSet) {

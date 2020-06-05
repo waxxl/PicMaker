@@ -31,7 +31,7 @@ public abstract class BaseTable {
     }
 
     public static String genRandomId(SQLiteDatabase sQLiteDatabase) {
-        Cursor rawQuery = sQLiteDatabase.rawQuery("SELECT hex(randomblob(8))", (String[]) null);
+        Cursor rawQuery = sQLiteDatabase.rawQuery("SELECT hex(randomblob(8))", null);
         if (rawQuery.moveToFirst()) {
             String string = rawQuery.getString(0);
             rawQuery.close();
@@ -65,15 +65,13 @@ public abstract class BaseTable {
         if (mDatabase == null || !mDatabase.isOpen()) {
             if (mContext != null) {
                 this.mDatabase = DatabaseManager.getInstance(mContext).getDb();
-            } else {
-                this.mDatabase = DatabaseManager.getInstance().getDb();
             }
         }
         return this.mDatabase;
     }
 
     public String genRandom16BytesHexString() {
-        Cursor rawQuery = getDatabase(mContext).rawQuery("SELECT hex(randomblob(16))", (String[]) null);
+        Cursor rawQuery = getDatabase(mContext).rawQuery("SELECT hex(randomblob(16))", null);
         if (rawQuery.moveToFirst()) {
             String string = rawQuery.getString(0);
             rawQuery.close();
@@ -86,7 +84,7 @@ public abstract class BaseTable {
     }
 
     public String genRandom24BytesHexString() {
-        Cursor rawQuery = getDatabase(mContext).rawQuery("SELECT hex(randomblob(24))", (String[]) null);
+        Cursor rawQuery = getDatabase(mContext).rawQuery("SELECT hex(randomblob(24))", null);
         if (rawQuery.moveToFirst()) {
             String string = rawQuery.getString(0);
             rawQuery.close();
@@ -99,7 +97,7 @@ public abstract class BaseTable {
     }
 
     public String genRandom32BytesHexString() {
-        Cursor rawQuery = getDatabase(mContext).rawQuery("SELECT hex(randomblob(32))", (String[]) null);
+        Cursor rawQuery = getDatabase(mContext).rawQuery("SELECT hex(randomblob(32))", null);
         if (rawQuery.moveToFirst()) {
             String string = rawQuery.getString(0);
             rawQuery.close();
@@ -112,7 +110,7 @@ public abstract class BaseTable {
     }
 
     public String genRandom8BytesHexString() {
-        Cursor rawQuery = getDatabase(mContext).rawQuery("SELECT hex(randomblob(8))", (String[]) null);
+        Cursor rawQuery = getDatabase(mContext).rawQuery("SELECT hex(randomblob(8))", null);
         if (rawQuery.moveToFirst()) {
             String string = rawQuery.getString(0);
             rawQuery.close();
@@ -129,7 +127,7 @@ public abstract class BaseTable {
     }
 
     public String getCurrentDateTime() {
-        Cursor rawQuery = getDatabase(mContext).rawQuery("SELECT datetime('now')", (String[]) null);
+        Cursor rawQuery = getDatabase(mContext).rawQuery("SELECT datetime('now')", null);
         if (rawQuery.moveToFirst()) {
             String string = rawQuery.getString(0);
             rawQuery.close();

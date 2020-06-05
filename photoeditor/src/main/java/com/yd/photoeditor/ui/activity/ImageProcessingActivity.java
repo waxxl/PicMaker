@@ -58,7 +58,7 @@ public class ImageProcessingActivity extends AppCompatActivity implements View.O
     private TextView mEffectTV, mCropTV, mRotateTV;
     private BaseAction mEffectAction, mCropAction, mRotateAction;
     public ArrayList<ItemInfo> mEffectInfos,mCropInfos,mRotateInfos;
-    private BaseAction[] mActions = new BaseAction[3];
+    private final BaseAction[] mActions = new BaseAction[3];
     private CustomMenuAdapter mAdapter;
 
     public BaseAction mCurrentAction;
@@ -122,16 +122,16 @@ public class ImageProcessingActivity extends AppCompatActivity implements View.O
     }
 
     private void initView() {
-        mImageUri = (Uri) getIntent().getParcelableExtra(IMAGE_URI_KEY);
+        mImageUri = getIntent().getParcelableExtra(IMAGE_URI_KEY);
         mIsEditingImage = getIntent().getBooleanExtra(IS_EDITING_IMAGE_KEY, false);
         mEditingImagePath = getIntent().getStringExtra(EXTRA_EDITING_IMAGE_PATH);
-        mImageProcessingView = (ImageProcessingView) findViewById(R.id.imageProcessingView);
+        mImageProcessingView = findViewById(R.id.imageProcessingView);
         mImageProcessingView.setScaleType(ImageProcessor.ScaleType.CENTER_INSIDE);
         setImageProcessingViewBackgroundColor();
-        mNormalImageView = (ImageView) findViewById(R.id.sourceImage);
-        mImageLayout = (FrameLayout) findViewById(R.id.imageViewLayout);
+        mNormalImageView = findViewById(R.id.sourceImage);
+        mImageLayout = findViewById(R.id.imageViewLayout);
         mPhotoViewLayout = findViewById(R.id.photoViewLayout);
-        mBottomLayout = (FrameLayout) findViewById(R.id.bottomLayout);
+        mBottomLayout = findViewById(R.id.bottomLayout);
         mBottomItemLayout = findViewById(R.id.bottom_item_selector);
         mBottomLayout.addView(View.inflate(this, R.layout.bottom_layout, null));
         mItemRecycler = mBottomLayout.findViewById(R.id.recycler);

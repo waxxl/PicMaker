@@ -38,7 +38,6 @@ public class BaseFragment extends Fragment {
     protected Activity mActivity;
     private String mTitle = null;
 
-    /* access modifiers changed from: protected */
     public void resultAddTextItem(String str, int i, String str2) {
     }
 
@@ -106,7 +105,7 @@ public class BaseFragment extends Fragment {
             this.mActivity.setTitle(str);
             Activity activity = this.mActivity;
             if ((activity instanceof AppCompatActivity) && (supportActionBar = ((AppCompatActivity) activity).getSupportActionBar()) != null) {
-                supportActionBar.setTitle((CharSequence) mTitle);
+                supportActionBar.setTitle(mTitle);
             }
         }
     }
@@ -280,7 +279,7 @@ public class BaseFragment extends Fragment {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         bitmap.setHasAlpha(true);
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
-        return Uri.parse(MediaStore.Images.Media.insertImage(context.getContentResolver(), bitmap, "Title", (String) null));
+        return Uri.parse(MediaStore.Images.Media.insertImage(context.getContentResolver(), bitmap, "Title", null));
     }
 
     public Context getTheContext() {

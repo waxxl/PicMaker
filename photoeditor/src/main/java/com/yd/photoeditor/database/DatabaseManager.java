@@ -25,9 +25,9 @@ public class DatabaseManager {
     private static final String SQL_COMMENT = "--";
     private static final String TAG = DatabaseManager.class.getSimpleName();
     private static DatabaseManager instance;
-    private Context mCtx;
+    private final Context mCtx;
     private SQLiteDatabase mDb;
-    private File mDbFile;
+    private final File mDbFile;
     private String mFromDbSchemaVersion;
 
     public static String getDbFileFullPath(Context context) {
@@ -187,7 +187,7 @@ public class DatabaseManager {
     }
 
     public String genRandom2BytesHexString() {
-        Cursor rawQuery = this.mDb.rawQuery("SELECT hex(randomblob(2))", (String[]) null);
+        Cursor rawQuery = this.mDb.rawQuery("SELECT hex(randomblob(2))", null);
         if (rawQuery.moveToFirst()) {
             String string = rawQuery.getString(0);
             rawQuery.close();
@@ -268,7 +268,7 @@ public class DatabaseManager {
             return true;
         }
         try {
-            this.mDb = SQLiteDatabase.openOrCreateDatabase(this.mDbFile, (SQLiteDatabase.CursorFactory) null);
+            this.mDb = SQLiteDatabase.openOrCreateDatabase(this.mDbFile, null);
             return this.mDb.isOpen();
         } catch (Exception e) {
             e.printStackTrace();

@@ -22,7 +22,7 @@ public class GalleryAlbumActivity extends FragmentActivity implements View.OnCli
     public static final String MAX_IMAGE_COUNT = "maxImageCount";
     public static final String IS_MAX_IMAGE_COUNT = "isMaxImageCount";
     public static final String SELECT_ITEMS = "selectCounts";
-    private ArrayList<String> mSelects = new ArrayList<>();
+    private final ArrayList<String> mSelects = new ArrayList<>();
     private View mToolBar;
     private ImageView mBack, mFunc;
     private TextView mTitle, mSelectCount;

@@ -28,7 +28,7 @@ public class FocusImageView extends ImageView {
     private OnImageFocusListener mFocusListener;
     private float mFocusStrokeWidth = 1.0f;
     private int mFocusType = -1;
-    private float[] mLastEvent = null;
+    private final float[] mLastEvent = null;
     private float mLinearFocusRadius = 10.0f;
     private float mMaxLinearFocusRadius = 100.0f;
     private PointF mMid = new PointF();
@@ -36,7 +36,7 @@ public class FocusImageView extends ImageView {
     private int mMode = 0;
     private float mNewRot = 0.0f;
     private float mOldDist = 1.0f;
-    private Paint mPaint = new Paint();
+    private final Paint mPaint = new Paint();
     private PointF mPointA = new PointF();
     private PointF mPointB = new PointF();
     private PointF mSecondA = new PointF();
@@ -100,19 +100,19 @@ public class FocusImageView extends ImageView {
         this.mCircleRadius = bundle.getFloat("com.yd.photoeditor.view.FocusImageView.mCircleRadius", this.mCircleRadius);
         this.mCircleX = bundle.getFloat("com.yd.photoeditor.view.FocusImageView.mCircleX", this.mCircleX);
         this.mCircleY = bundle.getFloat("com.yd.photoeditor.view.FocusImageView.mCircleY", this.mCircleY);
-        PointF pointF = (PointF) bundle.getParcelable("com.yd.photoeditor.view.FocusImageView.mFirstA");
+        PointF pointF = bundle.getParcelable("com.yd.photoeditor.view.FocusImageView.mFirstA");
         if (pointF != null) {
             this.mFirstA = pointF;
         }
-        PointF pointF2 = (PointF) bundle.getParcelable("com.yd.photoeditor.view.FocusImageView.mFirstB");
+        PointF pointF2 = bundle.getParcelable("com.yd.photoeditor.view.FocusImageView.mFirstB");
         if (pointF2 != null) {
             this.mFirstB = pointF2;
         }
-        PointF pointF3 = (PointF) bundle.getParcelable("com.yd.photoeditor.view.FocusImageView.mSecondA");
+        PointF pointF3 = bundle.getParcelable("com.yd.photoeditor.view.FocusImageView.mSecondA");
         if (pointF3 != null) {
             this.mSecondA = pointF3;
         }
-        PointF pointF4 = (PointF) bundle.getParcelable("com.yd.photoeditor.view.FocusImageView.mSecondB");
+        PointF pointF4 = bundle.getParcelable("com.yd.photoeditor.view.FocusImageView.mSecondB");
         if (pointF4 != null) {
             this.mSecondB = pointF4;
         }
@@ -120,21 +120,21 @@ public class FocusImageView extends ImageView {
         this.mFocusType = bundle.getInt("com.yd.photoeditor.view.FocusImageView.mFocusType", this.mFocusType);
         this.mMinLinearFocusRadius = bundle.getFloat("com.yd.photoeditor.view.FocusImageView.mMinLinearFocusRadius", this.mMinLinearFocusRadius);
         this.mMaxLinearFocusRadius = bundle.getFloat("com.yd.photoeditor.view.FocusImageView.mMaxLinearFocusRadius", this.mMaxLinearFocusRadius);
-        PointF pointF5 = (PointF) bundle.getParcelable("com.yd.photoeditor.view.FocusImageView.mPointA");
+        PointF pointF5 = bundle.getParcelable("com.yd.photoeditor.view.FocusImageView.mPointA");
         if (pointF5 != null) {
             this.mPointA = pointF5;
         }
-        PointF pointF6 = (PointF) bundle.getParcelable("com.yd.photoeditor.view.FocusImageView.mPointB");
+        PointF pointF6 = bundle.getParcelable("com.yd.photoeditor.view.FocusImageView.mPointB");
         if (pointF6 != null) {
             this.mPointB = pointF6;
         }
         this.mLinearFocusRadius = bundle.getFloat("com.yd.photoeditor.view.FocusImageView.mLinearFocusRadius", this.mLinearFocusRadius);
         this.mMode = bundle.getInt("com.yd.photoeditor.view.FocusImageView.mMode", this.mMode);
-        PointF pointF7 = (PointF) bundle.getParcelable("com.yd.photoeditor.view.FocusImageView.mStart");
+        PointF pointF7 = bundle.getParcelable("com.yd.photoeditor.view.FocusImageView.mStart");
         if (pointF7 != null) {
             this.mStart = pointF7;
         }
-        PointF pointF8 = (PointF) bundle.getParcelable("com.yd.photoeditor.view.FocusImageView.mMid");
+        PointF pointF8 = bundle.getParcelable("com.yd.photoeditor.view.FocusImageView.mMid");
         if (pointF8 != null) {
             this.mMid = pointF8;
         }
@@ -185,7 +185,7 @@ public class FocusImageView extends ImageView {
         pointF2.y = f;
         float f3 = (float) i2;
         this.mLinearFocusRadius = f3 / 6.0f;
-        this.mMaxLinearFocusRadius = ((float) Math.sqrt((double) ((i * i) + (i2 * i2)))) + 2.0f;
+        this.mMaxLinearFocusRadius = ((float) Math.sqrt((i * i) + (i2 * i2))) + 2.0f;
         calculateLinearFocusLines(f2, f3);
         this.mFocusType = 0;
         invalidate();
@@ -558,13 +558,13 @@ public class FocusImageView extends ImageView {
     }
 
     private float rotation(MotionEvent motionEvent) {
-        return (float) Math.toDegrees(Math.atan2((double) (motionEvent.getY(0) - motionEvent.getY(1)), (double) (motionEvent.getX(0) - motionEvent.getX(1))));
+        return (float) Math.toDegrees(Math.atan2(motionEvent.getY(0) - motionEvent.getY(1), motionEvent.getX(0) - motionEvent.getX(1)));
     }
 
     private float spacing(MotionEvent motionEvent) {
         float x = motionEvent.getX(0) - motionEvent.getX(1);
         float y = motionEvent.getY(0) - motionEvent.getY(1);
-        return (float) Math.sqrt((double) ((x * x) + (y * y)));
+        return (float) Math.sqrt((x * x) + (y * y));
     }
 
     private void midPoint(PointF pointF, MotionEvent motionEvent) {
@@ -573,13 +573,13 @@ public class FocusImageView extends ImageView {
 
     private Line[] findBesideLines(Line line, float f) {
         float[] coefficients = line.getCoefficients();
-        double d = (double) f;
-        double sqrt = Math.sqrt((double) ((coefficients[0] * coefficients[0]) + (coefficients[1] * coefficients[1])));
+        double d = f;
+        double sqrt = Math.sqrt((coefficients[0] * coefficients[0]) + (coefficients[1] * coefficients[1]));
         Double.isNaN(d);
         double d2 = d * sqrt;
-        double d3 = (double) coefficients[2];
+        double d3 = coefficients[2];
         Double.isNaN(d3);
-        double d4 = (double) coefficients[2];
+        double d4 = coefficients[2];
         Double.isNaN(d4);
         Line[] lineArr = new Line[2];
         lineArr[0] = new Line();

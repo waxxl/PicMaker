@@ -41,12 +41,12 @@ public class CaptionImageView extends ImageView {
     private float mOriginalTextSize = 24.0f;
     private float mSecondTextSize;
     private int mStrokeColor;
-    private Paint mStrokePaint;
+    private final Paint mStrokePaint;
     private float mStrokeWidth;
     private String mText = "";
     private String mText2;
     private int mTextColor = -1;
-    private Paint mTextPaint;
+    private final Paint mTextPaint;
     protected float mTextX;
     protected float mTextX2;
     protected float mTextY;
@@ -194,7 +194,7 @@ public class CaptionImageView extends ImageView {
         this.mLeftRightMarginCaption = bundle.getFloat("com.yd.photoeditor.view.CaptionImageView.mLeftRightMarginCaption", this.mLeftRightMarginCaption);
         this.mStrokeWidth = bundle.getFloat("com.yd.photoeditor.view.CaptionImageView.mStrokeWidth", this.mStrokeWidth);
         this.mMinTouchDist = bundle.getInt("com.yd.photoeditor.view.CaptionImageView.mMinTouchDist", this.mMinTouchDist);
-        PointF pointF = (PointF) bundle.getParcelable("com.yd.photoeditor.view.CaptionImageView.mLastTouch");
+        PointF pointF = bundle.getParcelable("com.yd.photoeditor.view.CaptionImageView.mLastTouch");
         if (pointF != null) {
             this.mLastTouch = pointF;
         }
@@ -453,9 +453,9 @@ public class CaptionImageView extends ImageView {
         this.mTextPaint.getTextBounds(str2, 0, str.length(), rect);
         int height = rect.height();
         this.mTextPaint.getTextBounds("m", 0, 1, rect);
-        double height2 = (double) rect.height();
+        double height2 = rect.height();
         Double.isNaN(height2);
-        double d = (double) height;
+        double d = height;
         Double.isNaN(d);
         int i4 = (int) ((height2 * 0.5d) + d);
         int size = findWords.size();
@@ -533,9 +533,9 @@ public class CaptionImageView extends ImageView {
         this.mTextPaint.getTextBounds(str2, 0, str.length(), rect);
         int height = rect.height();
         this.mTextPaint.getTextBounds("m", 0, 1, rect);
-        double height2 = (double) rect.height();
+        double height2 = rect.height();
         Double.isNaN(height2);
-        double d = (double) height;
+        double d = height;
         Double.isNaN(d);
         int i6 = (int) ((height2 * 0.5d) + d);
         float f4 = (float) i4;
@@ -605,9 +605,9 @@ public class CaptionImageView extends ImageView {
         this.mTextPaint.getTextBounds(str2, 0, str.length(), rect);
         int height = rect.height();
         this.mTextPaint.getTextBounds("m", 0, 1, rect);
-        double height2 = (double) rect.height();
+        double height2 = rect.height();
         Double.isNaN(height2);
-        double d = (double) height;
+        double d = height;
         Double.isNaN(d);
         int i5 = (int) ((height2 * 0.5d) + d);
         int size = findWords.size();
@@ -745,9 +745,9 @@ public class CaptionImageView extends ImageView {
         paint.getTextBounds(str, 0, str.length(), rect);
         int height = rect.height();
         paint.getTextBounds("m", 0, 1, rect);
-        double height2 = (double) rect.height();
+        double height2 = rect.height();
         Double.isNaN(height2);
-        double d = (double) height;
+        double d = height;
         Double.isNaN(d);
         int i2 = (int) ((height2 * 0.5d) + d);
         int size = findWords.size();
@@ -777,9 +777,9 @@ public class CaptionImageView extends ImageView {
         paint.getTextBounds(str, 0, str.length(), rect);
         int height = rect.height();
         paint.getTextBounds("m", 0, 1, rect);
-        double height2 = (double) rect.height();
+        double height2 = rect.height();
         Double.isNaN(height2);
-        double d = (double) height;
+        double d = height;
         Double.isNaN(d);
         int i2 = (int) ((height2 * 0.5d) + d);
         int width = (int) ((f - (f2 * 2.0f)) - ((float) rect.width()));
@@ -869,7 +869,7 @@ public class CaptionImageView extends ImageView {
 
     private void init() {
         if (Build.VERSION.SDK_INT >= 11) {
-            setLayerType(1, (Paint) null);
+            setLayerType(1, null);
         }
         this.mOriginalTextSize = getContext().getResources().getDimension(R.dimen.photo_editor_text_default_size);
         float f = this.mOriginalTextSize;

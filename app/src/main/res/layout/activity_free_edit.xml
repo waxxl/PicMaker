@@ -147,14 +147,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_toEndOf="@+id/opacity_text"
-                android:secondaryProgress="@color/primary_seek_bar_color"/>
+                android:max="255"
+                android:progress="120"
+                android:minHeight="2dp"
+                android:maxHeight="2dp"
+                android:progressDrawable="@drawable/seekbar_drawable_layer"
+                android:indeterminateDrawable="@color/white"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/filter_recycler"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:layout_below="@+id/filter_seek_bar"
+                android:layout_below="@+id/opacity_text"
                 android:orientation="horizontal"/>
         </RelativeLayout>
 

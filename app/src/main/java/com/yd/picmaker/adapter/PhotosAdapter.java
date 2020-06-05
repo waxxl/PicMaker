@@ -61,7 +61,7 @@ public class PhotosAdapter extends ArrayAdapter<String> {
         if (view == null) {
             viewHolder = new ViewHolder();
             viewT = this.mInflater.inflate(R.layout.item_gallery_photo, viewGroup, false);
-            viewHolder.imageView = (ImageView) viewT.findViewById(R.id.photo_gallery_detail);
+            viewHolder.imageView = viewT.findViewById(R.id.photo_gallery_detail);
             if (this.mImageFitCenter) {
                 viewHolder.imageView.setScaleType(ImageView.ScaleType.FIT_XY);
             }
@@ -70,7 +70,7 @@ public class PhotosAdapter extends ArrayAdapter<String> {
             viewT = view;
             viewHolder = (ViewHolder) view.getTag();
         }
-        PhotoUtils.loadImageWithGlide(getContext(), viewHolder.imageView, (String) getItem(i));
+        PhotoUtils.loadImageWithGlide(getContext(), viewHolder.imageView, getItem(i));
         return viewT;
     }
 

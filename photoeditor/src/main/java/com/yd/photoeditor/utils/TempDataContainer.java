@@ -6,7 +6,7 @@ import java.util.List;
 
 public class TempDataContainer {
     private static TempDataContainer instance;
-    private List<OnInstallStoreItemListener> mOnInstallStoreItemListeners = new ArrayList();
+    private final List<OnInstallStoreItemListener> mOnInstallStoreItemListeners = new ArrayList();
 
     public static TempDataContainer getInstance() {
         if (instance == null) {

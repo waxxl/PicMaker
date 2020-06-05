@@ -8,11 +8,11 @@
         
    <string name="change">เปลี่ยน</string>
         
-   <string name="character_counter_content_description">อักขระที่ป้อน% 1 $ d จาก% 2 $ d</string>
+   <string name="character_counter_content_description">อักขระที่ป้อน %1$d จาก %2$d</string>
         
-   <string name="character_counter_overflowed_content_description">เกินจำนวนอักขระสูงสุด% 1 $ d จาก% 2 $ d</string>
+   <string name="character_counter_overflowed_content_description">เกินจำนวนอักขระสูงสุด %1$d จาก %2$d</string>
         
-   <string name="character_counter_pattern">% 1 $ d /% 2 $ d</string>
+   <string name="character_counter_pattern"> %1$d / %2$d</string>
         
    <string name="chip_text">ข้อความชิป</string>
         

@@ -32,10 +32,10 @@ public class ImageEntity extends MultiTouchEntity {
     private boolean mDrawImageBorder = false;
     private boolean mDrawShadow = false;
     private transient Drawable mDrawable;
-    private GradientDrawable mGradientDrawable = new GradientDrawable(GradientDrawable.Orientation.TL_BR, new int[]{0, -7829368});
+    private final GradientDrawable mGradientDrawable = new GradientDrawable(GradientDrawable.Orientation.TL_BR, new int[]{0, -7829368});
     private Uri mImageUri = null;
     private double mInitScaleFactor = 0.25d;
-    private Paint mPaint = new Paint(1);
+    private final Paint mPaint = new Paint(1);
     private int mResourceId = -1;
     private int mShadowSize = 0;
     private boolean mSticker = true;
@@ -209,7 +209,7 @@ public class ImageEntity extends MultiTouchEntity {
             this.mWidth = drawable.getIntrinsicWidth();
             this.mHeight = this.mDrawable.getIntrinsicHeight();
             if (this.mFirstLoad) {
-                double min = (double) (((float) Math.min(this.mDisplayWidth, this.mDisplayHeight)) / ((float) Math.max(this.mWidth, this.mHeight)));
+                double min = ((float) Math.min(this.mDisplayWidth, this.mDisplayHeight)) / ((float) Math.max(this.mWidth, this.mHeight));
                 double d = this.mInitScaleFactor;
                 Double.isNaN(min);
                 this.mAngle = f3;
@@ -269,7 +269,7 @@ public class ImageEntity extends MultiTouchEntity {
     public void readFromParcel(Parcel parcel) {
         super.readFromParcel(parcel);
         this.mInitScaleFactor = parcel.readDouble();
-        this.mImageUri = (Uri) parcel.readParcelable(Uri.class.getClassLoader());
+        this.mImageUri = parcel.readParcelable(Uri.class.getClassLoader());
         this.mResourceId = parcel.readInt();
         boolean[] zArr = new boolean[2];
         parcel.readBooleanArray(zArr);
@@ -277,7 +277,7 @@ public class ImageEntity extends MultiTouchEntity {
         this.mSticker = zArr[1];
         this.mBorderColor = parcel.readInt();
         this.mBorderSize = parcel.readFloat();
-        this.mBoundRect = (RectF) parcel.readParcelable(RectF.class.getClassLoader());
+        this.mBoundRect = parcel.readParcelable(RectF.class.getClassLoader());
     }
 
     protected ImageEntity(Parcel parcel) {

@@ -108,7 +108,7 @@ public abstract class BaseAction implements OnDoneActionsClickListener {
                     mActivity.finish();
                 }
             }
-        }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, new Void[0]);
+        }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
 
     public void saveInstanceState(Bundle bundle) {

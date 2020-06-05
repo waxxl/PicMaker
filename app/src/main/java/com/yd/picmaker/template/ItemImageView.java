@@ -27,16 +27,16 @@ public class ItemImageView extends ImageView {
     private boolean mEnableTouch = true;
     private final GestureDetector mGestureDetector;
     private Bitmap mImage;
-    private Matrix mImageMatrix;
+    private final Matrix mImageMatrix;
     private Bitmap mMaskImage;
-    private Matrix mMaskMatrix;
+    private final Matrix mMaskMatrix;
     public OnImageClickListener mOnImageClickListener;
     private RelativeLayout.LayoutParams mOriginalLayoutParams;
     private float mOutputScale = 1.0f;
-    private Paint mPaint;
-    private PhotoItem mPhotoItem;
-    private Matrix mScaleMaskMatrix;
-    private Matrix mScaleMatrix;
+    private final Paint mPaint;
+    private final PhotoItem mPhotoItem;
+    private final Matrix mScaleMaskMatrix;
+    private final Matrix mScaleMatrix;
     private MultiTouchHandler mTouchHandler;
     private float mViewHeight;
     private float mViewWidth;
@@ -260,7 +260,7 @@ public class ItemImageView extends ImageView {
             canvas.drawBitmap(this.mImage, this.mImageMatrix, this.mPaint);
             this.mPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
             canvas.drawBitmap(this.mMaskImage, this.mMaskMatrix, this.mPaint);
-            this.mPaint.setXfermode((Xfermode) null);
+            this.mPaint.setXfermode(null);
         }
     }
 

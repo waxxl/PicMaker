@@ -117,7 +117,7 @@ public class FilterMatrix {
 //lomo
 
 
-    public static final float colormatrix_lomo[] = {
+    public static final float[] colormatrix_lomo = {
 
             1.7f, 0.1f, 0.1f, 0, -73.1f,
 
@@ -130,7 +130,7 @@ public class FilterMatrix {
 
 //黑白
 
-    public static final float colormatrix_heibai[] = {
+    public static final float[] colormatrix_heibai = {
 
             0.8f, 1.6f, 0.2f, 0, -163.9f,
 
@@ -142,7 +142,7 @@ public class FilterMatrix {
 
 //旧化
 
-    public static final float colormatrix_huajiu[] = {
+    public static final float[] colormatrix_huajiu = {
 
             0.2f, 0.5f, 0.1f, 0, 40.8f,
 
@@ -155,7 +155,7 @@ public class FilterMatrix {
 
 //哥特
 
-    public static final float colormatrix_gete[] = {
+    public static final float[] colormatrix_gete = {
 
             1.9f, -0.3f, -0.2f, 0, -87.0f,
 
@@ -168,7 +168,7 @@ public class FilterMatrix {
 
 //锐色
 
-    public static final float colormatrix_ruise[] = {
+    public static final float[] colormatrix_ruise = {
 
             4.8f, -1.0f, -0.1f, 0, -388.4f,
 
@@ -181,7 +181,7 @@ public class FilterMatrix {
 
 //淡雅
 
-    public static final float colormatrix_danya[] = {
+    public static final float[] colormatrix_danya = {
 
             0.6f, 0.3f, 0.1f, 0, 73.3f,
 
@@ -194,7 +194,7 @@ public class FilterMatrix {
 
 //酒红
 
-    public static final float colormatrix_jiuhong[] = {
+    public static final float[] colormatrix_jiuhong = {
 
             1.2f, 0.0f, 0.0f, 0.0f, 0.0f,
 
@@ -207,7 +207,7 @@ public class FilterMatrix {
 
 //清宁
 
-    public static final float colormatrix_qingning[] = {
+    public static final float[] colormatrix_qingning = {
 
             0.9f, 0, 0, 0, 0,
 
@@ -220,7 +220,7 @@ public class FilterMatrix {
 
 //浪漫
 
-    public static final float colormatrix_langman[] = {
+    public static final float[] colormatrix_langman = {
 
             0.9f, 0, 0, 0, 63.0f,
 
@@ -233,7 +233,7 @@ public class FilterMatrix {
 
 //光晕
 
-    public static final float colormatrix_guangyun[] = {
+    public static final float[] colormatrix_guangyun = {
 
             0.9f, 0, 0, 0, 64.9f,
 
@@ -246,7 +246,7 @@ public class FilterMatrix {
 
 //蓝调
 
-    public static final float colormatrix_landiao[] = {
+    public static final float[] colormatrix_landiao = {
 
             2.1f, -1.4f, 0.6f, 0.0f, -31.0f,
 
@@ -261,7 +261,7 @@ public class FilterMatrix {
 
 //梦幻
 
-    public static final float colormatrix_menghuan[] = {
+    public static final float[] colormatrix_menghuan = {
 
             0.8f, 0.3f, 0.1f, 0.0f, 46.5f,
 
@@ -272,7 +272,7 @@ public class FilterMatrix {
             0.0f, 0.0f, 0.0f, 1.0f, 0.0f
 
     };
-    public static final float colormatrix_yese[] = {
+    public static final float[] colormatrix_yese = {
 
             1.0f, 0.0f, 0.0f, 0.0f, -66.6f,
 
@@ -284,21 +284,21 @@ public class FilterMatrix {
 
     };
 
-    public static final float NO_R[] = {
+    public static final float[] NO_R = {
             0, 0, 0, 0, 0,
             0, 1, 0, 0, 0,
             0, 0, 1, 0, 0,
             0, 0, 0, 1, 0
 
     };
-    public static final float NO_G[] = {
+    public static final float[] NO_G = {
             1, 0, 0, 0, 0,
             0, 0, 0, 0, 0,
             0, 0, 1, 0, 0,
             0, 0, 0, 1, 0,
 
     };
-    public static final float NO_B[] = {
+    public static final float[] NO_B = {
             1, 0, 0, 0, 0,
             0, 1, 0, 0, 0,
             0, 0, 0, 0, 0,

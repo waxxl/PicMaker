@@ -142,7 +142,7 @@ public class ImageUtils {
             Drawable background = imageView.getBackground();
             Drawable drawable = imageView.getDrawable();
             imageView.setBackgroundColor(0);
-            imageView.setImageBitmap((Bitmap) null);
+            imageView.setImageBitmap(null);
             if (background != null && (background instanceof BitmapDrawable) && (bitmap2 = ((BitmapDrawable) background).getBitmap()) != null && !bitmap2.isRecycled()) {
                 bitmap2.recycle();
             }
@@ -153,7 +153,7 @@ public class ImageUtils {
     }
 
     public static long getSizeInBytes(Bitmap bitmap) {
-        return (long) (bitmap.getRowBytes() * bitmap.getHeight());
+        return bitmap.getRowBytes() * bitmap.getHeight();
     }
 
     public static Bitmap loadBitmapFromView(View view) throws OutOfMemoryError {
@@ -258,7 +258,7 @@ public class ImageUtils {
 
     private static int getOrientationFromMediaStore(Context context, Uri uri) {
         Cursor query;
-        if (uri == null || (query = context.getContentResolver().query(uri, new String[]{EXTRA_ORIENTATION}, (String) null, (String[]) null, (String) null)) == null || !query.moveToFirst()) {
+        if (uri == null || (query = context.getContentResolver().query(uri, new String[]{EXTRA_ORIENTATION}, null, null, null)) == null || !query.moveToFirst()) {
             return -1;
         }
         int i = query.getInt(0);

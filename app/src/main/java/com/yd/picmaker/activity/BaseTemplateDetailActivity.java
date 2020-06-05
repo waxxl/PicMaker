@@ -77,8 +77,6 @@ public abstract class BaseTemplateDetailActivity extends BasePhotoActivity imple
 
     public abstract Bitmap createOutputImage();
 
-    public abstract int getLayoutId();
-
     public boolean isShowingAllTemplates() {
         return true;
     }
@@ -98,20 +96,19 @@ public abstract class BaseTemplateDetailActivity extends BasePhotoActivity imple
     public void onCreate(Bundle bundle) {
         ArrayList<String> stringArrayList;
         super.onCreate(bundle);
-        setContentView(getLayoutId());
-        setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
+        setSupportActionBar(findViewById(R.id.toolbar));
         ActionBar supportActionBar = getSupportActionBar();
         if (supportActionBar != null) {
             supportActionBar.setDisplayHomeAsUpEnabled(true);
-            supportActionBar.setTitle((int) R.string.collage);
+            supportActionBar.setTitle(R.string.collage);
         }
         mImageInTemplateCount = getIntent().getIntExtra(TemplateActivity.EXTRA_IMAGE_IN_TEMPLATE_COUNT, 0);
         mIsFrameImage = getIntent().getBooleanExtra(TemplateActivity.EXTRA_IS_FRAME_IMAGE, true);
         int intExtra = getIntent().getIntExtra(TemplateActivity.EXTRA_SELECTED_TEMPLATE_INDEX, 0);
         ArrayList<String> stringArrayListExtra = getIntent().getStringArrayListExtra(TemplateActivity.EXTRA_IMAGE_PATHS);
 
-        mContainerLayout = (RelativeLayout) findViewById(R.id.containerLayout);
-        mTemplateView = (RecyclerView) findViewById(R.id.templateView);
+        mContainerLayout = findViewById(R.id.containerLayout);
+        mTemplateView = findViewById(R.id.templateView);
         mPhotoView = new PhotoView(this);
         mPhotoView.setOnDoubleClickListener(this);
         createQuickAction();
@@ -271,7 +268,7 @@ public abstract class BaseTemplateDetailActivity extends BasePhotoActivity imple
                 super.onPostExecute(file);
 
             }
-        }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, new Void[0]);
+        }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
 
     public float calculateScaleRatio(int i, int i2) {
@@ -311,7 +308,7 @@ public abstract class BaseTemplateDetailActivity extends BasePhotoActivity imple
         super.resultPickMultipleImages(uriArr);
         int length = uriArr.length;
         for (int i = 0; i < length; i++) {
-            double d = (double) i;
+            double d = i;
             Double.isNaN(d);
             ImageEntity imageEntity = new ImageEntity(uriArr[i], getResources());
             imageEntity.setInitScaleFactor(0.25d);

@@ -37,7 +37,7 @@ import java.util.List;
 public class StickerView extends FrameLayout {
 
     private boolean showIcons;
-    private final boolean showBorder;
+    private boolean showBorder;
     private final boolean bringToFrontCurrentSticker;
 
     @IntDef({
@@ -381,8 +381,9 @@ public class StickerView extends FrameLayout {
                 && handlingSticker != null) {
             currentMode = ActionMode.CLICK;
             if (onStickerOperationListener != null) {
-                if(isLocked()) {
+                if(!isLocked()) {
                     showIcons = !showIcons;
+                    showBorder = showIcons;
                 }
                 onStickerOperationListener.onStickerClicked(handlingSticker);
             }

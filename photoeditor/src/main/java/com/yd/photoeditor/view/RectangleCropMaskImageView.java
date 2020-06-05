@@ -35,7 +35,7 @@ public class RectangleCropMaskImageView extends ImageView {
     private IChangeDirection mChangeDirection;
     private Bitmap mCircleBitmap;
     private int mCurrentTouchedArea = -1;
-    private PointF mCurrentTouchedPoint = new PointF();
+    private final PointF mCurrentTouchedPoint = new PointF();
     private float mFingerWidth = 15.0f;
     private float mLeft;
     private int mMaskColor;
@@ -142,19 +142,19 @@ public class RectangleCropMaskImageView extends ImageView {
             Bitmap bitmap = this.mCircleBitmap;
             float f7 = this.mLeft;
             float f8 = this.radius;
-            canvas.drawBitmap(bitmap, f7 - f8, this.mTop - f8, (Paint) null);
+            canvas.drawBitmap(bitmap, f7 - f8, this.mTop - f8, null);
             Bitmap bitmap2 = this.mCircleBitmap;
             float f9 = this.mRight;
             float f10 = this.radius;
-            canvas.drawBitmap(bitmap2, f9 - f10, this.mTop - f10, (Paint) null);
+            canvas.drawBitmap(bitmap2, f9 - f10, this.mTop - f10, null);
             Bitmap bitmap3 = this.mCircleBitmap;
             float f11 = this.mLeft;
             float f12 = this.radius;
-            canvas.drawBitmap(bitmap3, f11 - f12, this.mBottom - f12, (Paint) null);
+            canvas.drawBitmap(bitmap3, f11 - f12, this.mBottom - f12, null);
             Bitmap bitmap4 = this.mCircleBitmap;
             float f13 = this.mRight;
             float f14 = this.radius;
-            canvas.drawBitmap(bitmap4, f13 - f14, this.mBottom - f14, (Paint) null);
+            canvas.drawBitmap(bitmap4, f13 - f14, this.mBottom - f14, null);
         }
     }
 

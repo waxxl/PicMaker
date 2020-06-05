@@ -9,6 +9,7 @@ import com.google.android.material.tabs.TabLayout;
 import com.yd.picmaker.Listener.FreeEditInterface;
 import com.yd.picmaker.R;
 import com.yd.picmaker.manager.FreePhotoUiManager;
+import com.yd.picmaker.util.Constants;
 import com.yd.picmaker.util.PermissionUtils;
 import com.yd.photoeditor.ui.activity.ImageProcessingActivity;
 
@@ -16,9 +17,13 @@ public class FreePhotoEditActivity extends BaseActivity implements FreeEditInter
     private FreePhotoUiManager mFreePhotoUiManager;
 
     @Override
+    public int getId() {
+        return R.layout.activity_free_edit;
+    }
+
+    @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_free_edit);
         initToolBar();
         setTitle(getString(R.string.tab_freely));
         setFunction(R.drawable.save);

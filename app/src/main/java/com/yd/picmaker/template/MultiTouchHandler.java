@@ -226,7 +226,7 @@ public class MultiTouchHandler implements Parcelable {
     private float spacing(MotionEvent motionEvent) {
         float x = motionEvent.getX(0) - motionEvent.getX(1);
         float y = motionEvent.getY(0) - motionEvent.getY(1);
-        return (float) Math.sqrt((double) ((x * x) + (y * y)));
+        return (float) Math.sqrt((x * x) + (y * y));
     }
 
     private void midPoint(PointF pointF, MotionEvent motionEvent) {
@@ -234,7 +234,7 @@ public class MultiTouchHandler implements Parcelable {
     }
 
     private float rotation(MotionEvent motionEvent) {
-        return (float) Math.toDegrees(Math.atan2((double) (motionEvent.getY(0) - motionEvent.getY(1)), (double) (motionEvent.getX(0) - motionEvent.getX(1))));
+        return (float) Math.toDegrees(Math.atan2(motionEvent.getY(0) - motionEvent.getY(1), motionEvent.getX(0) - motionEvent.getX(1)));
     }
 
     /* renamed from: dauroi.photoeditor.view.MultiTouchHandler$1 */
@@ -243,7 +243,7 @@ public class MultiTouchHandler implements Parcelable {
         }
 
         public MultiTouchHandler createFromParcel(Parcel parcel) {
-            return new MultiTouchHandler(parcel, (C23901) null);
+            return new MultiTouchHandler(parcel, null);
         }
 
         public MultiTouchHandler[] newArray(int i) {
@@ -280,8 +280,8 @@ public class MultiTouchHandler implements Parcelable {
         this.mSavedMatrix = new Matrix();
         this.mSavedMatrix.setValues(fArr2);
         this.mMode = parcel.readInt();
-        this.mStart = (PointF) parcel.readParcelable(PointF.class.getClassLoader());
-        this.mMid = (PointF) parcel.readParcelable(PointF.class.getClassLoader());
+        this.mStart = parcel.readParcelable(PointF.class.getClassLoader());
+        this.mMid = parcel.readParcelable(PointF.class.getClassLoader());
         this.mOldDist = parcel.readFloat();
         this.f4274mD = parcel.readFloat();
         this.mNewRot = parcel.readFloat();
@@ -301,8 +301,8 @@ public class MultiTouchHandler implements Parcelable {
         this.mScaleSavedMatrix = new Matrix();
         this.mScaleSavedMatrix.setValues(fArr4);
         this.mMaxPositionOffset = parcel.readFloat();
-        this.mOldImagePosition = (PointF) parcel.readParcelable(PointF.class.getClassLoader());
-        this.mCheckingPosition = (PointF) parcel.readParcelable(PointF.class.getClassLoader());
+        this.mOldImagePosition = parcel.readParcelable(PointF.class.getClassLoader());
+        this.mCheckingPosition = parcel.readParcelable(PointF.class.getClassLoader());
     }
 
     public void writeToParcel(Parcel parcel, int i) {

@@ -13,10 +13,15 @@ public class SaveOneActivity extends BaseActivity implements View.OnClickListene
     public static final String IMAGE_URI_KEY = "imageUri";
     Uri uri;
     private ImageView content;
+
+    @Override
+    public int getId() {
+        return R.layout.activity_save_one;
+    }
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_save_one);
         initToolBar();
         setFunction(R.drawable.delete);
         setTitle(R.string.tab_save);

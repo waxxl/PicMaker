@@ -39,10 +39,11 @@ public class TemplateDetailActivity extends BaseTemplateDetailActivity implement
     private ItemImageView mSelectedItemImageView;
     private RecyclerView recyclerViewStick;
 
-    public int getLayoutId() {
+
+    @Override
+    public int getId() {
         return R.layout.activity_template_detail;
     }
-
 
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
@@ -51,9 +52,9 @@ public class TemplateDetailActivity extends BaseTemplateDetailActivity implement
                 this.mSelectedPhotoPaths.add(next.imagePath);
             }
         }
-        recyclerViewStick = (RecyclerView) findViewById(R.id.recycleViewStick);
-        itemsPanel = (LinearLayout) findViewById(R.id.items_panel);
-        crossBtn = (ImageView) findViewById(R.id.cross_btn);
+        recyclerViewStick = findViewById(R.id.recycleViewStick);
+        itemsPanel = findViewById(R.id.items_panel);
+        crossBtn = findViewById(R.id.cross_btn);
         crossBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
             }

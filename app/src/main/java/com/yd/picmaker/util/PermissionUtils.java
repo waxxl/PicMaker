@@ -8,7 +8,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.widget.Toast;
 
-import com.yd.picmaker.PCApplication;
+import com.yd.picmaker.PicMakerApplication;
 import com.yd.picmaker.R;
 
 import java.util.ArrayList;
@@ -67,7 +67,7 @@ public class PermissionUtils {
 
     public static void createPermissionsCheckListIfNeed() {
         if (Build.VERSION.SDK_INT >= 23) {
-            Context appContext = PCApplication.getContext();
+            Context appContext = PicMakerApplication.getContext();
             ArrayList<Permission> arrayList = sPermissions;
             if (arrayList == null || arrayList.size() == 0) {
                 sPermissions = new ArrayList<>();
@@ -128,7 +128,7 @@ public class PermissionUtils {
 
     /* access modifiers changed from: private */
     public static void goAppSetting(Activity activity) {
-        activity.startActivity(new Intent("android.settings.APPLICATION_DETAILS_SETTINGS", Uri.fromParts("package", activity.getPackageName(), (String) null)));
+        activity.startActivity(new Intent("android.settings.APPLICATION_DETAILS_SETTINGS", Uri.fromParts("package", activity.getPackageName(), null)));
         activity.finish();
     }
 

@@ -98,7 +98,7 @@ public class PhotoUtils {
                     e.printStackTrace();
                 }
             } else if (str.startsWith(ASSET_PREFIX)) {
-                Glide.with(context).load(Uri.parse("file:///android_asset/".concat(str.substring(9)))).signature((Key) new ObjectKey(String.valueOf(System.currentTimeMillis()))).into(imageView);
+                Glide.with(context).load(Uri.parse("file:///android_asset/".concat(str.substring(9)))).signature(new ObjectKey(String.valueOf(System.currentTimeMillis()))).into(imageView);
             } else {
                 Glide.with(context).load(new File(str)).into(imageView);
             }
@@ -513,7 +513,7 @@ public class PhotoUtils {
         canvas.drawBitmap(bitmap, matrix, paint);
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
         canvas.drawBitmap(bitmap2, 0.0f, 0.0f, paint);
-        paint.setXfermode((Xfermode) null);
+        paint.setXfermode(null);
         return createBitmap;
     }
 
@@ -527,7 +527,7 @@ public class PhotoUtils {
         canvas.drawBitmap(bitmap, 0.0f, 0.0f, paint);
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
         canvas.drawBitmap(bitmap2, 0.0f, 0.0f, paint);
-        paint.setXfermode((Xfermode) null);
+        paint.setXfermode(null);
         return createBitmap;
     }
 

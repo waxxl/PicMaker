@@ -9,7 +9,7 @@ public class Explosion {
     private static final int LIFETIME = 50;
     private static final int MAX_SCALE = 4;
     private static final int MAX_SPEED = 30;
-    private Particle[] mParticles;
+    private final Particle[] mParticles;
     private int mState = 0;
 
     public Explosion(int i, int i2, int i3, Context context) {

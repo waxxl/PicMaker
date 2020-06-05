@@ -21,3 +21,5 @@
 #-renamesourcefileattribute SourceFile
 -keep public class com.yd.photoeditor.model.ItemInfo
 -keep public class * extends com.yd.photoeditor.model.ItemInfo
+-keepclassmembers class com.yd.photoeditor.model.ItemInfo
+-keepclassmembers class * extends com.yd.photoeditor.model.ItemInfo

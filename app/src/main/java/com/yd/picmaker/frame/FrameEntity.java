@@ -16,7 +16,7 @@ public class FrameEntity implements Parcelable {
         }
     };
     private Uri mImage;
-    private Matrix mMatrix;
+    private final Matrix mMatrix;
 
     public int describeContents() {
         return 0;
@@ -31,7 +31,7 @@ public class FrameEntity implements Parcelable {
         float[] fArr = new float[9];
         parcel.readFloatArray(fArr);
         this.mMatrix.setValues(fArr);
-        this.mImage = (Uri) parcel.readParcelable(Uri.class.getClassLoader());
+        this.mImage = parcel.readParcelable(Uri.class.getClassLoader());
     }
 
     public void setImage(Uri uri) {

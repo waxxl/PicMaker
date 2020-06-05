@@ -105,7 +105,7 @@ public class CropImageView extends androidx.appcompat.widget.AppCompatImageView 
         this.mCurrentTouchedArea = bundle.getInt("com.yd.photoeditor.view.CropImageView.mCurrentTouchedArea", this.mCurrentTouchedArea);
         this.radius = bundle.getFloat("com.yd.photoeditor.view.CropImageView.radius", this.radius);
         this.mPaintMode = bundle.getBoolean("com.yd.photoeditor.view.CropImageView.mPaintMode", this.mPaintMode);
-        PointF pointF = (PointF) bundle.getParcelable("com.yd.photoeditor.view.CropImageView.mCurrentTouchedPoint");
+        PointF pointF = bundle.getParcelable("com.yd.photoeditor.view.CropImageView.mCurrentTouchedPoint");
         if (pointF != null) {
             this.mCurrentTouchedPoint = pointF;
         }
@@ -235,19 +235,19 @@ public class CropImageView extends androidx.appcompat.widget.AppCompatImageView 
             Bitmap bitmap = this.mCircleBitmap;
             float f7 = this.mLeft;
             float f8 = this.radius;
-            canvas.drawBitmap(bitmap, f7 - f8, this.mTop - f8, (Paint) null);
+            canvas.drawBitmap(bitmap, f7 - f8, this.mTop - f8, null);
             Bitmap bitmap2 = this.mCircleBitmap;
             float f9 = this.mRight;
             float f10 = this.radius;
-            canvas.drawBitmap(bitmap2, f9 - f10, this.mTop - f10, (Paint) null);
+            canvas.drawBitmap(bitmap2, f9 - f10, this.mTop - f10, null);
             Bitmap bitmap3 = this.mCircleBitmap;
             float f11 = this.mLeft;
             float f12 = this.radius;
-            canvas.drawBitmap(bitmap3, f11 - f12, this.mBottom - f12, (Paint) null);
+            canvas.drawBitmap(bitmap3, f11 - f12, this.mBottom - f12, null);
             Bitmap bitmap4 = this.mCircleBitmap;
             float f13 = this.mRight;
             float f14 = this.radius;
-            canvas.drawBitmap(bitmap4, f13 - f14, this.mBottom - f14, (Paint) null);
+            canvas.drawBitmap(bitmap4, f13 - f14, this.mBottom - f14, null);
         }
     }
 

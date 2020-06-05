@@ -68,27 +68,30 @@ public class ImageFilter {
         mOutputHeight = i2;
     }
 
+    private Object object = new Object();
     public void onDraw(int i, FloatBuffer floatBuffer, FloatBuffer floatBuffer2) {
-        GLES20.glUseProgram(this.mGLProgId);
-        runPendingOnDrawTasks();
-        if (mIsInitialized) {
-            floatBuffer.position(0);
-            GLES20.glVertexAttribPointer(mGLAttribPosition, 2, 5126, false, 0, floatBuffer);
-            GLES20.glEnableVertexAttribArray(mGLAttribPosition);
-            floatBuffer2.position(0);
-            GLES20.glVertexAttribPointer(mGLAttribTextureCoordinate, 2, 5126, false, 0, floatBuffer2);
-            GLES20.glEnableVertexAttribArray(mGLAttribTextureCoordinate);
-            if (i != -1) {
-                GLES20.glActiveTexture(33984);
-                GLES20.glBindTexture(3553, i);
-                GLES20.glUniform1i(this.mGLUniformTexture, 0);
+
+            GLES20.glUseProgram(this.mGLProgId);
+            runPendingOnDrawTasks();
+            if (mIsInitialized) {
+                floatBuffer.position(0);
+                GLES20.glVertexAttribPointer(mGLAttribPosition, 2, 5126, false, 0, floatBuffer);
+                GLES20.glEnableVertexAttribArray(mGLAttribPosition);
+                floatBuffer2.position(0);
+                GLES20.glVertexAttribPointer(mGLAttribTextureCoordinate, 2, 5126, false, 0, floatBuffer2);
+                GLES20.glEnableVertexAttribArray(mGLAttribTextureCoordinate);
+                if (i != -1) {
+                    GLES20.glActiveTexture(33984);
+                    GLES20.glBindTexture(3553, i);
+                    GLES20.glUniform1i(this.mGLUniformTexture, 0);
+                }
+                onDrawArraysPre();
+                GLES20.glDrawArrays(5, 0, 4);
+                GLES20.glDisableVertexAttribArray(mGLAttribPosition);
+                GLES20.glDisableVertexAttribArray(mGLAttribTextureCoordinate);
+                GLES20.glBindTexture(3553, 0);
             }
-            onDrawArraysPre();
-            GLES20.glDrawArrays(5, 0, 4);
-            GLES20.glDisableVertexAttribArray(mGLAttribPosition);
-            GLES20.glDisableVertexAttribArray(mGLAttribTextureCoordinate);
-            GLES20.glBindTexture(3553, 0);
-        }
+
     }
 
     /* access modifiers changed from: protected */

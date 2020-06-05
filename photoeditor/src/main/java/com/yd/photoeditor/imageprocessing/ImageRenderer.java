@@ -91,17 +91,19 @@ public class ImageRenderer implements GLSurfaceView.Renderer, Camera.PreviewCall
     }
 
     public void onDrawFrame(GL10 gl10) {
-        GLES20.glClear(16640);
-        synchronized (this.mRunOnDraw) {
+
+        GLES20.glClear(GLES20.GL_DEPTH_BUFFER_BIT | GLES20.GL_COLOR_BUFFER_BIT);
+        synchronized (mRunOnDraw) {
             while (!this.mRunOnDraw.isEmpty()) {
                 this.mRunOnDraw.poll().run();
             }
         }
-        this.mFilter.onDraw(this.mGLTextureId, this.mGLCubeBuffer, this.mGLTextureBuffer);
-        SurfaceTexture surfaceTexture = this.mSurfaceTexture;
-        if (surfaceTexture != null) {
-            surfaceTexture.updateTexImage();
+
+        mFilter.onDraw(this.mGLTextureId, this.mGLCubeBuffer, this.mGLTextureBuffer);
+        if (mSurfaceTexture != null) {
+            mSurfaceTexture.updateTexImage();
         }
+
     }
 
     public void onPreviewFrame(final byte[] bArr, final Camera camera) {
@@ -140,15 +142,17 @@ public class ImageRenderer implements GLSurfaceView.Renderer, Camera.PreviewCall
                 mFilter.init();
                 GLES20.glUseProgram(mFilter.getProgram());
                 mFilter.onOutputSizeChanged(mOutputWidth, mOutputHeight);
+
             }
         });
     }
+
 
     public void deleteImage() {
         runOnDraw(new Runnable() {
             public void run() {
                 GLES20.glDeleteTextures(1, new int[]{ImageRenderer.this.mGLTextureId}, 0);
-                int unused = ImageRenderer.this.mGLTextureId = -1;
+                mGLTextureId = -1;
             }
         });
     }
@@ -166,15 +170,15 @@ public class ImageRenderer implements GLSurfaceView.Renderer, Camera.PreviewCall
                         bitmap2 = Bitmap.createBitmap(bitmap.getWidth() + 1, bitmap.getHeight(), Bitmap.Config.ARGB_8888);
                         Canvas canvas = new Canvas(bitmap2);
                         canvas.drawARGB(0, 0, 0, 0);
-                        canvas.drawBitmap(bitmap2, 0.0f, 0.0f, (Paint) null);
+                        canvas.drawBitmap(bitmap2, 0.0f, 0.0f, null);
                         ImageRenderer.this.mAddedPadding = 1;
                     } else {
                         ImageRenderer.this.mAddedPadding = 0;
                         bitmap2 = null;
                     }
-                    int unused = ImageRenderer.this.mImageWidth = bitmap.getWidth();
-                    int unused2 = ImageRenderer.this.mImageHeight = bitmap.getHeight();
-                    int unused3 = ImageRenderer.this.mGLTextureId = OpenGlUtils.loadTexture(bitmap != null ? bitmap : bitmap, ImageRenderer.this.mGLTextureId, z);
+                    mImageWidth = bitmap.getWidth();
+                    mImageHeight = bitmap.getHeight();
+                    mGLTextureId = OpenGlUtils.loadTexture(bitmap != null ? bitmap : bitmap, mGLTextureId, z);
                     if (bitmap != null) {
                         bitmap.recycle();
                     }

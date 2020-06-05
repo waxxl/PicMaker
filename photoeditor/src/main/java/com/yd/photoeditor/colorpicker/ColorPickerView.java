@@ -59,7 +59,7 @@ public class ColorPickerView extends View {
     }
 
     public ColorPickerView(Context context) {
-        this(context, (AttributeSet) null);
+        this(context, null);
     }
 
     public ColorPickerView(Context context, AttributeSet attributeSet) {
@@ -172,7 +172,7 @@ public class ColorPickerView extends View {
         this.mBorderPaint.setColor(this.mBorderColor);
         canvas.drawRect(rectF.left - 1.0f, rectF.top - 1.0f, rectF.right + 1.0f, rectF.bottom + 1.0f, this.mBorderPaint);
         if (this.mHueShader == null) {
-            this.mHueShader = new LinearGradient(rectF.left, rectF.top, rectF.left, rectF.bottom, buildHueColorArray(), (float[]) null, Shader.TileMode.CLAMP);
+            this.mHueShader = new LinearGradient(rectF.left, rectF.top, rectF.left, rectF.bottom, buildHueColorArray(), null, Shader.TileMode.CLAMP);
             this.mHuePaint.setShader(this.mHueShader);
         }
         canvas.drawRect(rectF, this.mHuePaint);
@@ -415,7 +415,7 @@ public class ColorPickerView extends View {
             this.mStartTouchPoint = new Point((int) motionEvent.getX(), (int) motionEvent.getY());
             z = moveTrackersIfNeeded(motionEvent);
         } else if (action != 1) {
-            z = action != 2 ? false : moveTrackersIfNeeded(motionEvent);
+            z = action == 2 && moveTrackersIfNeeded(motionEvent);
         } else {
             this.mStartTouchPoint = null;
             z = moveTrackersIfNeeded(motionEvent);

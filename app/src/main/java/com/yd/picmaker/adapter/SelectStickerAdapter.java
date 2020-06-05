@@ -14,7 +14,7 @@ import static com.yd.picmaker.util.Constants.STICKERS;
 
 public class SelectStickerAdapter extends RecyclerView.Adapter<SelectStickerAdapter.ViewHolder> {
     private OnItemClickListener mItemListener;
-    private int mType = 0;
+    private final int mType = 0;
 
     public void setOnItemClickListener(OnItemClickListener listener) {
         mItemListener = listener;

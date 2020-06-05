@@ -23,13 +23,13 @@ public class TwoPassTextureSamplingFilter extends TwoPassFilter {
     /* access modifiers changed from: protected */
     public void initTexelOffsets() {
         float horizontalTexelOffsetRatio = getHorizontalTexelOffsetRatio();
-        ImageFilter imageFilter = (ImageFilter) this.mFilters.get(0);
+        ImageFilter imageFilter = this.mFilters.get(0);
         int glGetUniformLocation = GLES20.glGetUniformLocation(imageFilter.getProgram(), "texelWidthOffset");
         int glGetUniformLocation2 = GLES20.glGetUniformLocation(imageFilter.getProgram(), "texelHeightOffset");
         imageFilter.setFloat(glGetUniformLocation, horizontalTexelOffsetRatio / ((float) this.mOutputWidth));
         imageFilter.setFloat(glGetUniformLocation2, 0.0f);
         float verticalTexelOffsetRatio = getVerticalTexelOffsetRatio();
-        ImageFilter imageFilter2 = (ImageFilter) this.mFilters.get(1);
+        ImageFilter imageFilter2 = this.mFilters.get(1);
         int glGetUniformLocation3 = GLES20.glGetUniformLocation(imageFilter2.getProgram(), "texelWidthOffset");
         int glGetUniformLocation4 = GLES20.glGetUniformLocation(imageFilter2.getProgram(), "texelHeightOffset");
         imageFilter2.setFloat(glGetUniformLocation3, 0.0f);

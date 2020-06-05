@@ -132,7 +132,7 @@ public class DialogUtils {
     }
 
     public static Dialog showDialog(Context context, int i, int i2) {
-        return showDialog(context, i, i2, (DialogOnClickListener) null);
+        return showDialog(context, i, i2, null);
     }
 
     public static Dialog showDialog(Context context, int i, int i2, DialogOnClickListener dialogOnClickListener) {

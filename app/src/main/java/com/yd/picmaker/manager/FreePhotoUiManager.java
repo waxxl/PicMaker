@@ -26,7 +26,7 @@ import com.yd.picmaker.Listener.AddTextListener;
 import com.yd.picmaker.Listener.EditEventListener;
 import com.yd.picmaker.Listener.FreeEditInterface;
 import com.yd.picmaker.Listener.OnItemClickListener;
-import com.yd.picmaker.PCApplication;
+import com.yd.picmaker.PicMakerApplication;
 import com.yd.picmaker.R;
 import com.yd.picmaker.activity.FreePhotoEditActivity;
 import com.yd.picmaker.activity.GalleryAlbumActivity;
@@ -34,8 +34,7 @@ import com.yd.picmaker.activity.SaveOneActivity;
 import com.yd.picmaker.adapter.FreeTabEditAdapter;
 import com.yd.picmaker.adapter.SelectStickerAdapter;
 import com.yd.picmaker.dialog.AddTextDialog;
-import com.yd.picmaker.model.StickerSaveData;
-import com.yd.picmaker.sticker.DrawableSticker;
+import com.yd.picmaker.model.PicStickerSaveData;
 import com.yd.picmaker.sticker.Sticker;
 import com.yd.picmaker.sticker.StickerLayout;
 import com.yd.picmaker.sticker.StickerView;
@@ -59,7 +58,7 @@ public class FreePhotoUiManager implements StickerView.OnStickerOperationListene
     private static final int PICTURES_TAB = 2;
     private static final int TEXT_TAB = 3;
     private static final int STICKER_TAB = 4;
-    private FreePhotoEditActivity mFreeEditPhotoActivity;
+    private final FreePhotoEditActivity mFreeEditPhotoActivity;
     private FrameLayout mSelectFrameLayout;
     private View mTabLayout, mFilterRL;
     private RecyclerView mBacksRecycler, mFilterRecycler, mStickerRecycler;
@@ -71,7 +70,7 @@ public class FreePhotoUiManager implements StickerView.OnStickerOperationListene
     private SelectStickerAdapter mStickerAdapter;
     private AddTextDialog addTextDialog;
     private ImageView mCloseRecyclerIV;
-    private FreeEditInterface mListener;
+    private final FreeEditInterface mListener;
     private int mCurrentTAB;
 
     public FreePhotoUiManager(FreePhotoEditActivity activity, FreeEditInterface listener) {
@@ -114,6 +113,7 @@ public class FreePhotoUiManager implements StickerView.OnStickerOperationListene
             public void onItemClick(int position) {
                 mFilterLayout.setImageResource(Constants.FILTERS[position]);
                 mFilterLayout.setImageAlpha(120);
+                mFilterSeekBar.setProgress(120);
             }
         });
         mFilterRecycler.setAdapter(mFilterAdapter);
@@ -145,6 +145,7 @@ public class FreePhotoUiManager implements StickerView.OnStickerOperationListene
 
             }
         });
+        mStickerLayout.setBackgroundResource(Constants.BACKGROUNDS[0]);
     }
 
     public void setCurrentTab(int currentTab) {
@@ -383,14 +384,13 @@ public class FreePhotoUiManager implements StickerView.OnStickerOperationListene
                 }
                 dialog.dismiss();
             }
-        }.execute(new Void[0]);
+        }.execute();
     }
 
     private void saveTempImage(final Bitmap bitmap, final Activity activity) throws IOException {
         new AsyncTask<Void, Void, File>() {
             private ProgressDialog dialog;
 
-            /* access modifiers changed from: protected */
             public void onPreExecute() {
                 this.dialog = new ProgressDialog(activity);
                 this.dialog.requestWindowFeature(1);
@@ -422,9 +422,10 @@ public class FreePhotoUiManager implements StickerView.OnStickerOperationListene
                 Uri uri = Uri.fromFile(file);
                 Intent intent = new Intent(activity, ImageProcessingActivity.class);
                 intent.putExtra(ImageProcessingActivity.IMAGE_URI_KEY, uri);
+                intent.putExtra(ImageProcessingActivity.IS_EDITING_IMAGE_KEY, true);
                 activity.startActivityForResult(intent, EDIT_STICKER_CODE);
             }
-        }.execute(new Void[0]);
+        }.execute();
     }
 
     private int i = 1;
@@ -455,7 +456,7 @@ public class FreePhotoUiManager implements StickerView.OnStickerOperationListene
                     bitmap.compress(Bitmap.CompressFormat.PNG, 100, fileOutputStream);
                     fileOutputStream.flush();
                     fileOutputStream.close();
-                    PCApplication.getDaoSession().insert(new StickerSaveData(i++, file2.getAbsolutePath()));
+                    PicMakerApplication.getDaoSession().insert(new PicStickerSaveData(i++, file2.getAbsolutePath()));
                 } catch (FileNotFoundException e) {
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -470,7 +471,7 @@ public class FreePhotoUiManager implements StickerView.OnStickerOperationListene
                 intent.putExtra(SaveOneActivity.IMAGE_URI_KEY, uri);
                 context.startActivity(intent);
             }
-        }.execute(new Void[0]);
+        }.execute();
     }
 
     @Override

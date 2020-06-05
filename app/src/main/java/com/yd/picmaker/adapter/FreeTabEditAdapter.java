@@ -10,7 +10,7 @@ import com.yd.picmaker.R;
 
 public class FreeTabEditAdapter extends RecyclerView.Adapter<FreeTabEditAdapter.ViewHolder> {
     private OnItemClickListener mItemListener;
-    private int[] data;
+    private final int[] data;
 
     public FreeTabEditAdapter(int[] data) {
         this.data = data;

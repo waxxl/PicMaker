@@ -10,9 +10,9 @@ import android.graphics.drawable.Drawable;
 
 public class AlphaPatternDrawable extends Drawable {
     private Bitmap mBitmap;
-    private Paint mPaint = new Paint();
-    private Paint mPaintGray = new Paint();
-    private Paint mPaintWhite = new Paint();
+    private final Paint mPaint = new Paint();
+    private final Paint mPaintGray = new Paint();
+    private final Paint mPaintWhite = new Paint();
     private int mRectangleSize = 10;
     private int numRectanglesHorizontal;
     private int numRectanglesVertical;
@@ -29,7 +29,7 @@ public class AlphaPatternDrawable extends Drawable {
     }
 
     public void draw(Canvas canvas) {
-        canvas.drawBitmap(this.mBitmap, (Rect) null, getBounds(), this.mPaint);
+        canvas.drawBitmap(this.mBitmap, null, getBounds(), this.mPaint);
     }
 
     public void setAlpha(int i) {
@@ -44,8 +44,8 @@ public class AlphaPatternDrawable extends Drawable {
     public void onBoundsChange(Rect rect) {
         super.onBoundsChange(rect);
         int height = rect.height();
-        this.numRectanglesHorizontal = (int) Math.ceil((double) (rect.width() / this.mRectangleSize));
-        this.numRectanglesVertical = (int) Math.ceil((double) (height / this.mRectangleSize));
+        this.numRectanglesHorizontal = (int) Math.ceil(rect.width() / this.mRectangleSize);
+        this.numRectanglesVertical = (int) Math.ceil(height / this.mRectangleSize);
         generatePatternBitmap();
     }
 

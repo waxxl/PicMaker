@@ -8,9 +8,9 @@
         
     <string name="change">변경</string>
         
-    <string name="character_counter_content_description">입력 한 문자 %1$d of %2$d</string>
+    <string name="character_counter_content_description">입력 한 문자  %1$d of  %2$d</string>
         
-    <string name="character_counter_overflowed_content_description">글자 수 한도 초과 %1$d of %2$d</string>    
+    <string name="character_counter_overflowed_content_description">글자 수 한도 초과  %1$d of  %2$d</string>    
     <string name="chip_text">칩 텍스트</string>
         
     <string name="clear_text_end_icon_content_description">일반 텍스트</string>

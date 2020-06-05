@@ -85,13 +85,13 @@ public class RotationAction extends BaseAction {
                 public Bitmap applyFilter() {
                     return RotationAction.this.mOrientationImageView.applyTransform();
                 }
-            }).execute(new Void[0]);
+            }).execute();
         }
     }
 
     public View inflateMenuView() {
         LayoutInflater from = LayoutInflater.from(this.mActivity);
-        mRootActionView = from.inflate(R.layout.photo_editor_action_rotation, (ViewGroup) null);
+        mRootActionView = from.inflate(R.layout.photo_editor_action_rotation, null);
         mRotateLeftView = this.mRootActionView.findViewById(R.id.leftRotate);
         mRotateLeftView.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
@@ -120,8 +120,8 @@ public class RotationAction extends BaseAction {
                 RotationAction.this.onClicked();
             }
         });
-        this.mOrientationLayout = from.inflate(R.layout.photo_editor_orientation, (ViewGroup) null);
-        this.mOrientationImageView = (OrientationImageView) this.mOrientationLayout.findViewById(R.id.orientationView);
+        this.mOrientationLayout = from.inflate(R.layout.photo_editor_orientation, null);
+        this.mOrientationImageView = this.mOrientationLayout.findViewById(R.id.orientationView);
         return this.mRootActionView;
     }
 

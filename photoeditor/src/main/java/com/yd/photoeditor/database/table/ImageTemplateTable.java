@@ -32,7 +32,7 @@ public class ImageTemplateTable extends BaseTable {
     }
 
     public ImageTemplate get(long j, String str) {
-        Cursor query = getDatabase(mContext).query(TABLE_NAME, (String[]) null, "package_id = ? AND status = ? AND UPPER(name) = UPPER(?)", new String[]{String.valueOf(j), "active", str}, (String) null, (String) null, (String) null);
+        Cursor query = getDatabase(mContext).query(TABLE_NAME, null, "package_id = ? AND status = ? AND UPPER(name) = UPPER(?)", new String[]{String.valueOf(j), "active", str}, null, null, null);
         if (query == null || !query.moveToFirst()) {
             return null;
         }
@@ -58,7 +58,7 @@ public class ImageTemplateTable extends BaseTable {
             imageTemplate.setStatus("active");
         }
         contentValues.put("status", imageTemplate.getStatus());
-        long insert = getDatabase(mContext).insert(TABLE_NAME, (String) null, contentValues);
+        long insert = getDatabase(mContext).insert(TABLE_NAME, null, contentValues);
         imageTemplate.setId(insert);
         return insert;
     }
@@ -81,7 +81,7 @@ public class ImageTemplateTable extends BaseTable {
     }
 
     public List<ImageTemplate> getAllRows() {
-        Cursor query = getDatabase(mContext).query(TABLE_NAME, (String[]) null, "status = ? ", new String[]{"active"}, (String) null, (String) null, (String) null);
+        Cursor query = getDatabase(mContext).query(TABLE_NAME, null, "status = ? ", new String[]{"active"}, null, null, null);
         if (query == null) {
             return null;
         }
@@ -116,7 +116,7 @@ public class ImageTemplateTable extends BaseTable {
         imageTemplate.setPreview(cursor.getString(cursor.getColumnIndex(COLUMN_PREVIEW)));
         imageTemplate.setTemplate(cursor.getString(cursor.getColumnIndex(COLUMN_TEMPLATE)));
         imageTemplate.setChild(cursor.getString(cursor.getColumnIndex(COLUMN_CHILD)));
-        imageTemplate.setPackageId((long) cursor.getInt(cursor.getColumnIndex("package_id")));
+        imageTemplate.setPackageId(cursor.getInt(cursor.getColumnIndex("package_id")));
         return imageTemplate;
     }
 

@@ -5,9 +5,9 @@
     <string name="app_not_found">App not found</string>
     <string name="cancel">Cancel</string>
     <string name="change">Change</string>
-    <string name="character_counter_content_description">Characters entered %1$d of %2$d</string>
-    <string name="character_counter_overflowed_content_description">Character limit exceeded %1$d of %2$d</string>
-    <string name="character_counter_pattern">%1$d / %2$d</string>
+    <string name="character_counter_content_description">Characters entered  %1$d of  %2$d</string>
+    <string name="character_counter_overflowed_content_description">Character limit exceeded  %1$d of  %2$d</string>
+    <string name="character_counter_pattern"> %1$d /  %2$d</string>
     <string name="chip_text">Chip text</string>
     <string name="clear_text_end_icon_content_description">Clear text</string>
     <string name="collage">Collage</string>

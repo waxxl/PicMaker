@@ -39,7 +39,7 @@ public class MultiTouchController<T> {
     private float mCurrPtWidth;
     private float mCurrPtX;
     private float mCurrPtY;
-    private PositionAndScale mCurrXform;
+    private final PositionAndScale mCurrXform;
     private boolean mDragOccurred;
     private int mMode;
     private PointInfo mPrevPt;
@@ -129,14 +129,14 @@ public class MultiTouchController<T> {
     static {
         boolean z = true;
         try {
-            m_getPointerCount = MotionEvent.class.getMethod("getPointerCount", new Class[0]);
-            m_getPointerId = MotionEvent.class.getMethod("getPointerId", new Class[]{Integer.TYPE});
-            m_getPressure = MotionEvent.class.getMethod("getPressure", new Class[]{Integer.TYPE});
-            m_getHistoricalX = MotionEvent.class.getMethod("getHistoricalX", new Class[]{Integer.TYPE, Integer.TYPE});
-            m_getHistoricalY = MotionEvent.class.getMethod("getHistoricalY", new Class[]{Integer.TYPE, Integer.TYPE});
-            m_getHistoricalPressure = MotionEvent.class.getMethod("getHistoricalPressure", new Class[]{Integer.TYPE, Integer.TYPE});
-            m_getX = MotionEvent.class.getMethod("getX", new Class[]{Integer.TYPE});
-            m_getY = MotionEvent.class.getMethod("getY", new Class[]{Integer.TYPE});
+            m_getPointerCount = MotionEvent.class.getMethod("getPointerCount");
+            m_getPointerId = MotionEvent.class.getMethod("getPointerId", Integer.TYPE);
+            m_getPressure = MotionEvent.class.getMethod("getPressure", Integer.TYPE);
+            m_getHistoricalX = MotionEvent.class.getMethod("getHistoricalX", Integer.TYPE, Integer.TYPE);
+            m_getHistoricalY = MotionEvent.class.getMethod("getHistoricalY", Integer.TYPE, Integer.TYPE);
+            m_getHistoricalPressure = MotionEvent.class.getMethod("getHistoricalPressure", Integer.TYPE, Integer.TYPE);
+            m_getX = MotionEvent.class.getMethod("getX", Integer.TYPE);
+            m_getY = MotionEvent.class.getMethod("getY", Integer.TYPE);
         } catch (Exception e) {
             Log.e("MultiTouchController", "static initializer failed", e);
             z = false;
@@ -144,8 +144,8 @@ public class MultiTouchController<T> {
         multiTouchSupported = z;
         if (multiTouchSupported) {
             try {
-                ACTION_POINTER_UP = MotionEvent.class.getField("ACTION_POINTER_UP").getInt((Object) null);
-                ACTION_POINTER_INDEX_SHIFT = MotionEvent.class.getField("ACTION_POINTER_INDEX_SHIFT").getInt((Object) null);
+                ACTION_POINTER_UP = MotionEvent.class.getField("ACTION_POINTER_UP").getInt(null);
+                ACTION_POINTER_INDEX_SHIFT = MotionEvent.class.getField("ACTION_POINTER_INDEX_SHIFT").getInt(null);
             } catch (Exception unused) {
             }
         }
@@ -179,23 +179,23 @@ public class MultiTouchController<T> {
                             pointerIds[i2] = ((Integer) m_getPointerId.invoke(motionEvent2, new Object[]{Integer.valueOf(i2)})).intValue();
                             float[] fArr = xVals;
                             if (z2) {
-                                obj = m_getHistoricalX.invoke(motionEvent2, new Object[]{Integer.valueOf(i2), Integer.valueOf(i)});
+                                obj = m_getHistoricalX.invoke(motionEvent2, Integer.valueOf(i2), Integer.valueOf(i));
                             } else {
-                                obj = m_getX.invoke(motionEvent2, new Object[]{Integer.valueOf(i2)});
+                                obj = m_getX.invoke(motionEvent2, Integer.valueOf(i2));
                             }
                             fArr[i2] = ((Float) obj).floatValue();
                             float[] fArr2 = yVals;
                             if (z2) {
-                                obj2 = m_getHistoricalY.invoke(motionEvent2, new Object[]{Integer.valueOf(i2), Integer.valueOf(i)});
+                                obj2 = m_getHistoricalY.invoke(motionEvent2, Integer.valueOf(i2), Integer.valueOf(i));
                             } else {
-                                obj2 = m_getY.invoke(motionEvent2, new Object[]{Integer.valueOf(i2)});
+                                obj2 = m_getY.invoke(motionEvent2, Integer.valueOf(i2));
                             }
                             fArr2[i2] = ((Float) obj2).floatValue();
                             float[] fArr3 = pressureVals;
                             if (z2) {
-                                obj3 = m_getHistoricalPressure.invoke(motionEvent2, new Object[]{Integer.valueOf(i2), Integer.valueOf(i)});
+                                obj3 = m_getHistoricalPressure.invoke(motionEvent2, Integer.valueOf(i2), Integer.valueOf(i));
                             } else {
-                                obj3 = m_getPressure.invoke(motionEvent2, new Object[]{Integer.valueOf(i2)});
+                                obj3 = m_getPressure.invoke(motionEvent2, Integer.valueOf(i2));
                             }
                             fArr3[i2] = ((Float) obj3).floatValue();
                         }
@@ -434,17 +434,17 @@ public class MultiTouchController<T> {
         private boolean isDown;
         private boolean isMultiTouch;
         private int numPoints;
-        private int[] pointerIds = new int[20];
+        private final int[] pointerIds = new int[20];
         private float pressureMid;
-        private float[] pressures = new float[20];
+        private final float[] pressures = new float[20];
         private float xMid;
 
         /* renamed from: xs */
-        private float[] f4304xs = new float[20];
+        private final float[] f4304xs = new float[20];
         private float yMid;
 
         /* renamed from: ys */
-        private float[] f4305ys = new float[20];
+        private final float[] f4305ys = new float[20];
 
         private int julery_isqrt(int i) {
             int i2 = 0;
@@ -588,7 +588,7 @@ public class MultiTouchController<T> {
                 } else {
                     float[] fArr = this.f4305ys;
                     float[] fArr2 = this.f4304xs;
-                    this.angle = (float) Math.atan2((double) (fArr[1] - fArr[0]), (double) (fArr2[1] - fArr2[0]));
+                    this.angle = (float) Math.atan2(fArr[1] - fArr[0], fArr2[1] - fArr2[0]);
                 }
                 this.angleIsCalculated = true;
             }

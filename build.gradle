@@ -4,10 +4,12 @@ buildscript {
         google()
         jcenter()
         mavenCentral()
+        maven { url uri('D:/andResFileGuard/resplugin') }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.6.3'
         classpath 'org.greenrobot:greendao-gradle-plugin:3.3.0'
+        classpath("com.cyy.packageb:AndResGuard-gradle-plugin:1.2.17") { changing = true }
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -19,6 +21,7 @@ allprojects {
         google()
         jcenter()
         mavenCentral()
+        maven { url uri('D:/andResFileGuard/resplugin') }
     }
 }
 

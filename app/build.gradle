@@ -1,12 +1,23 @@
 apply plugin: 'com.android.application'
 apply plugin: 'org.greenrobot.greendao'
+apply plugin: 'AndResFileGuard'
+
+String RESKEY = "wwwwwwwwwwwwwwvv" //16字节 128位
+andResFileGuard {
+    key = RESKEY
+    whiteList = ["R.drawable.ic_launcher",
+                 "R.string.app_name",
+                 "R.bool.abc",
+                 "R.id.*"]
+    useSign = true
+}
 android {
     signingConfigs {
         release {
-            storeFile file('C:\\Users\\xxl\\phoneeditor.keystore.jks')
-            storePassword '132456'
-            keyAlias 'keyx'
-            keyPassword '132456'
+            storeFile file('C:\\Users\\xxl\\picmaker.jks')
+            storePassword '251436'
+            keyAlias 'picmaker'
+            keyPassword '251436'
         }
     }
     compileSdkVersion 29
@@ -16,8 +27,9 @@ android {
         applicationId "com.yd.photocollage"
         minSdkVersion 23
         targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "1.1.1"
+        buildConfigField "String", "RESKEY", "\"${RESKEY}\""
     }
 
     buildTypes {
@@ -46,7 +58,7 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
     greendao {
-        schemaVersion 1 //数据库版本
+        schemaVersion 2 //数据库版本
         targetGenDir 'src/main/java' //指定生成代码的目录
         daoPackage //生成代码到具体包下
     }

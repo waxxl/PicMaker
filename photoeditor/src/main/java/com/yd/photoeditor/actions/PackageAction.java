@@ -35,11 +35,11 @@ public abstract class PackageAction extends BaseAction implements OnBottomMenuIt
     protected View mBackButton;
     protected String mCurrentPackageFolder;
     protected long mCurrentPackageId = 0;
-    protected int mCurrentPosition = 0;
+    protected int mCurrentPosition = 1;
     protected RecyclerView mRecycler;
     protected CustomMenuAdapter mMenuAdapter;
     protected List<ItemInfo> mMenuItems;
-    private String mPackageType;
+    private final String mPackageType;
     protected Map<Long, Integer> mSelectedItemIndexes;
 
     public void onStartDownloading(ItemPackageInfo itemPackageInfo) {

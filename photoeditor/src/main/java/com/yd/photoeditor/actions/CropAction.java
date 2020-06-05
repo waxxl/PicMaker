@@ -64,12 +64,12 @@ public class CropAction extends MaskAction implements View.OnTouchListener, Draw
     }
 
     public View inflateMenuView() {
-        mRootActionView = mLayoutInflater.inflate(R.layout.photo_editor_action_crop, (ViewGroup) null);
+        mRootActionView = mLayoutInflater.inflate(R.layout.photo_editor_action_crop, null);
         mRectangleCropMaskView = new CropImageView(mActivity);
         mRectangleCropMaskView.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT, Gravity.CENTER));
         mRectangleCropMaskView.setPaintMode(true);
-        mDrawableCropLayout = mLayoutInflater.inflate(R.layout.photo_editor_crop_mask_draw, (ViewGroup) null);
-        mDrawableCropImageView = (DrawableCropImageView) mDrawableCropLayout.findViewById(R.id.drawbleCropView);
+        mDrawableCropLayout = mLayoutInflater.inflate(R.layout.photo_editor_crop_mask_draw, null);
+        mDrawableCropImageView = mDrawableCropLayout.findViewById(R.id.drawbleCropView);
         mDrawableCropImageView.setOnDrawMaskListener(this);
         mActivity.getNormalImageView().setOnTouchListener(this);
         mCurrentPosition = 3;
@@ -193,7 +193,7 @@ public class CropAction extends MaskAction implements View.OnTouchListener, Draw
                         Toast.makeText(mActivity, errMsg, Toast.LENGTH_SHORT).show();
                     }
                     mTouchHandler = null;
-                    mActivity.getNormalImageView().setImageBitmap((Bitmap) null);
+                    mActivity.getNormalImageView().setImageBitmap(null);
                     CropAction cropAction = CropAction.this;
                     cropAction.mCurrentPosition = 3;
                     cropAction.mCurrentPackageId = 0;
@@ -224,7 +224,7 @@ public class CropAction extends MaskAction implements View.OnTouchListener, Draw
                         return null;
                     }
                 }
-            }).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, new Void[0]);
+            }).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         }
     }
 
@@ -234,7 +234,7 @@ public class CropAction extends MaskAction implements View.OnTouchListener, Draw
 
     public Bitmap cropFrame(int i) throws OutOfMemoryError {
         try {
-            ItemInfo itemInfo = (ItemInfo) mMenuItems.get(i);
+            ItemInfo itemInfo = mMenuItems.get(i);
             if (itemInfo.getShowingType() != 0) {
                 return null;
             }
@@ -309,24 +309,24 @@ public class CropAction extends MaskAction implements View.OnTouchListener, Draw
     public void selectNormalItem(int i) {
         Bitmap bitmap;
         if (isAttached()) {
-            ItemInfo itemInfo2 = (ItemInfo) mMenuItems.get(i);
+            ItemInfo itemInfo2 = mMenuItems.get(i);
             if (itemInfo2.getShowingType() == 3) {
                 mActivity.getNormalImageView().setImageMatrix(new Matrix());
-                mActivity.getNormalImageView().setOnTouchListener((View.OnTouchListener) null);
+                mActivity.getNormalImageView().setOnTouchListener(null);
                 mActivity.getNormalImageView().setScaleType(ImageView.ScaleType.FIT_CENTER);
                 mActivity.attachMaskView(mRectangleCropMaskView);
                 clickSquareView();
                 mCurrentPosition = i;
             } else if (itemInfo2.getShowingType() == 4) {
                 mActivity.getNormalImageView().setImageMatrix(new Matrix());
-                mActivity.getNormalImageView().setOnTouchListener((View.OnTouchListener) null);
+                mActivity.getNormalImageView().setOnTouchListener(null);
                 mActivity.getNormalImageView().setScaleType(ImageView.ScaleType.FIT_CENTER);
                 mActivity.attachMaskView(mRectangleCropMaskView);
                 clickCustomView();
                 mCurrentPosition = i;
             } else if (itemInfo2.getShowingType() == 5) {
                 mActivity.getNormalImageView().setImageMatrix(new Matrix());
-                mActivity.getNormalImageView().setOnTouchListener((View.OnTouchListener) null);
+                mActivity.getNormalImageView().setOnTouchListener(null);
                 mActivity.getNormalImageView().setScaleType(ImageView.ScaleType.FIT_CENTER);
                 Bundle bundle = mSavedInstanceDrawData;
                 if (bundle != null) {

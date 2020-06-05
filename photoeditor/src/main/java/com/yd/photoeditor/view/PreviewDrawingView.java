@@ -48,10 +48,10 @@ public class PreviewDrawingView extends View {
         this.mDrawPath.reset();
         for (int i3 = 10; i3 < 90; i3++) {
             float f = ((float) i3) * (((float) i) / 100.0f);
-            double d = (double) i3;
+            double d = i3;
             Double.isNaN(d);
-            double d2 = (double) (i2 / 3);
-            double cos = Math.cos((double) ((float) (d * 0.031415926535897934d)));
+            double d2 = i2 / 3;
+            double cos = Math.cos((float) (d * 0.031415926535897934d));
             Double.isNaN(d2);
             float f2 = ((float) (d2 * cos)) + ((float) (i2 / 2));
             if (i3 == 10) {

@@ -21,7 +21,7 @@ public abstract class MaskAction extends PackageAction {
     public abstract int getMaskLayoutRes();
 
     public MaskAction(ImageProcessingActivity imageProcessingActivity) {
-        super(imageProcessingActivity, (String) null);
+        super(imageProcessingActivity, null);
     }
 
     public MaskAction(ImageProcessingActivity imageProcessingActivity, String str) {
@@ -31,7 +31,7 @@ public abstract class MaskAction extends PackageAction {
     public void onInit() {
         super.onInit();
         mLayoutInflater = LayoutInflater.from(this.mActivity);
-        mMaskLayout = mLayoutInflater.inflate(getMaskLayoutRes(), (ViewGroup) null);
+        mMaskLayout = mLayoutInflater.inflate(getMaskLayoutRes(), null);
         mTopExtraView = mMaskLayout.findViewById(R.id.topView);
         mLeftExtraView = mMaskLayout.findViewById(R.id.leftView);
         mRightExtraView = mMaskLayout.findViewById(R.id.rightView);

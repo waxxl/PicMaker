@@ -9,16 +9,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.yd.picmaker.Listener.OnItemClickListener;
 import com.yd.picmaker.R;
-import com.yd.picmaker.model.StickerSaveData;
+import com.yd.picmaker.model.PicStickerSaveData;
 import com.yd.picmaker.util.PhotoUtils;
 
 import java.util.List;
 
 public class SaveAdapter extends RecyclerView.Adapter<SaveAdapter.ViewHolder> {
     private OnItemClickListener mItemListener;
-    private List<StickerSaveData> data;
+    private final List<PicStickerSaveData> data;
 
-    public SaveAdapter(List<StickerSaveData> data) {
+    public SaveAdapter(List<PicStickerSaveData> data) {
         this.data = data;
     }
 

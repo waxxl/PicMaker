@@ -27,7 +27,7 @@ public class HorizontalPreviewTemplateAdapter extends RecyclerView.Adapter<Horiz
 
         PreviewTemplateViewHolder(View view) {
             super(view);
-            this.mImageView = (ImageView) view.findViewById(R.id.imageView);
+            this.mImageView = view.findViewById(R.id.imageView);
             this.mSelectedView = view.findViewById(R.id.selectedView);
         }
     }
@@ -51,7 +51,7 @@ public class HorizontalPreviewTemplateAdapter extends RecyclerView.Adapter<Horiz
         previewTemplateViewHolder.mImageView.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 if (mListener != null) {
-                    mListener.onPreviewTemplateClick((TemplateItem) mTemplateItems.get(i));
+                    mListener.onPreviewTemplateClick(mTemplateItems.get(i));
                 }
             }
         });

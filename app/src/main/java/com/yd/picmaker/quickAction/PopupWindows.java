@@ -77,7 +77,7 @@ public class PopupWindows {
     }
 
     public void setContentView(int i) {
-        setContentView(((LayoutInflater) this.mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(i, (ViewGroup) null));
+        setContentView(((LayoutInflater) this.mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(i, null));
     }
 
     public void setOnDismissListener(PopupWindow.OnDismissListener onDismissListener) {

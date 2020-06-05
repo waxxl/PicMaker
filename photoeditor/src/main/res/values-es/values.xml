@@ -8,9 +8,9 @@
         
    <string name="change">Cambiar</string>
         
-   <string name="character_counter_content_description">Caracteres ingresados %1$d de %2$d</string>
+   <string name="character_counter_content_description">Caracteres ingresados  %1$d de  %2$d</string>
         
-   <string name="character_counter_overflowed_content_description">Límite de caracteres excedido %1$d de %2$d</string>
+   <string name="character_counter_overflowed_content_description">Límite de caracteres excedido  %1$d de  %2$d</string>
         
         
    <string name="chip_text">Texto de chip</string>

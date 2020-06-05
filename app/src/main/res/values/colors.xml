@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="color_primary">#000000</color>
+    <color name="color_primary_transparent">#60000000</color>
     <color name="teel_200">#000000</color>
     <color name="teel_700">#000000</color>
     <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
     <color name="primary_text_color">#9CC7E6</color>
-    <color name="primary_seek_bar_color">#9CC7E6</color>
 </resources>

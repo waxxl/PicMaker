@@ -18,12 +18,12 @@ import com.yd.photoeditor.utils.ImageDecoder;
 public class TransitionImageView extends ImageView {
     private final GestureDetector mGestureDetector;
     private Bitmap mImage;
-    private Matrix mImageMatrix;
+    private final Matrix mImageMatrix;
     /* access modifiers changed from: private */
     public OnImageClickListener mOnImageClickListener;
-    private Paint mPaint;
+    private final Paint mPaint;
     private float mScale = 1.0f;
-    private Matrix mScaleMatrix;
+    private final Matrix mScaleMatrix;
     private MultiTouchHandler mTouchHandler;
     private int mViewHeight;
     private int mViewWidth;

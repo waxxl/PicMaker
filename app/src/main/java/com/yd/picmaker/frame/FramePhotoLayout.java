@@ -28,7 +28,7 @@ public class FramePhotoLayout extends RelativeLayout implements FrameImageView.O
     private static final int ID_DELETE = 3;
     private static final int ID_EDIT = 1;
     private static final String TAG = FramePhotoLayout.class.getSimpleName();
-    private List<FrameImageView> mItemImageViews = new ArrayList();
+    private final List<FrameImageView> mItemImageViews = new ArrayList();
     OnDragListener mOnDragListener = new OnDragListener() {
         public boolean onDrag(View view, DragEvent dragEvent) {
             int action = dragEvent.getAction();
@@ -67,7 +67,7 @@ public class FramePhotoLayout extends RelativeLayout implements FrameImageView.O
         }
     };
     private float mOutputScaleRatio = 1.0f;
-    private List<PhotoItem> mPhotoItems;
+    private final List<PhotoItem> mPhotoItems;
     /* access modifiers changed from: private */
     public QuickAction mQuickAction;
     /* access modifiers changed from: private */
@@ -83,7 +83,7 @@ public class FramePhotoLayout extends RelativeLayout implements FrameImageView.O
 
     public FramePhotoLayout(Context context, List<PhotoItem> list) {
         super(context);
-        setLayerType(View.LAYER_TYPE_HARDWARE, (Paint) null);
+        setLayerType(View.LAYER_TYPE_HARDWARE, null);
         createQuickAction();
         this.mPhotoItems = list;
     }

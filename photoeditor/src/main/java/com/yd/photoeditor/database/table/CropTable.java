@@ -46,7 +46,7 @@ public class CropTable extends BaseTable {
             cropInfo.setStatus("active");
         }
         contentValues.put("status", cropInfo.getStatus());
-        long insert = getDatabase(mContext).insert(TABLE_NAME, (String) null, contentValues);
+        long insert = getDatabase(mContext).insert(TABLE_NAME, null, contentValues);
         cropInfo.setId(insert);
         return insert;
     }
@@ -68,7 +68,7 @@ public class CropTable extends BaseTable {
     }
 
     public CropInfo getRow(long j, String str) {
-        Cursor query = getDatabase(mContext).query(TABLE_NAME, (String[]) null, "package_id = ? AND status = ? AND UPPER(name) = UPPER(?)", new String[]{String.valueOf(j), "active", str}, (String) null, (String) null, (String) null);
+        Cursor query = getDatabase(mContext).query(TABLE_NAME, null, "package_id = ? AND status = ? AND UPPER(name) = UPPER(?)", new String[]{String.valueOf(j), "active", str}, null, null, null);
         if (query == null) {
             return null;
         }
@@ -81,7 +81,7 @@ public class CropTable extends BaseTable {
     }
 
     public List<CropInfo> getAllRows() {
-        Cursor query = getDatabase(mContext).query(TABLE_NAME, (String[]) null, "status = ? ", new String[]{"active"}, (String) null, (String) null, (String) null);
+        Cursor query = getDatabase(mContext).query(TABLE_NAME, null, "status = ? ", new String[]{"active"}, null, null, null);
         if (query == null) {
             return null;
         }
@@ -132,7 +132,7 @@ public class CropTable extends BaseTable {
         cropInfo.setSelectedThumbnail(cursor.getString(cursor.getColumnIndex("selected_thumbnail")));
         cropInfo.setForeground(cursor.getString(cursor.getColumnIndex("foreground")));
         cropInfo.setBackground(cursor.getString(cursor.getColumnIndex("background")));
-        cropInfo.setPackageId((long) cursor.getInt(cursor.getColumnIndex("package_id")));
+        cropInfo.setPackageId(cursor.getInt(cursor.getColumnIndex("package_id")));
         return cropInfo;
     }
 

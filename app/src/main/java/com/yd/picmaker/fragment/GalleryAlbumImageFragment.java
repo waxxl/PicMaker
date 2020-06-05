@@ -10,7 +10,6 @@ import android.widget.GridView;
 import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
-import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.yd.picmaker.Listener.OnImageSelectListener;
 import com.yd.picmaker.R;

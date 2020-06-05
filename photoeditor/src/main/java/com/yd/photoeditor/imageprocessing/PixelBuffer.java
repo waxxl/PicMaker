@@ -1,6 +1,7 @@
 package com.yd.photoeditor.imageprocessing;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.opengl.GLSurfaceView;
 import android.util.Log;
 import java.nio.IntBuffer;
@@ -63,14 +64,19 @@ public class PixelBuffer {
         } else {
             this.mRenderer.onDrawFrame(this.mGL);
             this.mRenderer.onDrawFrame(this.mGL);
+            try {
+                Thread.sleep(16);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
             convertToBitmap();
+
             return this.mBitmap;
         }
     }
 
     public void destroy() {
-        this.mRenderer.onDrawFrame(this.mGL);
-        this.mRenderer.onDrawFrame(this.mGL);
         this.mEGL.eglMakeCurrent(this.mEGLDisplay, EGL10.EGL_NO_SURFACE, EGL10.EGL_NO_SURFACE, EGL10.EGL_NO_CONTEXT);
         this.mEGL.eglDestroySurface(this.mEGLDisplay, this.mEGLSurface);
         this.mEGL.eglDestroyContext(this.mEGLDisplay, this.mEGLContext);
@@ -81,7 +87,7 @@ public class PixelBuffer {
         int[] iArr = new int[1];
         int[] iArr2 = {12325, 0, 12326, 0, 12324, 8, 12323, 8, 12322, 8, 12321, 8, 12352, 4, 12344};
         int[] iArr3 = iArr;
-        this.mEGL.eglChooseConfig(this.mEGLDisplay, iArr2, (EGLConfig[]) null, 0, iArr3);
+        this.mEGL.eglChooseConfig(this.mEGLDisplay, iArr2, null, 0, iArr3);
         int i = iArr[0];
         this.mEGLConfigs = new EGLConfig[i];
         this.mEGL.eglChooseConfig(this.mEGLDisplay, iArr2, this.mEGLConfigs, i, iArr3);
@@ -105,33 +111,36 @@ public class PixelBuffer {
     }
 
     private void convertToBitmap() {
-        IntBuffer allocate = IntBuffer.allocate(mWidth * mHeight);
-        IntBuffer allocate2 = IntBuffer.allocate(mWidth * mHeight);
-        mGL.glReadPixels(0, 0, mWidth, mHeight, GL10.GL_RGBA, GL10.GL_UNSIGNED_BYTE, allocate);
+        IntBuffer allocate = IntBuffer.allocate(this.mWidth * this.mHeight);
+        IntBuffer allocate2 = IntBuffer.allocate(this.mWidth * this.mHeight);
+        this.mGL.glReadPixels(0, 0, this.mWidth, this.mHeight, 6408, 5121, allocate);
         int i = 0;
+        int i2 = this.mHeight;
+        int i4 = this.mWidth;
         while (true) {
-            if (i < mHeight) {
+            if (i < i2) {
                 int i3 = 0;
                 while (true) {
-                    if (i3 >= mWidth) {
+                    if (i3 >= i4) {
                         break;
                     }
-                    allocate2.put((((mHeight - i) - 1) * mWidth) + i3, allocate.get((mWidth * i) + i3));
+                    allocate2.put((((this.mHeight - i) - 1) * i4) + i3, allocate.get((i4 * i) + i3));
                     i3++;
                 }
                 i++;
             } else {
-                mBitmap = Bitmap.createBitmap(mWidth, mHeight, Bitmap.Config.ARGB_8888);
-                mBitmap.copyPixelsFromBuffer(allocate2);
+                this.mBitmap = Bitmap.createBitmap(this.mWidth, mHeight, Bitmap.Config.ARGB_4444);
+                this.mBitmap.copyPixelsFromBuffer(allocate2);
                 return;
             }
         }
+
     }
 
     private Bitmap createBitmapFromGLSurface()
             throws OutOfMemoryError {
-        int bitmapBuffer[] = new int[mWidth * mHeight];
-        int bitmapSource[] = new int[mWidth * mHeight];
+        int[] bitmapBuffer = new int[mWidth * mHeight];
+        int[] bitmapSource = new int[mWidth * mHeight];
         IntBuffer intBuffer = IntBuffer.wrap(bitmapBuffer);
         intBuffer.position(0);
 

@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class SelectedPicsAdapter extends RecyclerView.Adapter<SelectedPicsAdapter.ViewHolder> {
 
-    private ArrayList<String> mSelectPics = new ArrayList<>();
+    private final ArrayList<String> mSelectPics = new ArrayList<>();
 
     public void addPic(String s) {
         mSelectPics.add(s);

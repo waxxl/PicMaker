@@ -31,16 +31,16 @@ public class QuickAction extends PopupWindows implements PopupWindow.OnDismissLi
     private int mAnimStyle;
     private ImageView mArrowDown;
     private ImageView mArrowUp;
-    private int mChildPos;
+    private final int mChildPos;
     /* access modifiers changed from: private */
     public boolean mDidAction;
     private OnDismissListener mDismissListener;
-    private LayoutInflater mInflater;
+    private final LayoutInflater mInflater;
     private int mInsertPos;
     /* access modifiers changed from: private */
     public OnActionItemClickListener mItemClickListener;
-    private int mOrientation;
-    private List<QuickActionItem> mQuickActionItems;
+    private final int mOrientation;
+    private final List<QuickActionItem> mQuickActionItems;
     private View mRootView;
     private ScrollView mScroller;
     private ViewGroup mTrack;
@@ -94,7 +94,7 @@ public class QuickAction extends PopupWindows implements PopupWindow.OnDismissLi
     }
 
     public void setRootViewId(int layout) {
-        this.mRootView = (ViewGroup) this.mInflater.inflate(layout, (ViewGroup) null);
+        this.mRootView = this.mInflater.inflate(layout, null);
 //        this.mTrack = (ViewGroup) this.mRootView.findViewById(R.id.tracks);
 //        this.mArrowDown = (ImageView) this.mRootView.findViewById(R.id.arrow_down);
 //        this.mArrowUp = (ImageView) this.mRootView.findViewById(R.id.arrow_up);

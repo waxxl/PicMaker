@@ -13,9 +13,9 @@ public class Particle {
     private static Bitmap mBase;
     private float mAge;
     private int mAlpha;
-    private Bitmap mBitmap;
-    private float mLifetime;
-    private Paint mPaint;
+    private final Bitmap mBitmap;
+    private final float mLifetime;
+    private final Paint mPaint;
     private int mState = 0;
     private float mX;
     private double mXV;
@@ -36,20 +36,20 @@ public class Particle {
         if (mBase == null) {
             mBase = BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_launcher_background);
         }
-        double width = (double) mBase.getWidth();
-        double d = (double) i5;
+        double width = mBase.getWidth();
+        double d = i5;
         double randomDouble = randomDouble(1.01d, d);
         Double.isNaN(width);
-        double height = (double) mBase.getHeight();
+        double height = mBase.getHeight();
         double randomDouble2 = randomDouble(1.01d, d);
         Double.isNaN(height);
         this.mBitmap = Bitmap.createScaledBitmap(mBase, (int) (width * randomDouble), (int) (height * randomDouble2), true);
         this.mLifetime = (float) i3;
         this.mAge = 0.0f;
         this.mAlpha = 255;
-        double d2 = (double) (i4 * 2);
+        double d2 = i4 * 2;
         double randomDouble3 = randomDouble(0.0d, d2);
-        double d3 = (double) i4;
+        double d3 = i4;
         Double.isNaN(d3);
         this.mXV = randomDouble3 - d3;
         double randomDouble4 = randomDouble(0.0d, d2);
@@ -66,11 +66,11 @@ public class Particle {
 
     public void update() {
         if (this.mState != 1) {
-            double d = (double) this.mX;
+            double d = this.mX;
             double d2 = this.mXV;
             Double.isNaN(d);
             this.mX = (float) (d + d2);
-            double d3 = (double) this.mY;
+            double d3 = this.mY;
             double d4 = this.mYV;
             Double.isNaN(d3);
             this.mY = (float) (d3 + d4);

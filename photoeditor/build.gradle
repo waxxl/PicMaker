@@ -5,10 +5,10 @@ plugins {
 android {
     signingConfigs {
         release {
-            storeFile file('C:\\Users\\xxl\\phoneeditor.keystore.jks')
-            storePassword '132456'
-            keyAlias 'keyx'
-            keyPassword '132456'
+            storeFile file('C:\\Users\\xxl\\picmaker.jks')
+            storePassword '251436'
+            keyAlias 'picmaker'
+            keyPassword '251436'
         }
     }
     compileSdkVersion 29

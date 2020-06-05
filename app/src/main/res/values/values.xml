@@ -5,7 +5,6 @@
     <dimen name="gallery_item_height">120dp</dimen>
     <dimen name="gallery_item_icon_height">105dp</dimen>
     <dimen name="gallery_item_icon_width">105dp</dimen>
-    <dimen name="gallery_selected_photo_height">100dp</dimen>
     <dimen name="gallery_item_icon_margin_start">5dp</dimen>
     <dimen name="gallery_item_icon_margin_top">20dp</dimen>
     <dimen name="grid_item_spacing">8dp</dimen>

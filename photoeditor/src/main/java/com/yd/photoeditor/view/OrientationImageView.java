@@ -20,7 +20,7 @@ public class OrientationImageView extends View {
     private Matrix mMatrix = new Matrix();
     private float mMaxAngle = 0.0f;
     private float mOldX;
-    private Paint mPaint = new Paint();
+    private final Paint mPaint = new Paint();
     private float mThumbX;
 
     public OrientationImageView(Context context) {
@@ -102,8 +102,8 @@ public class OrientationImageView extends View {
         this.mImage = bitmap;
         float f = (float) (i / 2);
         this.mThumbX = f;
-        double d = (double) i;
-        double d2 = (double) i2;
+        double d = i;
+        double d2 = i2;
         Double.isNaN(d);
         Double.isNaN(d2);
         this.mMaxAngle = (float) (Math.toDegrees(Math.atan(d / d2)) * 2.0d);

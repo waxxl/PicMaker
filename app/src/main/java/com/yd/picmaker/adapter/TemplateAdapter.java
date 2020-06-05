@@ -19,10 +19,10 @@ public class TemplateAdapter extends RecyclerView.Adapter<TemplateViewHolder> {
     public static final int VIEW_TYPE_HEADER = 1;
     private final Context mContext;
     private int mHeaderDisplay;
-    private LayoutInflater mInflater;
+    private final LayoutInflater mInflater;
     private final ArrayList<TemplateItem> mItems = new ArrayList<>();
     private boolean mMarginsFixed;
-    private TemplateViewHolder.OnTemplateItemClickListener mOnTemplateItemClickListener;
+    private final TemplateViewHolder.OnTemplateItemClickListener mOnTemplateItemClickListener;
 
     public TemplateAdapter(Context context, int i, ArrayList<TemplateItem> arrayList, TemplateViewHolder.OnTemplateItemClickListener onTemplateItemClickListener) {
         this.mContext = context;

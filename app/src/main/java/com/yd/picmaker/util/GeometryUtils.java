@@ -12,7 +12,7 @@ import java.util.Map;
 
 public class GeometryUtils {
     public static boolean isInCircle(PointF pointF, float f, PointF pointF2) {
-        return Math.sqrt((double) (((pointF.x - pointF2.x) * (pointF.x - pointF2.x)) + ((pointF.y - pointF2.y) * (pointF.y - pointF2.y)))) <= ((double) f);
+        return Math.sqrt(((pointF.x - pointF2.x) * (pointF.x - pointF2.x)) + ((pointF.y - pointF2.y) * (pointF.y - pointF2.y))) <= ((double) f);
     }
 
     public static boolean contains(List<PointF> list, PointF pointF) {
@@ -43,23 +43,23 @@ public class GeometryUtils {
 
     public static void createRegularPolygonPath(Path path, float f, float f2, float f3, int i, float f4) {
         int i2 = i;
-        double d = (double) i2;
+        double d = i2;
         Double.isNaN(d);
         float f5 = (float) (6.283185307179586d / d);
         ArrayList arrayList = new ArrayList();
-        double d2 = (double) f2;
-        double d3 = (double) (f / 2.0f);
+        double d2 = f2;
+        double d3 = f / 2.0f;
         double cos = Math.cos(0.0d);
         Double.isNaN(d3);
         Double.isNaN(d2);
         float f6 = (float) ((cos * d3) + d2);
-        double d4 = (double) f3;
+        double d4 = f3;
         double sin = Math.sin(0.0d);
         Double.isNaN(d3);
         Double.isNaN(d4);
         arrayList.add(new PointF(f6, (float) ((sin * d3) + d4)));
         for (int i3 = 1; i3 < i2; i3++) {
-            double d5 = (double) (((float) i3) * f5);
+            double d5 = ((float) i3) * f5;
             double cos2 = Math.cos(d5);
             Double.isNaN(d3);
             Double.isNaN(d2);
@@ -252,7 +252,7 @@ public class GeometryUtils {
                     pointF3.x = list.get(i3).x;
                     pointF3.y = list.get(i3).y;
                 }
-                double d = (double) f2;
+                double d = f2;
                 PointF findPointOnSegment = findPointOnSegment(pointF, pointF2, d);
                 PointF findPointOnSegment2 = findPointOnSegment(pointF, pointF3, d);
                 PointF findMiddlePoint = findMiddlePoint(findPointOnSegment, findPointOnSegment2, pointF);
@@ -308,7 +308,7 @@ public class GeometryUtils {
                     path2.lineTo(list3.get(i).x, list3.get(i).y);
                 }
             } else {
-                if (!((list4 == null || list2.size() <= 0) ? true : containPoint(list4, list3.get(i3)))) {
+                if (!((list4 == null || list2.size() <= 0) || containPoint(list4, list3.get(i3)))) {
                     if (i3 == 0) {
                         path2.moveTo(list3.get(i3).x, list3.get(i3).y);
                     } else {
@@ -448,30 +448,30 @@ public class GeometryUtils {
             return new PointF(pointF.x, pointF.y);
         }
         PointF pointF3 = new PointF();
-        double abs = (double) Math.abs(pointF.x - pointF2.x);
+        double abs = Math.abs(pointF.x - pointF2.x);
         Double.isNaN(abs);
-        double sqrt = (double) ((float) Math.sqrt((double) (((pointF.x - pointF2.x) * (pointF.x - pointF2.x)) + ((pointF.y - pointF2.y) * (pointF.y - pointF2.y)))));
+        double sqrt = (float) Math.sqrt(((pointF.x - pointF2.x) * (pointF.x - pointF2.x)) + ((pointF.y - pointF2.y) * (pointF.y - pointF2.y)));
         Double.isNaN(sqrt);
         double d2 = (abs * d) / sqrt;
-        double abs2 = (double) Math.abs(pointF.y - pointF2.y);
+        double abs2 = Math.abs(pointF.y - pointF2.y);
         Double.isNaN(abs2);
         Double.isNaN(sqrt);
         double d3 = (abs2 * d) / sqrt;
         if (pointF.x > pointF2.x) {
-            double d4 = (double) pointF.x;
+            double d4 = pointF.x;
             Double.isNaN(d4);
             pointF3.x = (float) (d4 - d2);
         } else {
-            double d5 = (double) pointF.x;
+            double d5 = pointF.x;
             Double.isNaN(d5);
             pointF3.x = (float) (d5 + d2);
         }
         if (pointF.y > pointF2.y) {
-            double d6 = (double) pointF.y;
+            double d6 = pointF.y;
             Double.isNaN(d6);
             pointF3.y = (float) (d6 - d3);
         } else {
-            double d7 = (double) pointF.y;
+            double d7 = pointF.y;
             Double.isNaN(d7);
             pointF3.y = (float) (d7 + d3);
         }
@@ -479,7 +479,7 @@ public class GeometryUtils {
     }
 
     public static PointF findMiddlePoint(PointF pointF, PointF pointF2, PointF pointF3) {
-        return findMiddlePoint(pointF, pointF2, (float) (Math.sqrt((double) (((pointF.x - pointF2.x) * (pointF.x - pointF2.x)) + ((pointF.y - pointF2.y) * (pointF.y - pointF2.y)))) / 2.0d), pointF3);
+        return findMiddlePoint(pointF, pointF2, (float) (Math.sqrt(((pointF.x - pointF2.x) * (pointF.x - pointF2.x)) + ((pointF.y - pointF2.y) * (pointF.y - pointF2.y))) / 2.0d), pointF3);
     }
 
     public static PointF findMiddlePoint(PointF pointF, PointF pointF2, float f, PointF pointF3) {
@@ -495,15 +495,15 @@ public class GeometryUtils {
 
     public static boolean createArc(PointF pointF, PointF pointF2, PointF pointF3, float f, double[] dArr, PointF[] pointFArr, boolean z) {
         pointFArr[0] = findPointOnBisector(pointF, pointF2, pointF3, f);
-        double sqrt = Math.sqrt((double) ((((pointF.x - pointFArr[0].x) * (pointF.x - pointFArr[0].x)) + ((pointF.y - pointFArr[0].y) * (pointF.y - pointFArr[0].y))) - (f * f)));
+        double sqrt = Math.sqrt((((pointF.x - pointFArr[0].x) * (pointF.x - pointFArr[0].x)) + ((pointF.y - pointFArr[0].y) * (pointF.y - pointFArr[0].y))) - (f * f));
         pointFArr[1] = findPointOnSegment(pointF, pointF2, sqrt);
         pointFArr[2] = findPointOnSegment(pointF, pointF3, sqrt);
-        double sqrt2 = Math.sqrt((double) (((pointF.x - pointFArr[0].x) * (pointF.x - pointFArr[0].x)) + ((pointF.y - pointFArr[0].y) * (pointF.y - pointFArr[0].y))));
-        double d = (double) f;
+        double sqrt2 = Math.sqrt(((pointF.x - pointFArr[0].x) * (pointF.x - pointFArr[0].x)) + ((pointF.y - pointFArr[0].y) * (pointF.y - pointFArr[0].y)));
+        double d = f;
         Double.isNaN(d);
         double acos = Math.acos(d / sqrt2);
-        double atan2 = Math.atan2((double) (pointFArr[1].y - pointFArr[0].y), (double) (pointFArr[1].x - pointFArr[0].x));
-        double atan22 = Math.atan2((double) (pointFArr[2].y - pointFArr[0].y), (double) (pointFArr[2].x - pointFArr[0].x)) - atan2;
+        double atan2 = Math.atan2(pointFArr[1].y - pointFArr[0].y, pointFArr[1].x - pointFArr[0].x);
+        double atan22 = Math.atan2(pointFArr[2].y - pointFArr[0].y, pointFArr[2].x - pointFArr[0].x) - atan2;
         if (!z) {
             atan22 = acos * 2.0d;
         }
@@ -523,18 +523,18 @@ public class GeometryUtils {
         double[] coefficients = getCoefficients(pointF, pointF2);
         double[] coefficients2 = getCoefficients(pointF, pointF5);
         double d = coefficients2[0];
-        double d2 = (double) pointF4.x;
+        double d2 = pointF4.x;
         Double.isNaN(d2);
         double d3 = coefficients2[1];
-        double d4 = (double) pointF4.y;
+        double d4 = pointF4.y;
         Double.isNaN(d4);
         double d5 = (d * d2) + (d3 * d4) + coefficients2[2];
         double d6 = coefficients[0];
-        double d7 = (double) pointF5.x;
+        double d7 = pointF5.x;
         Double.isNaN(d7);
         double d8 = d6 * d7;
         double d9 = coefficients[1];
-        double d10 = (double) pointF5.y;
+        double d10 = pointF5.y;
         Double.isNaN(d10);
         double d11 = d8 + (d9 * d10) + coefficients[2];
         double sqrt = Math.sqrt((coefficients[0] * coefficients[0]) + (coefficients[1] * coefficients[1]));
@@ -543,7 +543,7 @@ public class GeometryUtils {
             if (d5 > 0.0d) {
                 double d12 = coefficients[0];
                 double d13 = coefficients[1];
-                double d14 = (double) f2;
+                double d14 = f2;
                 Double.isNaN(d14);
                 double d15 = coefficients2[0];
                 double d16 = coefficients2[1];
@@ -552,21 +552,21 @@ public class GeometryUtils {
             }
             double d17 = coefficients[0];
             double d18 = coefficients[1];
-            double d19 = (double) f2;
+            double d19 = f2;
             Double.isNaN(d19);
             double d20 = (sqrt * d19) - coefficients[2];
             double d21 = d19;
             Double.isNaN(d21);
             return findIntersectPoint(d17, d18, d20, -coefficients2[0], -coefficients2[1], (sqrt2 * d21) + coefficients2[2]);
         } else if (d5 > 0.0d) {
-            double d22 = (double) f2;
+            double d22 = f2;
             Double.isNaN(d22);
             double d23 = coefficients2[0];
             double d24 = coefficients2[1];
             Double.isNaN(d22);
             return findIntersectPoint(-coefficients[0], -coefficients[1], (sqrt * d22) + coefficients[2], d23, d24, (d22 * sqrt2) - coefficients2[2]);
         } else {
-            double d25 = (double) f2;
+            double d25 = f2;
             Double.isNaN(d25);
             double d26 = (sqrt * d25) + coefficients[2];
             Double.isNaN(d25);
@@ -577,11 +577,11 @@ public class GeometryUtils {
     public static double distanceToLine(double[] dArr, PointF pointF) {
         double sqrt = Math.sqrt((dArr[0] * dArr[0]) + (dArr[1] * dArr[1]));
         double d = dArr[0];
-        double d2 = (double) pointF.x;
+        double d2 = pointF.x;
         Double.isNaN(d2);
         double d3 = d * d2;
         double d4 = dArr[1];
-        double d5 = (double) pointF.y;
+        double d5 = pointF.y;
         Double.isNaN(d5);
         return Math.abs(((d3 + (d4 * d5)) + dArr[2]) / sqrt);
     }
@@ -591,19 +591,19 @@ public class GeometryUtils {
         float f4 = f2;
         double[] coefficients = getCoefficients(pointF, pointF2);
         double[] coefficients2 = getCoefficients(pointF, pointF3);
-        double d = (double) f3;
+        double d = f3;
         double sqrt = Math.sqrt((coefficients[0] * coefficients[0]) + (coefficients[1] * coefficients[1]));
         Double.isNaN(d);
         double d2 = (d * sqrt) - coefficients[2];
-        double d3 = (double) f4;
+        double d3 = f4;
         double sqrt2 = Math.sqrt((coefficients2[0] * coefficients2[0]) + (coefficients2[1] * coefficients2[1]));
         Double.isNaN(d3);
         double d4 = (d3 * sqrt2) - coefficients2[2];
-        double d5 = (double) (-f3);
+        double d5 = -f3;
         double sqrt3 = Math.sqrt((coefficients[0] * coefficients[0]) + (coefficients[1] * coefficients[1]));
         Double.isNaN(d5);
         double d6 = (d5 * sqrt3) - coefficients[2];
-        double d7 = (double) (-f4);
+        double d7 = -f4;
         double sqrt4 = Math.sqrt((coefficients2[0] * coefficients2[0]) + (coefficients2[1] * coefficients2[1]));
         Double.isNaN(d7);
         double d8 = (d7 * sqrt4) - coefficients2[2];
@@ -633,43 +633,40 @@ public class GeometryUtils {
         PointF pointF6 = pointF3;
         if (pointF6 != null && pointF6.x < Float.MAX_VALUE && pointF6.y < Float.MAX_VALUE) {
             double d = dArr[0];
-            double d2 = (double) pointF6.x;
+            double d2 = pointF6.x;
             Double.isNaN(d2);
             double d3 = dArr[1];
-            double d4 = (double) pointF6.y;
+            double d4 = pointF6.y;
             Double.isNaN(d4);
             double d5 = (d * d2) + (d3 * d4) + dArr[2];
             double d6 = dArr[0];
-            double d7 = (double) pointF5.x;
+            double d7 = pointF5.x;
             Double.isNaN(d7);
             double d8 = d6 * d7;
             double d9 = dArr[1];
-            double d10 = (double) pointF5.y;
+            double d10 = pointF5.y;
             Double.isNaN(d10);
             double d11 = d5 * (d8 + (d9 * d10) + dArr[2]);
             double d12 = dArr2[0];
-            double d13 = (double) pointF6.x;
+            double d13 = pointF6.x;
             Double.isNaN(d13);
             double d14 = d12 * d13;
             double d15 = dArr2[1];
-            double d16 = (double) pointF6.y;
+            double d16 = pointF6.y;
             Double.isNaN(d16);
             double d17 = d14 + (d15 * d16) + dArr2[2];
             double d18 = dArr2[0];
-            double d19 = (double) pointF4.x;
+            double d19 = pointF4.x;
             Double.isNaN(d19);
             double d20 = d18 * d19;
             double d21 = dArr2[1];
-            double d22 = (double) pointF4.y;
+            double d22 = pointF4.y;
             Double.isNaN(d22);
             double d23 = d17 * (d20 + (d21 * d22) + dArr2[2]);
             boolean z3 = d11 > Double.MIN_VALUE;
             boolean z4 = z2;
             boolean z5 = d23 > Double.MIN_VALUE;
-            if (z3 == z4 && z5 == z) {
-                return true;
-            }
-            return false;
+            return z3 == z4 && z5 == z;
         }
         return false;
     }
@@ -700,13 +697,13 @@ public class GeometryUtils {
         double d4 = (coefficients[0] / sqrt) - (coefficients2[0] / sqrt2);
         double d5 = (coefficients[1] / sqrt) - (coefficients2[1] / sqrt2);
         double d6 = (coefficients[2] / sqrt) - (coefficients2[2] / sqrt2);
-        double d7 = (double) pointF4.x;
+        double d7 = pointF4.x;
         Double.isNaN(d7);
-        double d8 = (double) pointF4.y;
+        double d8 = pointF4.y;
         Double.isNaN(d8);
-        double d9 = (double) pointF5.x;
+        double d9 = pointF5.x;
         Double.isNaN(d9);
-        double d10 = (double) pointF5.y;
+        double d10 = pointF5.y;
         Double.isNaN(d10);
         if (((d7 * d) + (d8 * d2) + d3) * ((d9 * d) + (d10 * d2) + d3) > Double.MIN_VALUE) {
             return new double[]{d4, d5, d6};
@@ -731,8 +728,8 @@ public class GeometryUtils {
             pointFArr[0] = new PointF(f4, pointF.y + f);
             pointFArr[1] = new PointF(f4, pointF.y - f);
         } else {
-            double d = (double) f;
-            double sqrt = Math.sqrt((double) (((f3 * f3) / (f2 * f2)) + 1.0f));
+            double d = f;
+            double sqrt = Math.sqrt(((f3 * f3) / (f2 * f2)) + 1.0f);
             Double.isNaN(d);
             float f6 = (float) (d / sqrt);
             float f7 = (f3 / f2) * f6;

@@ -39,12 +39,12 @@ class JavaBlurProcess implements BlurProcess {
                 while (i17 <= i9) {
                     iArr2[i17] = iArr[i16];
                     i17++;
-                    j += (long) (((iArr[i16] >>> 16) & 255) * i17);
-                    j2 += (long) (((iArr[i16] >>> 8) & 255) * i17);
-                    j3 += (long) ((iArr[i16] & 255) * i17);
-                    j4 += (long) ((iArr[i16] >>> 16) & 255);
-                    j5 += (long) ((iArr[i16] >>> 8) & 255);
-                    j6 += (long) (iArr[i16] & 255);
+                    j += ((iArr[i16] >>> 16) & 255) * i17;
+                    j2 += ((iArr[i16] >>> 8) & 255) * i17;
+                    j3 += (iArr[i16] & 255) * i17;
+                    j4 += (iArr[i16] >>> 16) & 255;
+                    j5 += (iArr[i16] >>> 8) & 255;
+                    j6 += iArr[i16] & 255;
                 }
                 int i18 = i16;
                 long j7 = 0;
@@ -56,12 +56,12 @@ class JavaBlurProcess implements BlurProcess {
                     }
                     iArr2[i19 + i9] = iArr[i18];
                     int i20 = (i9 + 1) - i19;
-                    j += (long) (((iArr[i18] >>> 16) & 255) * i20);
-                    j2 += (long) (((iArr[i18] >>> 8) & 255) * i20);
-                    j3 += (long) ((iArr[i18] & 255) * i20);
-                    j7 += (long) ((iArr[i18] >>> 16) & 255);
-                    j8 += (long) ((iArr[i18] >>> 8) & 255);
-                    j9 += (long) (iArr[i18] & 255);
+                    j += ((iArr[i18] >>> 16) & 255) * i20;
+                    j2 += ((iArr[i18] >>> 8) & 255) * i20;
+                    j3 += (iArr[i18] & 255) * i20;
+                    j7 += (iArr[i18] >>> 16) & 255;
+                    j8 += (iArr[i18] >>> 8) & 255;
+                    j9 += iArr[i18] & 255;
                 }
                 int i21 = i9 > i11 ? i11 : i9;
                 int i22 = i21;
@@ -73,7 +73,7 @@ class JavaBlurProcess implements BlurProcess {
                     int i27 = i15;
                     int i28 = i26;
                     long j10 = j7;
-                    long j11 = (long) s;
+                    long j11 = s;
                     iArr[i24] = (int) (((long) (iArr[i24] & -16777216)) | ((((j * j11) >>> b) & 255) << 16) | ((((j2 * j11) >>> b) & 255) << 8) | (((j11 * j3) >>> b) & 255));
                     i24++;
                     long j12 = j - j4;
@@ -129,12 +129,12 @@ class JavaBlurProcess implements BlurProcess {
                 while (i33 <= i9) {
                     iArr2[i33] = iArr[i31];
                     i33++;
-                    j21 += (long) (((iArr[i31] >>> 16) & 255) * i33);
-                    j22 += (long) (((iArr[i31] >>> 8) & 255) * i33);
-                    j23 += (long) ((iArr[i31] & 255) * i33);
-                    j24 += (long) ((iArr[i31] >>> 16) & 255);
-                    j25 += (long) ((iArr[i31] >>> 8) & 255);
-                    j26 += (long) (iArr[i31] & 255);
+                    j21 += ((iArr[i31] >>> 16) & 255) * i33;
+                    j22 += ((iArr[i31] >>> 8) & 255) * i33;
+                    j23 += (iArr[i31] & 255) * i33;
+                    j24 += (iArr[i31] >>> 16) & 255;
+                    j25 += (iArr[i31] >>> 8) & 255;
+                    j26 += iArr[i31] & 255;
                     i32 = i32;
                 }
                 int i34 = i32;
@@ -149,12 +149,12 @@ class JavaBlurProcess implements BlurProcess {
                     }
                     iArr2[i36 + i9] = iArr[i35];
                     int i37 = (i9 + 1) - i36;
-                    j21 += (long) (((iArr[i35] >>> 16) & 255) * i37);
-                    j22 += (long) (((iArr[i35] >>> 8) & 255) * i37);
-                    j23 += (long) ((iArr[i35] & 255) * i37);
-                    j27 += (long) ((iArr[i35] >>> 16) & 255);
-                    j28 += (long) ((iArr[i35] >>> 8) & 255);
-                    j29 += (long) (iArr[i35] & 255);
+                    j21 += ((iArr[i35] >>> 16) & 255) * i37;
+                    j22 += ((iArr[i35] >>> 8) & 255) * i37;
+                    j23 += (iArr[i35] & 255) * i37;
+                    j27 += (iArr[i35] >>> 16) & 255;
+                    j28 += (iArr[i35] >>> 8) & 255;
+                    j29 += iArr[i35] & 255;
                     i36++;
                     i13 = i13;
                 }
@@ -168,7 +168,7 @@ class JavaBlurProcess implements BlurProcess {
                 while (i43 < i8) {
                     int i45 = i31;
                     int i46 = i43;
-                    long j30 = (long) s;
+                    long j30 = s;
                     iArr[i44] = (int) (((long) (iArr[i44] & -16777216)) | ((((j21 * j30) >>> b) & 255) << 16) | ((((j22 * j30) >>> b) & 255) << 8) | (((j30 * j23) >>> b) & 255));
                     i44 += i;
                     long j31 = j21 - j24;

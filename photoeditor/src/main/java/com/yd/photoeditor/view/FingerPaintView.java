@@ -207,8 +207,8 @@ public class FingerPaintView extends View {
 
     public void setPaintEffect(int i) {
         this.mEffect = i;
-        this.mPaint.setMaskFilter((MaskFilter) null);
-        this.mPaint.setXfermode((Xfermode) null);
+        this.mPaint.setMaskFilter(null);
+        this.mPaint.setXfermode(null);
         this.mPaint.setAlpha(255);
         if (i == 1) {
             MaskFilter maskFilter = this.mPaint.getMaskFilter();
@@ -216,7 +216,7 @@ public class FingerPaintView extends View {
             if (maskFilter != maskFilter2) {
                 this.mPaint.setMaskFilter(maskFilter2);
             } else {
-                this.mPaint.setMaskFilter((MaskFilter) null);
+                this.mPaint.setMaskFilter(null);
             }
         } else if (i == 2) {
             MaskFilter maskFilter3 = this.mPaint.getMaskFilter();
@@ -224,7 +224,7 @@ public class FingerPaintView extends View {
             if (maskFilter3 != maskFilter4) {
                 this.mPaint.setMaskFilter(maskFilter4);
             } else {
-                this.mPaint.setMaskFilter((MaskFilter) null);
+                this.mPaint.setMaskFilter(null);
             }
         } else if (i == 3) {
             this.mPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_ATOP));

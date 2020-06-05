@@ -31,7 +31,7 @@ public class FilterInfo extends ItemInfo {
     private ImageFilter mImageFilter;
     private String mPackageFolder;
     private long mPackageId;
-    private Map<String, ArrayList<String>> mParamsMap = new HashMap();
+    private final Map<String, ArrayList<String>> mParamsMap = new HashMap();
 
     public ImageFilter getImageFilter() {
         ImageFilter imageFilter = this.mImageFilter;
@@ -68,7 +68,7 @@ public class FilterInfo extends ItemInfo {
     private void buildImageFilter() {
         ALog.d(TAG, "buildImageFilter, name=" + getTitle());
         if (mCmd == null || mCmd.length() < 1) {
-            mImageFilter = new ImageFilter();
+            mImageFilter = new HueFilter();
             return;
         }
         if (mCommands == null) {
@@ -86,7 +86,7 @@ public class FilterInfo extends ItemInfo {
         } else if (arrayList.size() > 0) {
             mImageFilter = (ImageFilter) arrayList.get(0);
         } else {
-            mImageFilter = new ImageFilter();
+            mImageFilter = new HueFilter();
         }
     }
 

@@ -18,7 +18,7 @@ public class ResultContainer {
     public static final String IMAGES_KEY = "imagesKey";
     public static final String PHOTO_BACKGROUND_IMAGE_KEY = "photoBgKey";
     private static ResultContainer instance;
-    private HashMap<String, Bitmap> mDecodedImageMap = new HashMap<>();
+    private final HashMap<String, Bitmap> mDecodedImageMap = new HashMap<>();
     private Uri mFrameBackgroundImage = null;
     private ArrayList<FrameEntity> mFrameImages = new ArrayList<>();
     private ArrayList<MultiTouchEntity> mFrameStickerImages = new ArrayList<>();
@@ -154,12 +154,12 @@ public class ResultContainer {
         if (this.mImages == null) {
             this.mImages = new ArrayList<>();
         }
-        this.mPhotoBackgroundImage = (Uri) bundle.getParcelable(PHOTO_BACKGROUND_IMAGE_KEY);
+        this.mPhotoBackgroundImage = bundle.getParcelable(PHOTO_BACKGROUND_IMAGE_KEY);
         this.mFrameStickerImages = bundle.getParcelableArrayList(FRAME_STICKER_IMAGES_KEY);
         if (this.mFrameStickerImages == null) {
             this.mFrameStickerImages = new ArrayList<>();
         }
-        this.mFrameBackgroundImage = (Uri) bundle.getParcelable(FRAME_BACKGROUND_IMAGE_KEY);
+        this.mFrameBackgroundImage = bundle.getParcelable(FRAME_BACKGROUND_IMAGE_KEY);
         this.mFrameImages = bundle.getParcelableArrayList(FRAME_IMAGES_KEY);
         if (this.mFrameImages == null) {
             this.mFrameImages = new ArrayList<>();

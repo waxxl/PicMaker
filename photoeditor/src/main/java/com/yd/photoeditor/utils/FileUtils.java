@@ -176,7 +176,7 @@ public class FileUtils {
                 if (isGooglePhotosUri(uri)) {
                     return uri.getLastPathSegment();
                 }
-                return getDataColumn(context, uri, (String) null, (String[]) null);
+                return getDataColumn(context, uri, null, null);
             } else if ("file".equalsIgnoreCase(uri.getScheme())) {
                 return uri.getPath();
             }
@@ -189,7 +189,7 @@ public class FileUtils {
                     return Environment.getExternalStorageDirectory() + "/" + split[1];
                 }
             } else if (isDownloadsDocument(uri)) {
-                return getDataColumn(context, ContentUris.withAppendedId(Uri.parse("content://downloads/public_downloads"), Long.valueOf(DocumentsContract.getDocumentId(uri)).longValue()), (String) null, (String[]) null);
+                return getDataColumn(context, ContentUris.withAppendedId(Uri.parse("content://downloads/public_downloads"), Long.valueOf(DocumentsContract.getDocumentId(uri)).longValue()), null, null);
             } else if (isMediaDocument(uri)) {
                 String[] split2 = DocumentsContract.getDocumentId(uri).split(":");
                 String str = split2[0];
@@ -232,7 +232,7 @@ public class FileUtils {
         } else {
             f = 0.0f;
         }
-        return String.valueOf(decimalFormat.format((double) f) + str);
+        return decimalFormat.format(f) + str;
     }
 
     public static Bitmap getThumbnail(Context context, File file) {
@@ -411,11 +411,11 @@ public class FileUtils {
         }
     }
 
-    private static void extractFolder(File file, File file2) throws ZipException, IOException {
+    private static void extractFolder(File file, File file2) throws IOException {
         ZipFile zipFile = new ZipFile(file);
         Enumeration<? extends ZipEntry> entries = zipFile.entries();
         while (entries.hasMoreElements()) {
-            ZipEntry zipEntry = (ZipEntry) entries.nextElement();
+            ZipEntry zipEntry = entries.nextElement();
             File file3 = new File(file2.getAbsolutePath(), zipEntry.getName());
             file3.getParentFile().mkdirs();
             if (!zipEntry.isDirectory()) {

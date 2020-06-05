@@ -114,8 +114,8 @@ public class CameraPreview extends ViewGroup implements SurfaceHolder.Callback {
 
     private Camera.Size getOptimalPreviewSize(List<Camera.Size> list, int i, int i2) {
         int i3 = i2;
-        double d = (double) i;
-        double d2 = (double) i3;
+        double d = i;
+        double d2 = i3;
         Double.isNaN(d);
         Double.isNaN(d2);
         double d3 = d / d2;
@@ -126,12 +126,12 @@ public class CameraPreview extends ViewGroup implements SurfaceHolder.Callback {
         double d4 = Double.MAX_VALUE;
         double d5 = Double.MAX_VALUE;
         for (Camera.Size next : list) {
-            double d6 = (double) next.width;
-            double d7 = (double) next.height;
+            double d6 = next.width;
+            double d7 = next.height;
             Double.isNaN(d6);
             Double.isNaN(d7);
             if (Math.abs((d6 / d7) - d3) <= 0.1d && ((double) Math.abs(next.height - i3)) < d5) {
-                d5 = (double) Math.abs(next.height - i3);
+                d5 = Math.abs(next.height - i3);
                 size = next;
             }
         }
@@ -139,7 +139,7 @@ public class CameraPreview extends ViewGroup implements SurfaceHolder.Callback {
             for (Camera.Size next2 : list) {
                 if (((double) Math.abs(next2.height - i3)) < d4) {
                     size = next2;
-                    d4 = (double) Math.abs(next2.height - i3);
+                    d4 = Math.abs(next2.height - i3);
                 }
             }
         }

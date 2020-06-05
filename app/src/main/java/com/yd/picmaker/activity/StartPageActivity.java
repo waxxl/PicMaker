@@ -13,7 +13,7 @@ import com.yd.picmaker.R;
 
 public class StartPageActivity extends BaseActivity {
     private static final int START_MAIN = 1;
-    private Handler mHandler = new Handler(Looper.getMainLooper()) {
+    private final Handler mHandler = new Handler(Looper.getMainLooper()) {
         @Override
         public void handleMessage(@NonNull Message msg) {
             switch (msg.what) {
@@ -27,9 +27,13 @@ public class StartPageActivity extends BaseActivity {
     };
 
     @Override
+    public int getId() {
+        return R.layout.activity_startpage;
+    }
+
+    @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_startpage);
     }
 
     @Override

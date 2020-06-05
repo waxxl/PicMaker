@@ -514,7 +514,7 @@ public class PhotoUtils {
         canvas.drawBitmap(bitmap, matrix, paint);
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
         canvas.drawBitmap(bitmap2, 0.0f, 0.0f, paint);
-        paint.setXfermode((Xfermode) null);
+        paint.setXfermode(null);
         return createBitmap;
     }
 
@@ -528,7 +528,7 @@ public class PhotoUtils {
         canvas.drawBitmap(bitmap, 0.0f, 0.0f, paint);
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
         canvas.drawBitmap(bitmap2, 0.0f, 0.0f, paint);
-        paint.setXfermode((Xfermode) null);
+        paint.setXfermode(null);
         return createBitmap;
     }
 

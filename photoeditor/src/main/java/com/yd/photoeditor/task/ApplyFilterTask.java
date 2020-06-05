@@ -6,8 +6,8 @@ import com.yd.photoeditor.listener.ApplyFilterListener;
 import com.yd.photoeditor.ui.activity.ImageProcessingActivity;
 
 public class ApplyFilterTask extends AsyncTask<Void, Void, Bitmap> {
-    private ImageProcessingActivity mActivity;
-    private ApplyFilterListener mListener;
+    private final ImageProcessingActivity mActivity;
+    private final ApplyFilterListener mListener;
 
     public ApplyFilterTask(ImageProcessingActivity imageProcessingActivity, ApplyFilterListener applyFilterListener) {
         this.mActivity = imageProcessingActivity;

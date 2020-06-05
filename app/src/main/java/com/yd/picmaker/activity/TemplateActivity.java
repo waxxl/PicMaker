@@ -24,13 +24,17 @@ public class TemplateActivity extends BaseActivity {
     private static final String KEY_MARGINS_FIXED = "key_margins_fixed";
     private static final int REQUEST_SELECT_PHOTO = 789;
     private RecyclerView templateRecycler;
-    private ArrayList<TemplateItem> mTemplateItemList = new ArrayList<>();
-    private ArrayList<TemplateItem> mAllTemplateItemList = new ArrayList<>();
-    private int mImageInTemplateCount = 2;
+    private final ArrayList<TemplateItem> mTemplateItemList = new ArrayList<>();
+    private final ArrayList<TemplateItem> mAllTemplateItemList = new ArrayList<>();
+    private final int mImageInTemplateCount = 2;
+
+    @Override
+    public int getId() {
+        return R.layout.activity_template;
+    }
 
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
-        setContentView(R.layout.activity_template);
         initToolBar();
         setTitle(getString(R.string.tab_template));
         templateRecycler = findViewById(R.id.template_recycler);

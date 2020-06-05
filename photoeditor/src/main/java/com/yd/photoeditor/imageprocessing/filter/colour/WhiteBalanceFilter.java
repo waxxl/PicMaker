@@ -33,7 +33,7 @@ public class WhiteBalanceFilter extends ImageFilter {
         int i = this.mTemperatureLocation;
         float f2 = this.mTemperature;
         double d = f2 < 5000.0f ? 4.0E-4d : 6.0E-5d;
-        double d2 = (double) f2;
+        double d2 = f2;
         Double.isNaN(d2);
         setFloat(i, (float) ((d2 - 5000.0d) * d));
     }
@@ -41,7 +41,7 @@ public class WhiteBalanceFilter extends ImageFilter {
     public void setTint(float f) {
         this.mTint = f;
         int i = this.mTintLocation;
-        double d = (double) this.mTint;
+        double d = this.mTint;
         Double.isNaN(d);
         setFloat(i, (float) (d / 100.0d));
     }

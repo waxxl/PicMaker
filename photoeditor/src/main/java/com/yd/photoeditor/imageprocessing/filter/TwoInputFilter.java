@@ -98,7 +98,7 @@ public class TwoInputFilter extends ImageFilter {
         Bitmap bitmap = this.mBitmap;
         if (bitmap != null && !bitmap.isRecycled()) {
             this.mBitmap.recycle();
-            setBitmap((Bitmap) null);
+            setBitmap(null);
         }
     }
 }

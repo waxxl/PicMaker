@@ -52,7 +52,7 @@ public class ItemPackageTable extends BaseTable {
             itemPackageInfo.setStatus("active");
         }
         contentValues.put("status", itemPackageInfo.getStatus());
-        long insert = getDatabase(mContext).insert(TABLE_NAME, (String) null, contentValues);
+        long insert = getDatabase(mContext).insert(TABLE_NAME, null, contentValues);
         itemPackageInfo.setId(insert);
         return insert;
     }
@@ -93,7 +93,7 @@ public class ItemPackageTable extends BaseTable {
     }
 
     public ItemPackageInfo getRowWithName(String str) {
-        Cursor query = getDatabase(mContext).query(TABLE_NAME, (String[]) null, "status = ? AND UPPER(name) = UPPER(?)", new String[]{"active", str}, (String) null, (String) null, (String) null);
+        Cursor query = getDatabase(mContext).query(TABLE_NAME, null, "status = ? AND UPPER(name) = UPPER(?)", new String[]{"active", str}, null, null, null);
         if (query == null) {
             return null;
         }
@@ -106,7 +106,7 @@ public class ItemPackageTable extends BaseTable {
     }
 
     public ItemPackageInfo getRowWithStoreId(String str) {
-        Cursor query = getDatabase(mContext).query(TABLE_NAME, (String[]) null, "id_str = ?", new String[]{str}, (String) null, (String) null, (String) null);
+        Cursor query = getDatabase(mContext).query(TABLE_NAME, null, "id_str = ?", new String[]{str}, null, null, null);
         if (query == null) {
             return null;
         }
@@ -119,7 +119,7 @@ public class ItemPackageTable extends BaseTable {
     }
 
     public List<ItemPackageInfo> getAllRows() {
-        Cursor query = getDatabase(mContext).query(TABLE_NAME, (String[]) null, "status = ? ", new String[]{"active"}, (String) null, (String) null, (String) null);
+        Cursor query = getDatabase(mContext).query(TABLE_NAME, null, "status = ? ", new String[]{"active"}, null, null, null);
         if (query == null) {
             return null;
         }

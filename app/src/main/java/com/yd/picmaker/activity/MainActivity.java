@@ -13,9 +13,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private ExitDialog mExitDialog;
 
     @Override
+    public int getId() {
+        return R.layout.activity_main;
+    }
+
+    @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
         mFreely = findViewById(R.id.freely);
         mTemplate = findViewById(R.id.template);
         mFrame = findViewById(R.id.frame);
@@ -45,17 +49,20 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
     public void onBackPressed() {
-        if(mExitDialog == null) {
-            ExitDialog.Builder builder = new ExitDialog.Builder(this);
-            mExitDialog = builder.create();
-        }
-        if(!mExitDialog.isShowing()) {
-            mExitDialog.show();
-        }
+        startActivityForResult(new Intent(this, ExitActivity.class), 0x11);
     }
 
     private void gotoActivity(Class<?> cls) {
         Intent intent = new Intent(this, cls);
         startActivity(intent);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode == RESULT_OK && requestCode == 0x11) {
+            finish();
+            System.exit(0);
+        }
     }
 }

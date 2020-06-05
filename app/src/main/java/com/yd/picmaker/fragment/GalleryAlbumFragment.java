@@ -89,7 +89,7 @@ public class GalleryAlbumFragment extends Fragment {
         String[] strArr = {"_id", "_data", "bucket_id", "bucket_display_name", "datetaken"};
         Cursor cursor = null;
         try {
-            cursor = getActivity().getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, strArr, "", (String[]) null, "");
+            cursor = getActivity().getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, strArr, "", null, "");
             if (cursor != null && cursor.moveToFirst()) {
                 do {
                     String string = cursor.getString(cursor.getColumnIndex("bucket_display_name"));
@@ -125,7 +125,7 @@ public class GalleryAlbumFragment extends Fragment {
     }
 
     public void loadAlbumNames() {
-        Cursor query = getActivity().getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, new String[]{"bucket_id", "bucket_display_name", "datetaken", "_data"}, "1) GROUP BY 1,(2", (String[]) null, "date_modified DESC");
+        Cursor query = getActivity().getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, new String[]{"bucket_id", "bucket_display_name", "datetaken", "_data"}, "1) GROUP BY 1,(2", null, "date_modified DESC");
         ArrayList arrayList = new ArrayList();
         ArrayList arrayList2 = new ArrayList();
         for (int i = 0; i < query.getCount(); i++) {
@@ -142,9 +142,9 @@ public class GalleryAlbumFragment extends Fragment {
         bundle.putString(GalleryAlbumImageFragment.ALBUM_NAME_EXTRA, galleryAlbum.getAlbumName());
         GalleryAlbumImageFragment galleryAlbumImageFragment = new GalleryAlbumImageFragment();
         galleryAlbumImageFragment.setArguments(bundle);
-        FragmentTransaction beginTransaction = ((FragmentActivity) getActivity()).getFragmentManager().beginTransaction();
+        FragmentTransaction beginTransaction = getActivity().getFragmentManager().beginTransaction();
         beginTransaction.replace(R.id.frame_container, galleryAlbumImageFragment);
-        beginTransaction.addToBackStack((String) null);
+        beginTransaction.addToBackStack(null);
         beginTransaction.commit();
     }
 

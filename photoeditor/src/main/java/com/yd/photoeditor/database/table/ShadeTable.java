@@ -33,7 +33,7 @@ public class ShadeTable extends BaseTable {
     }
 
     public ShadeInfo get(long j, String str, String str2) {
-        Cursor query = getDatabase(mContext).query(TABLE_NAME, (String[]) null, "package_id = ? AND status = ? AND type = ? AND UPPER(name) = UPPER(?)", new String[]{String.valueOf(j), "active", str2, str}, (String) null, (String) null, (String) null);
+        Cursor query = getDatabase(mContext).query(TABLE_NAME, null, "package_id = ? AND status = ? AND type = ? AND UPPER(name) = UPPER(?)", new String[]{String.valueOf(j), "active", str2, str}, null, null, null);
         if (query == null || !query.moveToFirst()) {
             return null;
         }
@@ -58,7 +58,7 @@ public class ShadeTable extends BaseTable {
             shadeInfo.setStatus("active");
         }
         contentValues.put("status", shadeInfo.getStatus());
-        long insert = getDatabase(mContext).insert(TABLE_NAME, (String) null, contentValues);
+        long insert = getDatabase(mContext).insert(TABLE_NAME, null, contentValues);
         shadeInfo.setId(insert);
         return insert;
     }
@@ -80,7 +80,7 @@ public class ShadeTable extends BaseTable {
     }
 
     public List<ShadeInfo> getAllRows() {
-        Cursor query = getDatabase(mContext).query(TABLE_NAME, (String[]) null, "status = ? ", new String[]{"active"}, (String) null, (String) null, (String) null);
+        Cursor query = getDatabase(mContext).query(TABLE_NAME, null, "status = ? ", new String[]{"active"}, null, null, null);
         if (query == null) {
             return null;
         }
@@ -90,7 +90,7 @@ public class ShadeTable extends BaseTable {
     }
 
     public List<ShadeInfo> getRows(long j, String str) {
-        Cursor query = getDatabase(mContext).query(TABLE_NAME, (String[]) null, "package_id = ? AND status = ? AND type = ?", new String[]{String.valueOf(j), "active", str}, (String) null, (String) null, (String) null);
+        Cursor query = getDatabase(mContext).query(TABLE_NAME, null, "package_id = ? AND status = ? AND type = ?", new String[]{String.valueOf(j), "active", str}, null, null, null);
         if (query == null) {
             return null;
         }
@@ -124,7 +124,7 @@ public class ShadeTable extends BaseTable {
         shadeInfo.setSelectedThumbnail(cursor.getString(cursor.getColumnIndex("selected_thumbnail")));
         shadeInfo.setForeground(cursor.getString(cursor.getColumnIndex("foreground")));
         shadeInfo.setShadeType(cursor.getString(cursor.getColumnIndex("type")));
-        shadeInfo.setPackageId((long) cursor.getInt(cursor.getColumnIndex("package_id")));
+        shadeInfo.setPackageId(cursor.getInt(cursor.getColumnIndex("package_id")));
         return shadeInfo;
     }
 

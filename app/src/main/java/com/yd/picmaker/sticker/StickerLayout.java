@@ -43,7 +43,7 @@ public class StickerLayout extends StickerView {
         bitmapStickerIcon3.setIconEvent(editIconEvent);
         BitmapStickerIcon bitmapStickerIcon4 = new BitmapStickerIcon(ContextCompat.getDrawable(getContext(), R.drawable.layer), BitmapStickerIcon.LEFT_BOTTOM);
         bitmapStickerIcon4.setIconEvent(new StickerButtonsClickListener());
-        setIcons(Arrays.asList(new BitmapStickerIcon[]{bitmapStickerIcon, bitmapStickerIcon2, bitmapStickerIcon3, bitmapStickerIcon4}));
+        setIcons(Arrays.asList(bitmapStickerIcon, bitmapStickerIcon2, bitmapStickerIcon3, bitmapStickerIcon4));
         setBackgroundColor(-1);
         setLocked(false);
         setConstrained(true);
@@ -86,7 +86,7 @@ public class StickerLayout extends StickerView {
     public void addTextSticker(String str, Bitmap bitmap) {
         TextSticker textSticker = new TextSticker(getContext());
         textSticker.setText(str);
-        textSticker.setDrawable((Drawable) new BitmapDrawable(getResources(), bitmap));
+        textSticker.setDrawable(new BitmapDrawable(getResources(), bitmap));
         textSticker.resizeText();
         addSticker(textSticker);
     }

@@ -87,7 +87,7 @@ public abstract class BasePhotoActivity extends BaseActivity implements DialogUt
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         if (bundle != null) {
-            this.mCapturedImageUri = (Uri) bundle.getParcelable("mCapturedImageUri");
+            this.mCapturedImageUri = bundle.getParcelable("mCapturedImageUri");
         }
         this.mAddImageDialog = DialogUtils.createAddImageDialog(this, this, false);
     }

@@ -41,11 +41,11 @@ public class DrawableCropImageView extends ImageView {
     private int mOffsetRadius = 10;
     /* access modifiers changed from: private */
     public OnDrawMaskListener mOnDrawMaskListener;
-    private Paint mPaint = new Paint();
-    private Path mPath = new Path();
+    private final Paint mPaint = new Paint();
+    private final Path mPath = new Path();
     /* access modifiers changed from: private */
     public ArrayList<PointF> mPointList = new ArrayList<>();
-    private OnTouchListener mTouchListener = new OnTouchListener() {
+    private final OnTouchListener mTouchListener = new OnTouchListener() {
         public boolean onTouch(View view, MotionEvent motionEvent) {
             if (!DrawableCropImageView.this.mFingerDrawingMode) {
                 return false;
@@ -250,7 +250,7 @@ public class DrawableCropImageView extends ImageView {
         canvas.drawBitmap(bitmap, 0.0f, 0.0f, paint);
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
         canvas.drawBitmap(bitmap2, 0.0f, 0.0f, paint);
-        paint.setXfermode((Xfermode) null);
+        paint.setXfermode(null);
         if (z) {
             bitmap.recycle();
             bitmap2.recycle();

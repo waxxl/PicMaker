@@ -19,19 +19,19 @@ public class QuickActionItem {
     }
 
     public QuickActionItem() {
-        this(-1, (String) null, (Drawable) null);
+        this(-1, null, null);
     }
 
     public QuickActionItem(int i, String str) {
-        this(i, str, (Drawable) null);
+        this(i, str, null);
     }
 
     public QuickActionItem(Drawable drawable) {
-        this(-1, (String) null, drawable);
+        this(-1, null, drawable);
     }
 
     public QuickActionItem(int i, Drawable drawable) {
-        this(i, (String) null, drawable);
+        this(i, null, drawable);
     }
 
     public void setTitle(String str) {
