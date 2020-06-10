@@ -16,11 +16,12 @@
      <string name = "tab_text">Texto</string>
      <string name = "tab_stickers">Pegatinas</string>
 
-     <string name = "write_text_hint">Escribir texto aquí ...</string>
-     <string name = "collage">Collage Maker</string>
-     <string name = "select_frame">Seleccionar marco</string>
-     <string name = "create_frame">Crear marco</string>
-     <string name = "app_not_found">​​Elegir aplicación no encontrada</string>
+     <string name = "write_text_hint">Escribir texto aquí ...</string><![CDATA[
+     
+     
+     
+     ]]>
+    <string name = "app_not_found">​​Elegir aplicación no encontrada</string>
      <string name = "gallery_albums">Álbumes de la galería</string>
 
      <string name = "permission_write_ex_storage">almacenamiento de escritura de permisos</string>

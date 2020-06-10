@@ -1,10 +1,6 @@
 package com.yd.photoeditor.actions;
 
-import android.content.Intent;
-import android.graphics.ColorMatrix;
-import android.graphics.Point;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 
@@ -12,40 +8,35 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.yd.photoeditor.R;
-import com.yd.photoeditor.adapter.CustomMenuAdapter;
-import com.yd.photoeditor.database.table.ItemPackageTable;
+import com.yd.photoeditor.adapter.CustomItemAdapter;
 import com.yd.photoeditor.listener.OnBottomMenuItemClickListener;
 import com.yd.photoeditor.listener.OnInstallStoreItemListener;
-import com.yd.photoeditor.model.ItemInfo;
+import com.yd.photoeditor.model.XXXXXXXXXXXXXX;
 import com.yd.photoeditor.model.ItemPackageInfo;
 import com.yd.photoeditor.ui.activity.ImageProcessingActivity;
-import com.yd.photoeditor.utils.DialogUtils;
-import com.yd.photoeditor.utils.TempDataContainer;
-import com.yd.photoeditor.utils.Utils;
+import com.yd.photoeditor.vv.DialogUtils;
+import com.yd.photoeditor.vv.TempDataContainer;
+import com.yd.photoeditor.vv.Utils;
+
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 public abstract class PackageAction extends BaseAction implements OnBottomMenuItemClickListener, OnInstallStoreItemListener {
     protected static final int DEFAULT_CROP_SELECTED_ITEM_INDEX = 3;
     protected View mBackButton;
     protected String mCurrentPackageFolder;
     protected long mCurrentPackageId = 0;
-    protected int mCurrentPosition = 1;
+    protected int mCurrentPosition = 0;
     protected RecyclerView mRecycler;
-    protected CustomMenuAdapter mMenuAdapter;
-    protected List<ItemInfo> mMenuItems;
+    protected CustomItemAdapter mMenuAdapter;
+    protected List<XXXXXXXXXXXXXX> mMenuItems;
     private final String mPackageType;
     protected Map<Long, Integer> mSelectedItemIndexes;
 
-    public void onStartDownloading(ItemPackageInfo itemPackageInfo) {
-    }
+    public void onStartDownloading(ItemPackageInfo itemPackageInfo) {}
 
-    /* access modifiers changed from: protected */
     public abstract void selectNormalItem(int i);
 
     public PackageAction(ImageProcessingActivity imageProcessingActivity, String str) {
@@ -53,7 +44,7 @@ public abstract class PackageAction extends BaseAction implements OnBottomMenuIt
         createMenuList();
         this.mPackageType = str;
         String str2 = this.mPackageType;
-        if (str2 != null && ItemPackageTable.CROP_TYPE.equalsIgnoreCase(str2)) {
+        if (str2 != null && "CROP_TYPE".equalsIgnoreCase(str2)) {
             this.mCurrentPosition = 3;
         }
     }
@@ -63,9 +54,9 @@ public abstract class PackageAction extends BaseAction implements OnBottomMenuIt
         String str = Utils.CROP_FOLDER;
         if ("frame".equalsIgnoreCase(itemPackageInfo.getType())) {
             str = Utils.FRAME_FOLDER;
-        } else if (ItemPackageTable.FILTER_TYPE.equalsIgnoreCase(itemPackageInfo.getType())) {
+        } else if ("FILTER_TYPE".equalsIgnoreCase(itemPackageInfo.getType())) {
             str = Utils.FILTER_FOLDER;
-        } else if (ItemPackageTable.CROP_TYPE.equalsIgnoreCase(itemPackageInfo.getType())) {
+        } else if ("CROP_TYPE".equalsIgnoreCase(itemPackageInfo.getType())) {
             str = Utils.CROP_FOLDER;
         } else if ("background".equalsIgnoreCase(itemPackageInfo.getType())) {
             str = Utils.BACKGROUND_FOLDER;
@@ -85,9 +76,9 @@ public abstract class PackageAction extends BaseAction implements OnBottomMenuIt
             String str = Utils.CROP_FOLDER;
             if ("frame".equalsIgnoreCase(this.mPackageType)) {
                 str = Utils.FRAME_FOLDER;
-            } else if (ItemPackageTable.FILTER_TYPE.equalsIgnoreCase(this.mPackageType)) {
+            } else if ("FILTER_TYPE".equalsIgnoreCase(this.mPackageType)) {
                 str = Utils.FILTER_FOLDER;
-            } else if (ItemPackageTable.CROP_TYPE.equalsIgnoreCase(this.mPackageType)) {
+            } else if ("CROP_TYPE".equalsIgnoreCase(this.mPackageType)) {
                 str = Utils.CROP_FOLDER;
             } else if ("background".equalsIgnoreCase(this.mPackageType)) {
                 str = Utils.BACKGROUND_FOLDER;
@@ -98,13 +89,13 @@ public abstract class PackageAction extends BaseAction implements OnBottomMenuIt
             if (itemPackageInfo.getSelectedThumbnail() != null && itemPackageInfo.getSelectedThumbnail().length() > 0) {
                 itemPackageInfo.setSelectedThumbnail(str.concat("/").concat(itemPackageInfo.getFolder()).concat("/").concat(itemPackageInfo.getSelectedThumbnail()));
             }
-            Iterator<ItemInfo> it = this.mMenuItems.iterator();
+            Iterator<XXXXXXXXXXXXXX> it = this.mMenuItems.iterator();
             while (true) {
                 if (!it.hasNext()) {
                     z2 = false;
                     break;
                 }
-                ItemInfo next = it.next();
+                XXXXXXXXXXXXXX next = it.next();
                 if ((next instanceof ItemPackageInfo) && ((ItemPackageInfo) next).getIdString().equals(itemPackageInfo.getIdString())) {
                     next.setTitle(itemPackageInfo.getTitle());
                     break;
@@ -122,9 +113,9 @@ public abstract class PackageAction extends BaseAction implements OnBottomMenuIt
         }
     }
 
-    public void onEditorItemClick(int i, ItemInfo itemInfo) {
+    public void onEditorItemClick(int i, XXXXXXXXXXXXXX itemInfo) {
         Log.d("xxl", "mCurrentPosition " + mCurrentPosition + " i: " + i);
-        if (mCurrentPosition != i && mMenuItems != null &&mMenuItems.size() > i) {
+        if (mCurrentPosition != i && mMenuItems != null && mMenuItems.size() > i) {
             mMenuItems.get(mCurrentPosition).setSelected(false);
             mMenuItems.get(i).setSelected(true);
             mMenuAdapter.notifyDataSetChanged();
@@ -133,20 +124,19 @@ public abstract class PackageAction extends BaseAction implements OnBottomMenuIt
         }
     }
 
-    public void onDeleteButtonClick(int i, final ItemInfo itemInfo) {
+    public void onDeleteButtonClick(int i, final XXXXXXXXXXXXXX itemInfo) {
         DialogUtils.showCoolConfirmDialog(this.mActivity, R.string.photo_editor_app_name, R.string.photo_editor_confirm_uninstall, new DialogUtils.ConfirmDialogOnClickListener() {
             public void onOKButtonOnClick() {
-                PackageAction.this.mMenuItems.remove(itemInfo);
-                PackageAction.this.mMenuAdapter.setShaking(false);
+
             }
 
             public void onCancelButtonOnClick() {
-                PackageAction.this.mMenuAdapter.setShaking(false);
+
             }
         });
     }
 
-    public void onMenuItemLongClick(int i, ItemInfo itemInfo) {
+    public void onMenuItemLongClick(int i, XXXXXXXXXXXXXX itemInfo) {
         this.mMenuAdapter.setShaking(true);
     }
 
@@ -187,7 +177,7 @@ public abstract class PackageAction extends BaseAction implements OnBottomMenuIt
         this.mRecycler = mRootActionView.findViewById(R.id.bottomListView);
         if (this.mRecycler != null) {
             mMenuItems = new ArrayList();
-            mMenuAdapter = new CustomMenuAdapter(this.mActivity, this.mMenuItems, true);
+            mMenuAdapter = new CustomItemAdapter(this.mActivity, this.mMenuItems, true);
             mMenuAdapter.setListener(this);
             mRecycler.setHasFixedSize(false);
             mRecycler.setLayoutManager(new LinearLayoutManager(mActivity, RecyclerView.HORIZONTAL, false));

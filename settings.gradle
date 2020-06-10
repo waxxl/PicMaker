@@ -1,2 +1,2 @@
 include ':app',':photoeditor'
-rootProject.name = "PicMaker"
+rootProject.name = "PhotoCollage"

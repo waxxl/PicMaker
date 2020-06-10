@@ -1,18 +1,9 @@
 package com.yd.photoeditor.model;
 
 import android.os.Parcel;
-import android.os.Parcelable;
 
-public class ItemPackageInfo extends ItemInfo {
-    public static final Creator<ItemPackageInfo> CREATOR = new Creator<ItemPackageInfo>() {
-        public ItemPackageInfo createFromParcel(Parcel parcel) {
-            return new ItemPackageInfo(parcel);
-        }
+public class ItemPackageInfo extends XXXXXXXXXXXXXX {
 
-        public ItemPackageInfo[] newArray(int i) {
-            return new ItemPackageInfo[i];
-        }
-    };
     private String mBillingId;
     private String mFolder;
     private String mType;
@@ -51,21 +42,5 @@ public class ItemPackageInfo extends ItemInfo {
     }
 
     public ItemPackageInfo() {
-    }
-
-    public void writeToParcel(Parcel parcel, int i) {
-        super.writeToParcel(parcel, i);
-        parcel.writeString(this.m_id);
-        parcel.writeString(this.mType);
-        parcel.writeString(this.mFolder);
-        parcel.writeString(this.mBillingId);
-    }
-
-    protected ItemPackageInfo(Parcel parcel) {
-        super(parcel);
-        this.m_id = parcel.readString();
-        this.mType = parcel.readString();
-        this.mFolder = parcel.readString();
-        this.mBillingId = parcel.readString();
     }
 }

@@ -1,11 +1,11 @@
 package com.yd.photoeditor.listener;
 
-import com.yd.photoeditor.model.ItemInfo;
+import com.yd.photoeditor.model.XXXXXXXXXXXXXX;
 
 public interface OnBottomMenuItemClickListener {
-    void onDeleteButtonClick(int i, ItemInfo itemInfo);
+    void onDeleteButtonClick(int i, XXXXXXXXXXXXXX itemInfo);
 
-    void onEditorItemClick(int i, ItemInfo itemInfo);
+    void onEditorItemClick(int i, XXXXXXXXXXXXXX itemInfo);
 
-    void onMenuItemLongClick(int i, ItemInfo itemInfo);
+    void onMenuItemLongClick(int i, XXXXXXXXXXXXXX itemInfo);
 }

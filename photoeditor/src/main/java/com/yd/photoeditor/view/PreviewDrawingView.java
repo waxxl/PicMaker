@@ -8,7 +8,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import androidx.core.internal.view.SupportMenu;
 import com.yd.photoeditor.R;
-import com.yd.photoeditor.config.ALog;
+import com.yd.photoeditor.config.PLog;
 
 public class PreviewDrawingView extends View {
     private Paint mDrawPaint;
@@ -44,7 +44,7 @@ public class PreviewDrawingView extends View {
     }
 
     public void init(int i, int i2) {
-        ALog.d("PreviewDrawingView", "init, widthView=" + i + ", heightView=" + i2);
+        PLog.d("PreviewDrawingView", "init, widthView=" + i + ", heightView=" + i2);
         this.mDrawPath.reset();
         for (int i3 = 10; i3 < 90; i3++) {
             float f = ((float) i3) * (((float) i) / 100.0f);

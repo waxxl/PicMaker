@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">PhotoCollage</string>
+    <string name="app_name">Photo Collage</string>
 
     <string name="tab_freely">Freely</string>
     <string name="tab_template">Template</string>
@@ -17,9 +17,6 @@
     <string name="tab_stickers">Stickers</string>
 
     <string name="write_text_hint">Write Text Here...</string>
-    <string name="collage">Collage Maker</string>
-    <string name="select_frame">Select frame</string>
-    <string name="create_frame">Create Frame</string>
     <string name="app_not_found">Pick App Not Found</string>
     <string name="gallery_albums">Gallery Albums</string>
 
@@ -34,6 +31,9 @@
     <string name="exit">Exit</string>
     <string name="select_photo_hint">Please Select %d Photo(s)</string>
     <string name="max_select_count">You only need %d Photo(s)</string>
+    <string name="item_count">%d item(s)</string>
     <string name="exit_tint">Are you sure want to exit?</string>
     <string name="edit_tint">please edit first</string>
+    <string name="border">Border</string>
+    <string name="rounded">Rounded</string>
 </resources>

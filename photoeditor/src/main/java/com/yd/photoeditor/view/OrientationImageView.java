@@ -9,7 +9,7 @@ import android.os.Bundle;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
-import com.yd.photoeditor.utils.PhotoUtils;
+import com.yd.photoeditor.vv.PhotoUtils;
 
 public class OrientationImageView extends View {
     public static final int FLIP_HORIZONTAL = 2;

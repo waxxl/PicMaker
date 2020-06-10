@@ -8,7 +8,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import com.yd.photoeditor.R;
 import com.yd.photoeditor.listener.ApplyFilterListener;
 import com.yd.photoeditor.task.ApplyFilterTask;
@@ -18,18 +17,15 @@ import com.yd.photoeditor.view.OrientationImageView;
 public class RotationAction extends BaseAction {
     private static final String ROTATION_ACTION_PREF_NAME = "rotationActionPref";
     private static final String SHOW_GUIDE_NAME = "showGuide";
-    /* access modifiers changed from: private */
     public boolean mFirstApplied = false;
     private boolean mFirstAttached = false;
     private View mFlipHorView;
     private View mFlipVerView;
-    /* access modifiers changed from: private */
     public OrientationImageView mOrientationImageView;
     private View mOrientationLayout;
     private boolean mRestoreOldState = false;
     private View mRotateLeftView;
     private View mRotateRightView;
-    /* access modifiers changed from: private */
     public SharedPreferences mRotationActionPref;
 
     public String getActionName() {
@@ -43,19 +39,10 @@ public class RotationAction extends BaseAction {
 
     public void saveInstanceState(Bundle bundle) {
         super.saveInstanceState(bundle);
-        bundle.putBoolean("com.yd.photoeditor.actions.RotationAction.mFirstAttached", this.mFirstAttached);
-        this.mOrientationImageView.saveInstanceState(bundle);
     }
 
     public void restoreInstanceState(Bundle bundle) {
         super.restoreInstanceState(bundle);
-        this.mFirstAttached = bundle.getBoolean("com.yd.photoeditor.actions.RotationAction.mFirstAttached", this.mFirstAttached);
-        if (this.mFirstAttached) {
-            this.mOrientationImageView.restoreInstanceState(bundle);
-            this.mRestoreOldState = true;
-            return;
-        }
-        this.mRestoreOldState = false;
     }
 
     public void reset() {
@@ -65,7 +52,7 @@ public class RotationAction extends BaseAction {
 
     public void apply(final boolean z) {
         if (isAttached()) {
-            new ApplyFilterTask(this.mActivity, new ApplyFilterListener() {
+            new ApplyFilterTask(mActivity, new ApplyFilterListener() {
                 public void onFinishFiltering() {
                     reset();
                     if (!(mOrientationImageView.getAngle() % 180.0f == 0.0f || mActivity.getCropAction() == null)) {
@@ -83,16 +70,16 @@ public class RotationAction extends BaseAction {
                 }
 
                 public Bitmap applyFilter() {
-                    return RotationAction.this.mOrientationImageView.applyTransform();
+                    return mOrientationImageView.applyTransform();
                 }
             }).execute();
         }
     }
 
     public View inflateMenuView() {
-        LayoutInflater from = LayoutInflater.from(this.mActivity);
+        LayoutInflater from = LayoutInflater.from(mActivity);
         mRootActionView = from.inflate(R.layout.photo_editor_action_rotation, null);
-        mRotateLeftView = this.mRootActionView.findViewById(R.id.leftRotate);
+        mRotateLeftView = mRootActionView.findViewById(R.id.leftRotate);
         mRotateLeftView.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 RotationAction.this.rotateLeft();
@@ -128,6 +115,7 @@ public class RotationAction extends BaseAction {
     public void attach() {
         super.attach();
         this.mActivity.attachMaskView(this.mOrientationLayout);
+        mActivity.attachBottomRecycler(2);
         if (this.mRestoreOldState || this.mFirstAttached) {
             this.mOrientationImageView.setImage(this.mActivity.getImage());
             this.mRestoreOldState = false;

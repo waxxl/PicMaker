@@ -1,6 +1,6 @@
 package com.yd.photoeditor.imageprocessing.util;
 
-import com.yd.photoeditor.imageprocessing.Rotation;
+import com.yd.photoeditor.imageprocessing.temp.ImageFilter6;
 
 public class TextureRotationUtil {
     public static final float[] TEXTURE_NO_ROTATION = {0.0f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f};
@@ -17,15 +17,15 @@ public class TextureRotationUtil {
 
     /* renamed from: com.yd.photoeditor.imageprocessing.util.TextureRotationUtil$1  reason: invalid class name */
     static /* synthetic */ class AnonymousClass1 {
-        static final /* synthetic */ int[] $SwitchMap$dauroi$com$imageprocessing$Rotation = new int[Rotation.values().length];
+        static final /* synthetic */ int[] $SwitchMap$dauroi$com$imageprocessing$Rotation = new int[ImageFilter6.values().length];
 
         static {
         }
     }
 
-    public static float[] getRotation(Rotation rotation, boolean z, boolean z2) {
+    public static float[] getRotation(ImageFilter6 imageFilter6, boolean z, boolean z2) {
         float[] fArr;
-        int i = AnonymousClass1.$SwitchMap$dauroi$com$imageprocessing$Rotation[rotation.ordinal()];
+        int i = AnonymousClass1.$SwitchMap$dauroi$com$imageprocessing$Rotation[imageFilter6.ordinal()];
         if (i == 1) {
             fArr = TEXTURE_ROTATED_90;
         } else if (i == 2) {

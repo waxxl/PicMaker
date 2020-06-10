@@ -29,15 +29,15 @@
    <string name="tab_stickers">Autocollants</string>
 
         
-   <string name="write_text_hint">Écrire du texte ici ...</string>
+   <string name="write_text_hint">Écrire du texte ici ...</string><![CDATA[
         
-   <string name="collage">Collage Maker</string>
+
         
-   <string name="select_frame">Sélectionner un cadre</string>
+
         
-   <string name="create_frame">Créer un cadre</string>
-        
-   <string name="app_not_found">​​Choisir une application introuvable</string>
+       
+   ]]>
+    <string name="app_not_found">​​Choisir une application introuvable</string>
         
    <string name="gallery_albums">Albums de galerie</string>
 

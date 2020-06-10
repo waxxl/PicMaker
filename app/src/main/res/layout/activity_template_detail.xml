@@ -8,7 +8,7 @@
 
     <include
         android:id="@+id/toolbarLayout"
-        layout="@layout/toolbar" />
+        layout="@layout/toolbar_layout_p" />
 
     <RelativeLayout
         android:id="@+id/containerLayout"

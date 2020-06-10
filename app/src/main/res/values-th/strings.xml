@@ -25,15 +25,15 @@
    <string name="tab_stickers">สติ๊กเกอร์</string>
 
         
-   <string name="write_text_hint">เขียนข้อความที่นี่ ...</string>
+   <string name="write_text_hint">เขียนข้อความที่นี่ ...</string><![CDATA[
         
-   <string name="collage">Collage Maker</string>
+
         
-   <string name="select_frame">เลือกเฟรม</string>
+
         
-   <string name="create_frame">สร้างเฟรม</string>
-        
-   <string name="app_not_found">​​เลือกแอปที่ไม่พบ</string>
+       
+   ]]>
+    <string name="app_not_found">​​เลือกแอปที่ไม่พบ</string>
         
    <string name="gallery_albums">อัลบั้มแกลลอรี่</string>
 

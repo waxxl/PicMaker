@@ -16,14 +16,14 @@
     <string name="tab_text">텍스트</string>
         
     <string name="tab_stickers">스티커</string>    
-    <string name="write_text_hint">여기에 텍스트 쓰기 ...</string>
+    <string name="write_text_hint">여기에 텍스트 쓰기 ...</string><![CDATA[
         
-    <string name="collage">콜라주 제작자</string>
+
         
-    <string name="select_frame">프레임 선택</string>
+
         
-    <string name="create_frame">프레임 만들기</string>
         
+    ]]>
     <string name="app_not_found">​​픽 앱을 찾을 수 없음</string>
         
     <string name="gallery_albums">갤러리 앨범</string>

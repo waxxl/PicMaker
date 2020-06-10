@@ -3,9 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    <include layout="@layout/toolbar" />
+    <include layout="@layout/toolbar_layout_p" />
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/save_recycler"
+        android:id="@+id/pic_maker_save_recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="5dp"/>

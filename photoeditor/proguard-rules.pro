@@ -19,7 +19,10 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
--keep public class com.yd.photoeditor.model.ItemInfo
--keep public class * extends com.yd.photoeditor.model.ItemInfo
--keepclassmembers class com.yd.photoeditor.model.ItemInfo
--keepclassmembers class * extends com.yd.photoeditor.model.ItemInfo
+#-keep public class com.yd.photoeditor.model.XXXXXXXXXXXXXX
+#-keep public class * extends com.yd.photoeditor.model.XXXXXXXXXXXXXX
+#-keepclassmembers class com.yd.photoeditor.model.XXXXXXXXXXXXXX
+#-keepclassmembers class * extends com.yd.photoeditor.model.XXXXXXXXXXXXXX
+
+-repackageclasses com.yd.photoeditor
+-assumenosideeffects

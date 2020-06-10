@@ -12,15 +12,14 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Shader;
-import android.graphics.Xfermode;
 import android.os.Bundle;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import androidx.core.internal.view.SupportMenu;
-import com.yd.photoeditor.config.ALog;
-import com.yd.photoeditor.utils.PhotoUtils;
+import com.yd.photoeditor.config.PLog;
+import com.yd.photoeditor.vv.PhotoUtils;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -183,7 +182,7 @@ public class DrawableCropImageView extends ImageView {
 
     public Bitmap cropImage(boolean z) {
         Bitmap createBitmapMask;
-        if (this.mPointList.isEmpty() || (createBitmapMask = createBitmapMask(this.mPointList)) == null) {
+        if (mPointList.isEmpty() || (createBitmapMask = createBitmapMask(mPointList)) == null) {
             return null;
         }
         Bitmap cropImage = cropImage(createBitmapMask, z);
@@ -271,7 +270,7 @@ public class DrawableCropImageView extends ImageView {
         float width = ((float) (getWidth() - calculateThumbnailSize[0])) / 2.0f;
         float height = ((float) (getHeight() - calculateThumbnailSize[1])) / 2.0f;
         String str = TAG;
-        ALog.d(str, "createCircleCameraBitmap, dx=" + width + ", dy=" + height);
+        PLog.d(str, "createCircleCameraBitmap, dx=" + width + ", dy=" + height);
         float f3 = f - width;
         float f4 = (float) i3;
         float f5 = f2 - height;

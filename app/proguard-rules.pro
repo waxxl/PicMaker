@@ -19,8 +19,11 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
--keep public class com.yd.picmaker.model.ItemInfo
--keep public class * extends com.yd.picmaker.model.ItemInfo
+-obfuscationdictionary  xxl-rules-class.txt
+-classobfuscationdictionary xxl-rules-class.txt
+-packageobfuscationdictionary xxl-rules-class.txt
+-keep public class com.eptonic.photocollage.model.ItemInfo
+#-keep public class * extends com.eptonic.photocollage.model.ItemInfo
 -keep public class * implements com.bumptech.glide.module.GlideModule
 -keep public class * extends com.bumptech.glide.module.AppGlideModule
 -keep public enum com.bumptech.glide.load.ImageHeaderParser$** {
@@ -40,8 +43,8 @@ public static java.lang.String TABLENAME;
 # If you do NOT use RxJava:
 -dontwarn rx.**
 
--keep public class com.yd.photoeditor.model.ItemInfo
--keep public class * extends com.yd.photoeditor.model.ItemInfo
--keepclassmembers class com.yd.photoeditor.model.ItemInfo
--keep public class com.yd.picmaker.model.PicStickerSaveData
--keepclassmembers class com.yd.picmaker.model.PicStickerSaveData
+#-keep public class com.yd.photoeditor.model.XXXXXXXXXXXXXX
+#-keep public class * extends com.yd.photoeditor.model.XXXXXXXXXXXXXX
+#-keepclassmembers class com.yd.photoeditor.model.XXXXXXXXXXXXXX
+-keep public class com.eptonic.photocollage.model.PhotoStickerSaveData
+-keepclassmembers class com.eptonic.photocollage.model.PhotoStickerSaveData

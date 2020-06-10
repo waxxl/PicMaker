@@ -2,10 +2,9 @@ package com.yd.photoeditor.actions;
 
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import com.yd.photoeditor.R;
-import com.yd.photoeditor.config.ALog;
+import com.yd.photoeditor.config.PLog;
 import com.yd.photoeditor.ui.activity.ImageProcessingActivity;
 
 public abstract class MaskAction extends PackageAction {
@@ -71,9 +70,9 @@ public abstract class MaskAction extends PackageAction {
 
     public void onActivityResume() {
         super.onActivityResume();
-        ALog.d(TAG, "onActivityResume");
+        PLog.d(TAG, "onActivityResume");
         if (isAttached()) {
-            ALog.d(TAG, "mActivity.attachMaskView");
+            PLog.d(TAG, "mActivity.attachMaskView");
             this.mActivity.attachMaskView(this.mMaskLayout);
         }
     }

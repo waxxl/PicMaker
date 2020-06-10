@@ -11,13 +11,6 @@ import android.widget.ImageView;
 import com.yd.photoeditor.R;
 
 public class FocusImageView extends ImageView {
-    public static final int CIRCLE_FOCUS = 0;
-    private static final int DRAG = 1;
-    private static final int MIN_CIRCLE_RADIUS = 20;
-    private static final int NONE = 0;
-    public static final int NO_FOCUS = -1;
-    public static final int RECTANGLE_FOCUS = 1;
-    private static final int ZOOM = 2;
     private float mCircleRadius = 100.0f;
     private float mCircleX = 0.0f;
     private float mCircleY = 0.0f;

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="color_primary">#000000</color>
-    <color name="color_primary_transparent">#60000000</color>
+    <color name="color_primary">#B8A2EB</color>
+    <color name="color_primary_transparent">#80b4a7ea</color>
     <color name="teel_200">#000000</color>
     <color name="teel_700">#000000</color>
     <color name="black">#000000</color>

@@ -3,16 +3,8 @@ package com.yd.photoeditor.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class Language implements Parcelable {
-    public static final Creator<Language> CREATOR = new Creator<Language>() {
-        public Language createFromParcel(Parcel parcel) {
-            return new Language(parcel);
-        }
+public class Language  {
 
-        public Language[] newArray(int i) {
-            return new Language[i];
-        }
-    };
     private String mName;
     private String mValue;
 
@@ -37,15 +29,5 @@ public class Language implements Parcelable {
 
     public String getValue() {
         return this.mValue;
-    }
-
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeString(this.mName);
-        parcel.writeString(this.mValue);
-    }
-
-    private Language(Parcel parcel) {
-        this.mName = parcel.readString();
-        this.mValue = parcel.readString();
     }
 }

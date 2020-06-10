@@ -29,15 +29,15 @@
    <string name="tab_stickers">Stiker</string>
 
         
-   <string name="write_text_hint">Tulis Teks Di Sini ...</string>
+   <string name="write_text_hint">Tulis Teks Di Sini ...</string><![CDATA[
         
-   <string name="collage">Pembuat Kolase</string>
+
         
-   <string name="select_frame">Pilih bingkai</string>
+
         
-   <string name="create_frame">Buat Bingkai</string>
-        
-   <string name="app_not_found">​​Pilih Aplikasi Tidak Ditemukan</string>
+       
+   ]]>
+    <string name="app_not_found">​​Pilih Aplikasi Tidak Ditemukan</string>
         
    <string name="gallery_albums">Album Galeri</string>
 

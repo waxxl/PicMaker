@@ -53,21 +53,6 @@ public class CaptionImageView extends ImageView {
     protected float mTextY2;
     private float mTopMarginCaption;
 
-    public static class CaptionImageInfos {
-        public static final String FONT_NAME_KEY = "fontName";
-        public static final String IS_MEME_KEY = "isMeme";
-        public static final String TEXT2_KEY = "text2";
-        public static final String TEXT_COLOR_KEY = "textCorlor";
-        public static final String TEXT_KEY = "text";
-        public static final String TEXT_SIZE_KEY = "textSize";
-        public String fontName;
-        public boolean isMeme = true;
-        public String text = "";
-        public String text2 = "";
-        public int textColor = -16777216;
-        public float textSize = 20.0f;
-    }
-
     public interface OnChangeDirectionListener {
         void changeDirection(int i);
 
@@ -156,66 +141,13 @@ public class CaptionImageView extends ImageView {
         init();
     }
 
-    public void saveInstanceState(Bundle bundle) {
-        bundle.putFloat("com.yd.photoeditor.view.CaptionImageView.mMinTextSize", this.mMinTextSize);
-        bundle.putFloat("com.yd.photoeditor.view.CaptionImageView.mMaxTextSize", this.mMaxTextSize);
-        bundle.putString("com.yd.photoeditor.view.CaptionImageView.mText", this.mText);
-        bundle.putInt("com.yd.photoeditor.view.CaptionImageView.mTextColor", this.mTextColor);
-        bundle.putFloat("com.yd.photoeditor.view.CaptionImageView.mOriginalTextSize", this.mOriginalTextSize);
-        bundle.putFloat("com.yd.photoeditor.view.CaptionImageView.mFirstTextSize", this.mFirstTextSize);
-        bundle.putFloat("com.yd.photoeditor.view.CaptionImageView.mSecondTextSize", this.mSecondTextSize);
-        bundle.putFloat("com.yd.photoeditor.view.CaptionImageView.mTopMarginCaption", this.mTopMarginCaption);
-        bundle.putFloat("com.yd.photoeditor.view.CaptionImageView.mBottomMarginCaption", this.mBottomMarginCaption);
-        bundle.putFloat("com.yd.photoeditor.view.CaptionImageView.mLeftRightMarginCaption", this.mLeftRightMarginCaption);
-        bundle.putFloat("com.yd.photoeditor.view.CaptionImageView.mStrokeWidth", this.mStrokeWidth);
-        bundle.putInt("com.yd.photoeditor.view.CaptionImageView.mMinTouchDist", this.mMinTouchDist);
-        bundle.putParcelable("com.yd.photoeditor.view.CaptionImageView.mLastTouch", this.mLastTouch);
-        bundle.putInt("com.yd.photoeditor.view.CaptionImageView.mStrokeColor", this.mStrokeColor);
-        bundle.putBoolean("com.yd.photoeditor.view.CaptionImageView.mDrawStroke", this.mDrawStroke);
-        bundle.putBoolean("com.yd.photoeditor.view.CaptionImageView.mIsMeme", this.mIsMeme);
-        bundle.putString("com.yd.photoeditor.view.CaptionImageView.mText2", this.mText2);
-        bundle.putFloat("com.yd.photoeditor.view.CaptionImageView.mTextX", this.mTextX);
-        bundle.putFloat("com.yd.photoeditor.view.CaptionImageView.mTextY", this.mTextY);
-        bundle.putFloat("com.yd.photoeditor.view.CaptionImageView.mTextX2", this.mTextX2);
-        bundle.putFloat("com.yd.photoeditor.view.CaptionImageView.mTextY2", this.mTextY2);
-        bundle.putString("com.yd.photoeditor.view.CaptionImageView.mFontName", this.mFontName);
-    }
-
     public void restoreInstanceState(Bundle bundle) {
-        this.mMinTextSize = bundle.getFloat("com.yd.photoeditor.view.CaptionImageView.mMinTextSize", this.mMinTextSize);
-        this.mMaxTextSize = bundle.getFloat("com.yd.photoeditor.view.CaptionImageView.mMaxTextSize", this.mMaxTextSize);
-        this.mText = bundle.getString("com.yd.photoeditor.view.CaptionImageView.mText");
-        this.mTextColor = bundle.getInt("com.yd.photoeditor.view.CaptionImageView.mTextColor", this.mTextColor);
-        this.mOriginalTextSize = bundle.getFloat("com.yd.photoeditor.view.CaptionImageView.mOriginalTextSize", this.mOriginalTextSize);
-        this.mFirstTextSize = bundle.getFloat("com.yd.photoeditor.view.CaptionImageView.mFirstTextSize", this.mFirstTextSize);
-        this.mSecondTextSize = bundle.getFloat("com.yd.photoeditor.view.CaptionImageView.mSecondTextSize", this.mSecondTextSize);
-        this.mTopMarginCaption = bundle.getFloat("com.yd.photoeditor.view.CaptionImageView.mTopMarginCaption", this.mTopMarginCaption);
-        this.mBottomMarginCaption = bundle.getFloat("com.yd.photoeditor.view.CaptionImageView.mBottomMarginCaption", this.mBottomMarginCaption);
-        this.mLeftRightMarginCaption = bundle.getFloat("com.yd.photoeditor.view.CaptionImageView.mLeftRightMarginCaption", this.mLeftRightMarginCaption);
-        this.mStrokeWidth = bundle.getFloat("com.yd.photoeditor.view.CaptionImageView.mStrokeWidth", this.mStrokeWidth);
-        this.mMinTouchDist = bundle.getInt("com.yd.photoeditor.view.CaptionImageView.mMinTouchDist", this.mMinTouchDist);
-        PointF pointF = bundle.getParcelable("com.yd.photoeditor.view.CaptionImageView.mLastTouch");
-        if (pointF != null) {
-            this.mLastTouch = pointF;
-        }
-        this.mStrokeColor = bundle.getInt("com.yd.photoeditor.view.CaptionImageView.mStrokeColor", this.mStrokeColor);
-        this.mDrawStroke = bundle.getBoolean("com.yd.photoeditor.view.CaptionImageView.mDrawStroke", this.mDrawStroke);
-        this.mIsMeme = bundle.getBoolean("com.yd.photoeditor.view.CaptionImageView.mIsMeme", this.mIsMeme);
-        String string = bundle.getString("com.yd.photoeditor.view.CaptionImageView.mText2");
-        if (string != null && string.length() > 0) {
-            this.mText2 = string;
-        }
-        this.mTextX = bundle.getFloat("com.yd.photoeditor.view.CaptionImageView.mTextX", this.mTextX);
-        this.mTextY = bundle.getFloat("com.yd.photoeditor.view.CaptionImageView.mTextY", this.mTextY);
-        this.mTextX2 = bundle.getFloat("com.yd.photoeditor.view.CaptionImageView.mTextX2", this.mTextX2);
-        this.mTextY2 = bundle.getFloat("com.yd.photoeditor.view.CaptionImageView.mTextY2", this.mTextY2);
         String string2 = bundle.getString("com.yd.photoeditor.view.CaptionImageView.mFontName");
         if (string2 != null && string2.length() > 0) {
             this.mFontName = string2;
         }
     }
 
-    /* access modifiers changed from: protected */
     public void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         if (getWidth() >= 5 && getHeight() >= 5) {

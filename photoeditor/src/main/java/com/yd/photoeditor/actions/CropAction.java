@@ -18,23 +18,21 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.yd.photoeditor.R;
-import com.yd.photoeditor.config.ALog;
+import com.yd.photoeditor.config.PLog;
 import com.yd.photoeditor.config.Constants;
-import com.yd.photoeditor.database.table.ItemPackageTable;
-import com.yd.photoeditor.imageprocessing.filter.ImageFilter;
+import com.yd.photoeditor.imageprocessing.filter.ImageRender;
 import com.yd.photoeditor.listener.ApplyFilterListener;
 import com.yd.photoeditor.model.CropInfo;
-import com.yd.photoeditor.model.ItemInfo;
+import com.yd.photoeditor.model.XXXXXXXXXXXXXX;
 import com.yd.photoeditor.task.ApplyFilterTask;
 import com.yd.photoeditor.ui.activity.ImageProcessingActivity;
-import com.yd.photoeditor.utils.PhotoUtils;
+import com.yd.photoeditor.vv.PhotoUtils;
 import com.yd.photoeditor.view.CropImageView;
 import com.yd.photoeditor.view.DrawableCropImageView;
 import com.yd.photoeditor.view.MultiTouchHandler;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class CropAction extends MaskAction implements View.OnTouchListener, DrawableCropImageView.OnDrawMaskListener {
     private static final String CROP_ACTION_PREF_NAME = "cropActionPref";
@@ -45,8 +43,6 @@ public class CropAction extends MaskAction implements View.OnTouchListener, Draw
     private View mDrawableCropLayout;
     private CropImageView mRectangleCropMaskView;
     public Bundle mSavedInstanceCustomData;
-    public Bundle mSavedInstanceDrawData;
-    public Bundle mSavedInstanceSquareData;
     public MultiTouchHandler mTouchHandler;
 
     public String getActionName() {
@@ -54,7 +50,7 @@ public class CropAction extends MaskAction implements View.OnTouchListener, Draw
     }
 
     public CropAction(ImageProcessingActivity imageProcessingActivity) {
-        super(imageProcessingActivity, ItemPackageTable.CROP_TYPE);
+        super(imageProcessingActivity, "CROP_TYPE");
         mCropActionPref = imageProcessingActivity.getSharedPreferences(CROP_ACTION_PREF_NAME, 0);
     }
 
@@ -81,10 +77,10 @@ public class CropAction extends MaskAction implements View.OnTouchListener, Draw
         mMenuItems = mActivity.mCropInfos;
         super.attach();
 
-        ALog.d(TAG, "attach");
+        PLog.d(TAG, "attach");
         mActivity.getNormalImageView().setVisibility(View.VISIBLE);
         mMaskLayout.setVisibility(View.VISIBLE);
-        mActivity.applyFilter(new ImageFilter());
+        mActivity.applyFilter(new ImageRender());
         if (mTouchHandler != null) {
             pinchImage();
         } else {
@@ -108,16 +104,11 @@ public class CropAction extends MaskAction implements View.OnTouchListener, Draw
 
     public void onActivityResume() {
         super.onActivityResume();
-        ALog.d(TAG, "onActivityResume");
+        PLog.d(TAG, "onActivityResume");
     }
 
     private void clickSquareView() {
         float f;
-        Bundle bundle = mSavedInstanceSquareData;
-        if (bundle != null) {
-            mRectangleCropMaskView.restoreInstanceState(bundle);
-            return;
-        }
         mRectangleCropMaskView.setPaintMode(true);
         mRectangleCropMaskView.setBackgroundColor(0);
         float photoViewWidth = (float) mActivity.getPhotoViewWidth();
@@ -178,8 +169,6 @@ public class CropAction extends MaskAction implements View.OnTouchListener, Draw
     public void reset() {
         mTouchHandler = null;
         mSavedInstanceCustomData = null;
-        mSavedInstanceDrawData = null;
-        mSavedInstanceSquareData = null;
     }
 
     public void apply(final boolean done) {
@@ -194,10 +183,9 @@ public class CropAction extends MaskAction implements View.OnTouchListener, Draw
                     }
                     mTouchHandler = null;
                     mActivity.getNormalImageView().setImageBitmap(null);
-                    CropAction cropAction = CropAction.this;
-                    cropAction.mCurrentPosition = 3;
-                    cropAction.mCurrentPackageId = 0;
-                    cropAction.mSelectedItemIndexes.clear();
+                    mCurrentPosition = 3;
+                    mCurrentPackageId = 0;
+                    mSelectedItemIndexes.clear();
                     mCurrentPackageFolder = null;
                     if (done) {
                         done();
@@ -234,7 +222,7 @@ public class CropAction extends MaskAction implements View.OnTouchListener, Draw
 
     public Bitmap cropFrame(int i) throws OutOfMemoryError {
         try {
-            ItemInfo itemInfo = mMenuItems.get(i);
+            XXXXXXXXXXXXXX itemInfo = mMenuItems.get(i);
             if (itemInfo.getShowingType() != 0) {
                 return null;
             }
@@ -309,7 +297,7 @@ public class CropAction extends MaskAction implements View.OnTouchListener, Draw
     public void selectNormalItem(int i) {
         Bitmap bitmap;
         if (isAttached()) {
-            ItemInfo itemInfo2 = mMenuItems.get(i);
+            XXXXXXXXXXXXXX itemInfo2 = mMenuItems.get(i);
             if (itemInfo2.getShowingType() == 3) {
                 mActivity.getNormalImageView().setImageMatrix(new Matrix());
                 mActivity.getNormalImageView().setOnTouchListener(null);
@@ -328,11 +316,7 @@ public class CropAction extends MaskAction implements View.OnTouchListener, Draw
                 mActivity.getNormalImageView().setImageMatrix(new Matrix());
                 mActivity.getNormalImageView().setOnTouchListener(null);
                 mActivity.getNormalImageView().setScaleType(ImageView.ScaleType.FIT_CENTER);
-                Bundle bundle = mSavedInstanceDrawData;
-                if (bundle != null) {
-                    mDrawableCropImageView.restoreInstanceState(bundle);
-                    mDrawableCropImageView.setFingerDrawingMode(true);
-                }
+                mDrawableCropImageView.setFingerDrawingMode(true);
                 mDrawableCropImageView.setBitmap(mActivity.getImage());
                 mActivity.attachMaskView(mDrawableCropLayout);
                 mCurrentPosition = i;
@@ -366,7 +350,7 @@ public class CropAction extends MaskAction implements View.OnTouchListener, Draw
         }
     }
 
-    public ArrayList<ItemInfo> loadNormalItems(long j) {
+    public ArrayList<XXXXXXXXXXXXXX> loadNormalItems(long j) {
         ArrayList<CropInfo> allRows = new ArrayList<>(11);
         for (int i = 0; i < Constants.CROPS.length; i++) {
             CropInfo cropInfo = new CropInfo();
@@ -377,21 +361,24 @@ public class CropAction extends MaskAction implements View.OnTouchListener, Draw
         }
         ArrayList arrayList = new ArrayList();
         if (j < 1) {
-            ItemInfo itemInfo = new ItemInfo();
+            XXXXXXXXXXXXXX itemInfo = new XXXXXXXXXXXXXX();
             itemInfo.setTitle(mActivity.getString(R.string.photo_editor_square));
-            itemInfo.setThumbnail(PhotoUtils.DRAWABLE_PREFIX + R.drawable.square);
             itemInfo.setSelectedThumbnail(PhotoUtils.DRAWABLE_PREFIX + R.drawable.square);
+            itemInfo.setThumbnail(PhotoUtils.DRAWABLE_PREFIX + R.drawable.square);
+
             itemInfo.setShowingType(3);
             arrayList.add(0, itemInfo);
-            ItemInfo itemInfo2 = new ItemInfo();
+            XXXXXXXXXXXXXX itemInfo2 = new XXXXXXXXXXXXXX();
+            itemInfo2.setSelectedThumbnail(PhotoUtils.DRAWABLE_PREFIX + R.drawable.custom);
             itemInfo2.setTitle(mActivity.getString(R.string.photo_editor_custom));
             itemInfo2.setThumbnail(PhotoUtils.DRAWABLE_PREFIX + R.drawable.custom);
-            itemInfo2.setSelectedThumbnail(PhotoUtils.DRAWABLE_PREFIX + R.drawable.custom);
+
             itemInfo2.setShowingType(4);
             arrayList.add(1, itemInfo2);
-            ItemInfo itemInfo3 = new ItemInfo();
-            itemInfo3.setTitle(mActivity.getString(R.string.photo_editor_draw));
+            XXXXXXXXXXXXXX itemInfo3 = new XXXXXXXXXXXXXX();
             itemInfo3.setThumbnail(PhotoUtils.DRAWABLE_PREFIX + R.drawable.draw);
+            itemInfo3.setTitle(mActivity.getString(R.string.photo_editor_draw));
+
             itemInfo3.setSelectedThumbnail(PhotoUtils.DRAWABLE_PREFIX + R.drawable.draw);
             itemInfo3.setShowingType(5);
             arrayList.add(2, itemInfo3);

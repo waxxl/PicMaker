@@ -10,8 +10,8 @@ import android.view.View;
 
 import com.yd.photoeditor.listener.OnDoneActionsClickListener;
 import com.yd.photoeditor.ui.activity.ImageProcessingActivity;
-import com.yd.photoeditor.utils.PhotoUtils;
-import com.yd.photoeditor.utils.Utils;
+import com.yd.photoeditor.vv.PhotoUtils;
+import com.yd.photoeditor.vv.Utils;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -21,26 +21,21 @@ public abstract class BaseAction implements OnDoneActionsClickListener {
     private boolean mAttached = false;
     protected View mRootActionView;
 
-    public abstract void apply(boolean z);
+    public abstract void apply(boolean done);
 
     public abstract String getActionName();
 
     public abstract View inflateMenuView();
 
-    public void onActivityDestroy() {
-    }
+    public void onActivityDestroy() {}
 
-    public void onActivityPause() {
-    }
+    public void onActivityPause() {}
 
-    public void onActivityResume() {
-    }
+    public void onActivityResume() {}
 
-    public void onDetach() {
-    }
+    public void onDetach() {}
 
-    public void onInit() {
-    }
+    public void onInit() {}
 
     public BaseAction(ImageProcessingActivity imageProcessingActivity) {
         mActivity = imageProcessingActivity;
@@ -112,11 +107,11 @@ public abstract class BaseAction implements OnDoneActionsClickListener {
     }
 
     public void saveInstanceState(Bundle bundle) {
-        bundle.putBoolean("actions".concat(getActionName()).concat("mAttached"), this.mAttached);
+        bundle.putBoolean("actions".concat(getActionName()).concat("mAttached"), mAttached);
     }
 
     public void restoreInstanceState(Bundle bundle) {
-        this.mAttached = bundle.getBoolean("actions".concat(getActionName()).concat("mAttached"), this.mAttached);
+        mAttached = bundle.getBoolean("actions".concat(getActionName()).concat("mAttached"), mAttached);
     }
 
     public void onDoneButtonClick() {

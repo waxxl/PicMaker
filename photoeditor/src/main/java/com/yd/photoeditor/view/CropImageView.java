@@ -11,27 +11,10 @@ import android.graphics.RectF;
 import android.os.Bundle;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
-import android.widget.ImageView;
+
 import com.yd.photoeditor.R;
 
 public class CropImageView extends androidx.appcompat.widget.AppCompatImageView {
-    private static final int BOTTOM_LINE = 7;
-    public static final float CUSTOM_SIZE = -2.0f;
-    private static final int INSIDE_RECT = 8;
-    private static final int LEFT_BOTTOM_CIRCLE = 2;
-    private static final int LEFT_LINE = 4;
-    private static final int LEFT_TOP_CIRCLE = 0;
-    private static final int MIN_TOUCH_DIST_DP = 15;
-    public static final int MOVE_DOWN = 1;
-    public static final int MOVE_LEFT = 2;
-    public static final int MOVE_RIGHT = 3;
-    public static final int MOVE_UP = 0;
-    public static final float ORIGINAL_SIZE = -1.0f;
-    private static final int OUTSIDE_RECT = -1;
-    private static final int RIGHT_BOTTOM_CIRCLE = 3;
-    private static final int RIGHT_LINE = 6;
-    private static final int RIGHT_TOP_CIRCLE = 1;
-    private static final int TOP_LINE = 5;
     private float mBottom;
     private IChangeDirection mChangeDirection;
     private Bitmap mCircleBitmap;
@@ -79,39 +62,7 @@ public class CropImageView extends androidx.appcompat.widget.AppCompatImageView 
         initClipArea();
     }
 
-    public void saveInstanceState(Bundle bundle) {
-        bundle.putFloat("com.yd.photoeditor.view.CropImageView.mFingerWidth", this.mFingerWidth);
-        bundle.putFloat("com.yd.photoeditor.view.CropImageView.mTop", this.mTop);
-        bundle.putFloat("com.yd.photoeditor.view.CropImageView.mLeft", this.mLeft);
-        bundle.putFloat("com.yd.photoeditor.view.CropImageView.mBottom", this.mBottom);
-        bundle.putFloat("com.yd.photoeditor.view.CropImageView.mRight", this.mRight);
-        bundle.putInt("com.yd.photoeditor.view.CropImageView.mMaskColor", this.mMaskColor);
-        bundle.putInt("com.yd.photoeditor.view.CropImageView.mCurrentTouchedArea", this.mCurrentTouchedArea);
-        bundle.putFloat("com.yd.photoeditor.view.CropImageView.radius", this.radius);
-        bundle.putBoolean("com.yd.photoeditor.view.CropImageView.mPaintMode", this.mPaintMode);
-        bundle.putParcelable("com.yd.photoeditor.view.CropImageView.mCurrentTouchedPoint", this.mCurrentTouchedPoint);
-        bundle.putFloat("com.yd.photoeditor.view.CropImageView.mRatio", this.mRatio);
-        bundle.putFloat("com.yd.photoeditor.view.CropImageView.mScaleRatio", this.mScaleRatio);
-        bundle.putInt("com.yd.photoeditor.view.CropImageView.mMinTouchDist", this.mMinTouchDist);
-    }
-
     public void restoreInstanceState(Bundle bundle) {
-        this.mFingerWidth = bundle.getFloat("com.yd.photoeditor.view.CropImageView.mFingerWidth", this.mFingerWidth);
-        this.mTop = bundle.getFloat("com.yd.photoeditor.view.CropImageView.mTop", this.mTop);
-        this.mLeft = bundle.getFloat("com.yd.photoeditor.view.CropImageView.mLeft", this.mLeft);
-        this.mBottom = bundle.getFloat("com.yd.photoeditor.view.CropImageView.mBottom", this.mBottom);
-        this.mRight = bundle.getFloat("com.yd.photoeditor.view.CropImageView.mRight", this.mRight);
-        this.mMaskColor = bundle.getInt("com.yd.photoeditor.view.CropImageView.mMaskColor", this.mMaskColor);
-        this.mCurrentTouchedArea = bundle.getInt("com.yd.photoeditor.view.CropImageView.mCurrentTouchedArea", this.mCurrentTouchedArea);
-        this.radius = bundle.getFloat("com.yd.photoeditor.view.CropImageView.radius", this.radius);
-        this.mPaintMode = bundle.getBoolean("com.yd.photoeditor.view.CropImageView.mPaintMode", this.mPaintMode);
-        PointF pointF = bundle.getParcelable("com.yd.photoeditor.view.CropImageView.mCurrentTouchedPoint");
-        if (pointF != null) {
-            this.mCurrentTouchedPoint = pointF;
-        }
-        this.mRatio = bundle.getFloat("com.yd.photoeditor.view.CropImageView.mRatio", this.mRatio);
-        this.mScaleRatio = bundle.getFloat("com.yd.photoeditor.view.CropImageView.mScaleRatio", this.mScaleRatio);
-        this.mMinTouchDist = bundle.getInt("com.yd.photoeditor.view.CropImageView.mMinTouchDist", this.mMinTouchDist);
         invalidate();
     }
 

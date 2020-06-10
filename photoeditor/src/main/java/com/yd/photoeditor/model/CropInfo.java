@@ -1,6 +1,6 @@
 package com.yd.photoeditor.model;
 
-public class CropInfo extends ItemInfo {
+public class CropInfo extends XXXXXXXXXXXXXX {
     private String mBackground;
     private String mForeground;
     private long mPackageId;

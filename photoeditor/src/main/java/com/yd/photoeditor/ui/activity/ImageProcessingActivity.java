@@ -11,6 +11,7 @@ import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,30 +23,30 @@ import com.yd.photoeditor.actions.BaseAction;
 import com.yd.photoeditor.actions.CropAction;
 import com.yd.photoeditor.actions.EffectAction;
 import com.yd.photoeditor.actions.RotationAction;
-import com.yd.photoeditor.adapter.CustomMenuAdapter;
+import com.yd.photoeditor.adapter.CustomItemAdapter;
 import com.yd.photoeditor.config.Constants;
-import com.yd.photoeditor.imageprocessing.ImageProcessingView;
-import com.yd.photoeditor.imageprocessing.ImageProcessor;
-import com.yd.photoeditor.imageprocessing.filter.ImageFilter;
+import com.yd.photoeditor.imageprocessing.temp.ImageFilter4;
+import com.yd.photoeditor.imageprocessing.temp.ImageFilter3;
+import com.yd.photoeditor.imageprocessing.filter.ImageRender;
 import com.yd.photoeditor.listener.OnDoneActionsClickListener;
-import com.yd.photoeditor.model.ItemInfo;
-import com.yd.photoeditor.utils.ImageDecoder;
-import com.yd.photoeditor.utils.PhotoUtils;
+import com.yd.photoeditor.model.XXXXXXXXXXXXXX;
+import com.yd.photoeditor.vv.ImageDecoder;
+import com.yd.photoeditor.vv.PhotoUtils;
 import java.util.ArrayList;
 
 public class ImageProcessingActivity extends AppCompatActivity implements View.OnClickListener {
     private static final String TAG = "ImageProcessingActivity";
     private static final int DEFAULT_SELECTED_ACTION_INDEX = 1;
-    public static final String EXTRA_EDITING_IMAGE_PATH = "editingImagePath";
+    public static final String EXTRA_EDITING_IMAGE_PATH = "EXTRA_EDITING_IMAGE_PATH";
     public static final String EXTRA_FLIP_IMAGE = "flipImage";
-    public static final String EXTRA_RETURN_EDITED_IMAGE_PATH = "editedImage";
-    public static final String IMAGE_URI_KEY = "imageUri";
+    public static final String EXTRA_RETURN_EDITED_IMAGE_PATH = "EXTRA_RETURN_EDITED_IMAGE_PATH";
+    public static final String IMAGE_URI_KEY = "IMAGE_URI_KEY";
     public static final String IS_EDITING_IMAGE_KEY = "isEditingImage";
     public static final String ROTATION_KEY = "rotation";
     private ImageView mBackButton,mDoneButton;
     public OnDoneActionsClickListener mDoneActionsClickListener;
     private String mEditingImagePath = null;
-    public ImageProcessingView mImageProcessingView;
+    public ImageFilter4 mImageFilter4;
     public Uri mImageUri;
     private boolean mIsEditingImage = false;
     private ImageView mNormalImageView;
@@ -57,17 +58,18 @@ public class ImageProcessingActivity extends AppCompatActivity implements View.O
     private ImageView mRotateHor,mRotateVer,mRotateLeft,mRotateRight;
     private TextView mEffectTV, mCropTV, mRotateTV;
     private BaseAction mEffectAction, mCropAction, mRotateAction;
-    public ArrayList<ItemInfo> mEffectInfos,mCropInfos,mRotateInfos;
+    public ArrayList<XXXXXXXXXXXXXX> mEffectInfos,mCropInfos,mRotateInfos;
     private final BaseAction[] mActions = new BaseAction[3];
-    private CustomMenuAdapter mAdapter;
+    private CustomItemAdapter mAdapter;
 
     public BaseAction mCurrentAction;
     public int mCurrentTopMenuPosition = 1;
 
-    private ImageFilter mFilter;
+    private ImageRender mFilter;
     public Bitmap mImage;
     public int mPhotoViewWidth = 0;
     private int mPhotoViewHeight;
+    private ProgressBar mProgress;
 
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
@@ -107,7 +109,7 @@ public class ImageProcessingActivity extends AppCompatActivity implements View.O
                                 mImage = decodeUriToBitmap;
                             }
                             if (!mImage.isRecycled())
-                                mImageProcessingView.setImage(mImage);
+                                mImageFilter4.setImage(mImage);
                         }
                         selectAction(1);
                     }
@@ -125,12 +127,14 @@ public class ImageProcessingActivity extends AppCompatActivity implements View.O
         mImageUri = getIntent().getParcelableExtra(IMAGE_URI_KEY);
         mIsEditingImage = getIntent().getBooleanExtra(IS_EDITING_IMAGE_KEY, false);
         mEditingImagePath = getIntent().getStringExtra(EXTRA_EDITING_IMAGE_PATH);
-        mImageProcessingView = findViewById(R.id.imageProcessingView);
-        mImageProcessingView.setScaleType(ImageProcessor.ScaleType.CENTER_INSIDE);
+        mImageFilter4 = findViewById(R.id.imageProcessingView);
+        mImageFilter4.setScaleType(ImageFilter3.ScaleType.CENTER_INSIDE);
         setImageProcessingViewBackgroundColor();
         mNormalImageView = findViewById(R.id.sourceImage);
         mImageLayout = findViewById(R.id.imageViewLayout);
-        mPhotoViewLayout = findViewById(R.id.photoViewLayout);
+
+        mPhotoViewLayout = findViewById(R.id.picLayout);
+        mProgress = findViewById(R.id.progress_cir);
         mBottomLayout = findViewById(R.id.bottomLayout);
         mBottomItemLayout = findViewById(R.id.bottom_item_selector);
         mBottomLayout.addView(View.inflate(this, R.layout.bottom_layout, null));
@@ -154,7 +158,7 @@ public class ImageProcessingActivity extends AppCompatActivity implements View.O
         mItemRecycler.setHasFixedSize(false);
         mItemRecycler.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
         if (mAdapter == null) {
-            mAdapter = new CustomMenuAdapter(this);
+            mAdapter = new CustomItemAdapter(this);
         }
         mItemRecycler.setAdapter(mAdapter);
         mDoneButton = findViewById(R.id.doneButton);
@@ -174,7 +178,7 @@ public class ImageProcessingActivity extends AppCompatActivity implements View.O
 
     private void setImageProcessingViewBackgroundColor() {
         int color = getResources().getColor(R.color.white);
-        mImageProcessingView.setBackground(((float) Color.red(color)) / 255.0f, ((float) Color.green(color)) / 255.0f, ((float) Color.blue(color)) / 255.0f, ((float) Color.alpha(color)) / 255.0f);
+        mImageFilter4.setBackground(((float) Color.red(color)) / 255.0f, ((float) Color.green(color)) / 255.0f, ((float) Color.blue(color)) / 255.0f, ((float) Color.alpha(color)) / 255.0f);
     }
 
     public void attachMaskView(View view) {
@@ -187,17 +191,17 @@ public class ImageProcessingActivity extends AppCompatActivity implements View.O
         mImageLayout.setVisibility(View.GONE);
     }
 
-    public boolean applyFilter(ImageFilter imageFilter) {
-        if (mPhotoViewWidth < 5 || mPhotoViewHeight < 5 || mFilter == imageFilter) {
+    public boolean applyFilter(ImageRender imageRender) {
+        if (mPhotoViewWidth < 5 || mPhotoViewHeight < 5 || mFilter == imageRender) {
             return false;
         }
-        mFilter = imageFilter;
-        mImageProcessingView.setFilter(imageFilter);
-        mImageProcessingView.requestRender();
+        mFilter = imageRender;
+        mImageFilter4.setFilter(imageRender);
+        mImageFilter4.requestRender();
         return true;
     }
 
-    public ImageFilter getFilter() {
+    public ImageRender getFilter() {
         return mFilter;
     }
 
@@ -232,10 +236,10 @@ public class ImageProcessingActivity extends AppCompatActivity implements View.O
         }
     }
 
-    public ArrayList<ItemInfo> setAdapterData(int[] datas) {
-        ArrayList<ItemInfo> itemInfos = new ArrayList<>();
+    public ArrayList<XXXXXXXXXXXXXX> setAdapterData(int[] datas) {
+        ArrayList<XXXXXXXXXXXXXX> itemInfos = new ArrayList<>();
         for (int id : datas) {
-            ItemInfo info = new ItemInfo();
+            XXXXXXXXXXXXXX info = new XXXXXXXXXXXXXX();
             info.setThumbnail(PhotoUtils.DRAWABLE_PREFIX + id);
             info.setSelected(false);
             info.setShowingType(0);
@@ -245,7 +249,7 @@ public class ImageProcessingActivity extends AppCompatActivity implements View.O
         return itemInfos;
     }
 
-    public ArrayList<ItemInfo> getItemInfo(int actionIndex) {
+    public ArrayList<XXXXXXXXXXXXXX> getItemInfo(int actionIndex) {
         switch (actionIndex) {
             case 0:
                 return mEffectInfos;
@@ -282,13 +286,13 @@ public class ImageProcessingActivity extends AppCompatActivity implements View.O
     public void setImage(Bitmap bitmap, boolean z) {
         Bitmap bitmap2;
         if (bitmap != null && !bitmap.isRecycled()) {
-            mImageProcessingView.setImage(bitmap);
+            mImageFilter4.setImage(bitmap);
             if (z && (bitmap2 = mImage) != null && bitmap2 != bitmap && !bitmap2.isRecycled()) {
                 mImage.recycle();
                 mImage = null;
                 System.gc();
             }
-            mImageProcessingView.getImageProcessor().deleteImage();
+            mImageFilter4.getImageProcessor().deleteImage();
             mImage = bitmap;
         }
     }
@@ -389,15 +393,23 @@ public class ImageProcessingActivity extends AppCompatActivity implements View.O
         return (RotationAction) mRotateAction;
     }
 
-    public ImageProcessingView getImageProcessingView() {
-        return mImageProcessingView;
+    public ImageFilter4 getImageProcessingView() {
+        return mImageFilter4;
     }
 
     public void setDoneActionsClickListener(OnDoneActionsClickListener listener) {
         mDoneActionsClickListener = listener;
     }
 
-    public void showProgress(boolean b) {
+    public void showProgress(boolean show) {
+        if(mProgress == null) {
+            return;
+        }
+        if(show) {
+            mProgress.setVisibility(View.VISIBLE);
+        } else {
+            mProgress.setVisibility(View.GONE);
+        }
 
     }
 
@@ -456,7 +468,7 @@ public class ImageProcessingActivity extends AppCompatActivity implements View.O
         mActions[2] = mRotateAction;
     }
 
-    public CustomMenuAdapter getAdapter() {
+    public CustomItemAdapter getAdapter() {
         return mAdapter;
     }
 }

@@ -14,14 +14,12 @@ public class ApplyFilterTask extends AsyncTask<Void, Void, Bitmap> {
         this.mListener = applyFilterListener;
     }
 
-    /* access modifiers changed from: protected */
     public void onPreExecute() {
         super.onPreExecute();
         this.mActivity.hideActions();
         this.mActivity.showProgress(true);
     }
 
-    /* access modifiers changed from: protected */
     public Bitmap doInBackground(Void... voidArr) {
         return mListener.applyFilter();
     }

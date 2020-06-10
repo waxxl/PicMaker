@@ -12,10 +12,7 @@
    <string name="tab_text">Texto</string>
    <string name="tab_stickers">Adesivos</string>
    <string name="write_text_hint">Escreva texto aqui ...</string>
-   <string name="collage">Criador de colagens</string>
-   <string name="select_frame">Selecionar quadro</string>
-   <string name="create_frame">Criar quadro</string>
-   <string name="app_not_found">​​Escolha o aplicativo não encontrado</string> 
+    <string name="app_not_found">​​Escolha o aplicativo não encontrado</string> 
    <string name="gallery_albums">Álbuns da galeria</string>
    <string name="permission_write_ex_storage">permissão para gravar armazenamento</string>
    <string name="permission_guide">guia de permissões</string>  

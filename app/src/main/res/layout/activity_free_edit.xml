@@ -14,11 +14,11 @@
             android:layout_width="match_parent"
             android:layout_height="48dp">
             <include
-                android:id="@+id/toolbar"
-                layout="@layout/toolbar" />
+                android:id="@+id/bar_tool_x"
+                layout="@layout/toolbar_layout_p" />
         </FrameLayout>
 
-        <com.yd.picmaker.sticker.StickerLayout
+        <com.eptonic.photocollage.ui.view.sticker.StickerLayout
             android:id="@+id/photo_free_edit_frame"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -36,7 +36,7 @@
                 android:layout_height="match_parent"
                 android:scaleType="fitCenter"/>
 
-        </com.yd.picmaker.sticker.StickerLayout>
+        </com.eptonic.photocollage.ui.view.sticker.StickerLayout>
 
         <LinearLayout
             android:id="@+id/tab_mode"
@@ -47,7 +47,7 @@
             android:weightSum="5"
             android:layout_gravity="bottom" >
             <TextView
-                android:id="@+id/tab_background"
+                android:id="@+id/background_tab"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -59,7 +59,7 @@
                 android:paddingTop="9dp"
                 android:text="@string/tab_background"/>
             <TextView
-                android:id="@+id/tab_filters"
+                android:id="@+id/filters_tab"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -71,7 +71,7 @@
                 android:paddingTop="9dp"
                 android:text="@string/tab_filters"/>
             <TextView
-                android:id="@+id/tab_pic"
+                android:id="@+id/pic_tab"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -83,7 +83,7 @@
                 android:paddingTop="9dp"
                 android:text="@string/tab_pictures"/>
             <TextView
-                android:id="@+id/tab_texts"
+                android:id="@+id/texts_tab"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -95,7 +95,7 @@
                 android:paddingTop="9dp"
                 android:text="@string/tab_text"/>
             <TextView
-                android:id="@+id/tab_stickers"
+                android:id="@+id/tab_add_sti"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
